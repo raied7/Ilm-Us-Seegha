@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>علم الصيغة · Tasreef Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1410;
+    --paper:#f4ece0;
+    --paper-2:#ebe0cd;
+    --card:#fbf5ea;
+    --line:#cdbfa6;
+    --accent:#9c3a1f;
+    --accent-2:#1f5c4d;
+    --gold:#b88a2e;
+    --muted:#7a6c56;
+    --good:#1f5c4d;
+    --bad:#9c3a1f;
+    --shadow:0 1px 0 #fff8 inset,0 6px 22px -12px #4a36207a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    line-height:1.55;
+    min-height:100vh;
+    background-image:radial-gradient(circle at 12% 8%,#fff6e6 0,transparent 45%),radial-gradient(circle at 88% 92%,#e7d8bd 0,transparent 50%);
+  }
+  .ar{font-family:'Amiri','Scheherazade New',serif;direction:rtl;unicode-bidi:isolate}
+  .ar-lg{font-size:1.55em;line-height:1.9}
+  .mono{font-family:'Spline Sans Mono',monospace}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(180deg,#1a1410,#241a12);
+    color:var(--paper);
+    border-bottom:2px solid var(--gold);
+  }
+  .hwrap{max-width:1080px;margin:0 auto;padding:14px 18px 0}
+  .brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .brand h1{font-size:clamp(1.15rem,3.6vw,1.7rem);font-weight:900;letter-spacing:-.01em}
+  .brand .sub{font-size:.8rem;color:#d8c79f;font-family:'Spline Sans Mono',monospace;letter-spacing:.04em}
+  .brand .ar{font-size:clamp(1.3rem,4vw,1.9rem);color:var(--gold)}
+  nav{display:flex;gap:2px;overflow-x:auto;margin-top:12px;padding-bottom:2px;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav button{
+    background:transparent;border:0;color:#cbb98f;
+    font-family:'Spline Sans Mono',monospace;font-size:.82rem;
+    padding:9px 14px;cursor:pointer;white-space:nowrap;
+    border-bottom:3px solid transparent;transition:.18s;
+  }
+  nav button:hover{color:#fff}
+  nav button.on{color:#fff;border-bottom-color:var(--accent)}
+
+  main{max-width:1080px;margin:0 auto;padding:26px 18px 90px}
+  .view{display:none;animation:fade .35s ease}
+  .view.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  h2.section{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;margin-bottom:6px;letter-spacing:-.02em}
+  .lede{color:var(--muted);max-width:62ch;margin-bottom:22px;font-size:.98rem}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;box-shadow:var(--shadow);margin-bottom:14px;
+  }
+  .rulecard{position:relative;overflow:hidden}
+  .rulecard .rid{
+    position:absolute;top:0;right:0;background:var(--accent);color:#fff;
+    font-family:'Spline Sans Mono',monospace;font-size:.72rem;font-weight:500;
+    padding:4px 12px;border-bottom-left-radius:12px;
+  }
+  .rulecard.mt .rid{background:var(--accent-2)}
+  .rulename{font-weight:900;font-size:1.12rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:60px}
+  .rulename .ar{font-size:1.5rem;color:var(--accent)}
+  .rulecard.mt .rulename .ar{color:var(--accent-2)}
+  .tag{font-family:'Spline Sans Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+    padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff6}
+  .tag.obl{color:#fff;background:var(--accent);border-color:var(--accent)}
+  .tag.opt{color:var(--accent-2);border-color:var(--accent-2)}
+  .rulebody{margin-top:10px;font-size:.97rem}
+  .ex{margin-top:10px;background:#fff7ea;border:1px dashed var(--line);border-radius:9px;padding:9px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .ex .chain{font-family:'Amiri',serif;font-size:1.5rem;direction:rtl;letter-spacing:.02em}
+  .ex .arrow{color:var(--gold);font-weight:700;font-family:'Spline Sans Mono',monospace}
+  .ex small{color:var(--muted);font-size:.78rem}
+
+  .grp-h{display:flex;align-items:center;gap:12px;margin:26px 0 12px;flex-wrap:wrap}
+  .grp-h h3{font-size:1.25rem;font-weight:900}
+  .grp-h .ar{font-size:1.6rem;color:var(--accent-2)}
+  .pill{font-family:'Spline Sans Mono',monospace;font-size:.7rem;background:var(--ink);color:var(--paper);padding:3px 10px;border-radius:999px}
+
+  .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .filterbar button{
+    font-family:'Spline Sans Mono',monospace;font-size:.78rem;padding:7px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:.15s
+  }
+  .filterbar button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* tasreef tables */
+  .tsel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .tsel button{font-family:'Spline Sans Mono',monospace;font-size:.78rem;padding:8px 14px;border-radius:10px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.15s}
+  .tsel button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tsel button.mtb.on{background:var(--accent-2);border-color:var(--accent-2)}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .tcard h3{font-size:1.05rem;margin-bottom:2px}
+  .tcard .meta{color:var(--muted);font-size:.85rem;margin-bottom:14px;font-family:'Spline Sans Mono',monospace}
+  table.tasreef{width:100%;border-collapse:collapse;font-family:'Amiri',serif;direction:rtl}
+  table.tasreef th,table.tasreef td{border:1px solid var(--line);padding:8px 6px;text-align:center}
+  table.tasreef th{background:var(--paper-2);font-size:.95rem;font-weight:700}
+  table.tasreef td{font-size:1.5rem}
+  table.tasreef td.lab{font-size:.78rem;font-family:'Spline Sans Mono',monospace;background:#fff8;color:var(--muted);direction:ltr}
+  .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .deriv-list{margin-top:16px}
+  .deriv-list summary{cursor:pointer;font-weight:700;padding:10px 0;border-top:1px solid var(--line);list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .deriv-list summary::after{content:'+';font-family:'Spline Sans Mono',monospace;color:var(--accent)}
+  .deriv-list details[open] summary::after{content:'–'}
+  .deriv-row{padding:6px 0 14px;font-size:.95rem}
+  .deriv-row .chain{font-family:'Amiri',serif;font-size:1.5rem;direction:rtl;margin:6px 0}
+  .deriv-row .why{color:var(--muted);font-size:.86rem}
+  .rref{display:inline-block;font-family:'Spline Sans Mono',monospace;font-size:.7rem;background:var(--accent-2);color:#fff;padding:1px 7px;border-radius:6px;cursor:pointer;text-decoration:none}
+  .rref.m{background:var(--accent)}
+
+  /* flashcards */
+  .fc-stage{perspective:1400px;max-width:560px;margin:0 auto}
+  .fc{position:relative;width:100%;min-height:300px;cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1)}
+  .fc.flip{transform:rotateY(180deg)}
+  .fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);
+    background:var(--card);box-shadow:var(--shadow);padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .fc-back{transform:rotateY(180deg);background:#fbf2e2}
+  .fc-kicker{font-family:'Spline Sans Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px}
+  .fc-q{font-size:1.2rem;font-weight:700}
+  .fc-q .ar{font-size:2rem;display:block;margin:10px 0;color:var(--accent)}
+  .fc-a{font-size:1.02rem}
+  .fc-a .ar{font-size:1.7rem;color:var(--accent-2);display:block;margin:8px 0}
+  .fc-hint{margin-top:14px;font-size:.8rem;color:var(--muted);font-family:'Spline Sans Mono',monospace}
+  .fc-ctrl{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .fc-ctrl button,.btn{font-family:'Spline Sans Mono',monospace;font-size:.82rem;padding:10px 18px;border-radius:10px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.15s;color:var(--ink)}
+  .fc-ctrl button:hover,.btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.primary:hover{background:#7d2c14}
+  .counter{text-align:center;font-family:'Spline Sans Mono',monospace;font-size:.8rem;color:var(--muted);margin-top:14px}
+
+  /* matching */
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:760px}
+  .mtile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;cursor:pointer;
+    transition:.14s;font-size:.95rem;min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .mtile .ar{font-size:1.5rem}
+  .mtile:hover{border-color:var(--ink)}
+  .mtile.sel{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .mtile.done{background:#dfeee7;border-color:var(--accent-2);color:var(--accent-2);cursor:default;opacity:.65}
+  .mtile.wrong{animation:shake .4s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+  /* quiz */
+  .qbox{max-width:680px}
+  .qprompt{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+  .qprompt .ar{font-size:1.7rem;color:var(--accent)}
+  .qopt{display:block;width:100%;text-align:right;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:13px 16px;margin:8px 0;cursor:pointer;font-family:inherit;font-size:1rem;transition:.14s;direction:rtl}
+  .qopt:hover{border-color:var(--ink)}
+  .qopt.correct{background:#dfeee7;border-color:var(--accent-2);color:var(--accent-2);font-weight:700}
+  .qopt.incorrect{background:#f3ddd5;border-color:var(--accent);color:var(--accent)}
+  .qopt .ar{font-size:1.4rem}
+  .qexp{margin-top:14px;padding:13px 16px;background:#fff7ea;border:1px dashed var(--line);border-radius:10px;font-size:.92rem;display:none}
+  .qexp.show{display:block}
+  .progress{height:7px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin:18px 0}
+  .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));transition:.4s}
+  .scorebanner{text-align:center;padding:30px}
+  .scorebanner .big{font-size:3rem;font-weight:900;font-family:'Fraunces',serif}
+
+  footer{text-align:center;color:var(--muted);font-size:.78rem;padding:30px 18px 50px;font-family:'Spline Sans Mono',monospace}
+  .kbd{font-family:'Spline Sans Mono',monospace;font-size:.72rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:#fff8}
+  @media(max-width:560px){
+    table.tasreef td{font-size:1.25rem}
+    .match-grid{grid-template-columns:1fr}
+    main{padding:20px 14px 80px}
+  }
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <span class="ar">عِلْم الصِّيغة</span>
+      <h1>Tasreef Study Guide</h1>
+      <span class="sub">i'lāl · taḫfīf · idghām</span>
+    </div>
+    <nav id="nav"></nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section class="view on" id="v-home">
+    <h2 class="section">Final-Exam Study Guide</h2>
+    <p class="lede">Built from <em>ʿIlm uṣ-Ṣīgha</em> — the rules of <strong>mahmūz</strong> and <strong>muʿtall</strong> (Lesson 22–29) and how they apply in the <strong>tasareef</strong> (Lessons 24, 30–42). Everything works offline. Tap a card to flip; swipe tables sideways on mobile.</p>
+    <div class="card">
+      <div class="rulename"><span class="ar">١</span> Rules Reference</div>
+      <div class="rulebody">All 9 mahmūz rules (+ extensions) and 25 muʿtall rules, each with its signature example and derivation. Filterable.</div>
+      <div style="margin-top:12px"><button class="btn primary" data-go="rules">Open Rules →</button></div>
+    </div>
+    <div class="card">
+      <div class="rulename"><span class="ar">٢</span> Tasareef Tables</div>
+      <div class="rulebody">Full 14-ṣīgha conjugations for every category — mahmūz, mithāl, ajwaf, nāqiṣ, lafīf, muḍāʿaf, murakkabāt — with the <em>original → final</em> derivation written out and linked to the rule that caused each change.</div>
+      <div style="margin-top:12px"><button class="btn primary" data-go="tasreef">Open Tables →</button></div>
+    </div>
+    <div class="card">
+      <div class="rulename"><span class="ar">٣</span> Active Recall</div>
+      <div class="rulebody">Flashcards (rule recall + derivation chains), a matching game (rule ↔ example), and a quiz with MCQs and step-by-step derivation questions — exactly the format your exam uses.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" data-go="cards">Flashcards</button>
+        <button class="btn" data-go="match">Matching</button>
+        <button class="btn" data-go="quiz">Quiz</button>
+      </div>
+    </div>
+    <div class="card" style="background:#fbf2e2">
+      <div class="rulename"><span class="ar">★</span> How to use this the week before</div>
+      <div class="rulebody" style="margin-top:8px">
+        <strong>Mon–Tue:</strong> Read Rules, then Tasareef tables — recite each table aloud RTL.<br>
+        <strong>Wed–Thu:</strong> Flashcards on "Derivation" mode until you can produce the chain from memory.<br>
+        <strong>Fri:</strong> Matching + full Quiz; redo any rule you miss.<br>
+        <strong>Sat AM:</strong> Quiz "derivation" questions only — that's the heavy part of the test.
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section class="view" id="v-rules">
+    <h2 class="section">Rules Reference</h2>
+    <p class="lede">قواعد المهموز والمعتل. <span class="tag obl">obligatory</span> means the change must happen; <span class="tag opt">optional</span> (جوازًا) means it may. Click an example to see why.</p>
+    <div class="filterbar" id="rule-filter">
+      <button class="on" data-f="all">All</button>
+      <button data-f="mahmuz">Mahmūz (9+)</button>
+      <button data-f="mithal">Mithāl</button>
+      <button data-f="ajwaf">Ajwaf</button>
+      <button data-f="naqis">Nāqiṣ</button>
+    </div>
+    <div id="rules-out"></div>
+  </section>
+
+  <!-- TASREEF -->
+  <section class="view" id="v-tasreef">
+    <h2 class="section">Tasareef Tables</h2>
+    <p class="lede">Lessons 24, 30–42. Each card: the 14 ṣīgha (māḍī maʿrūf), plus the key derivations — <em>al-aṣl</em> and the rules that transform it. This is the "list the tasreef + explain the derivation" part of the exam.</p>
+    <div class="tsel" id="tsel"></div>
+    <div id="tasreef-out"></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section class="view" id="v-cards">
+    <h2 class="section">Flashcards</h2>
+    <p class="lede">Tap card to flip. Use <strong>Got it</strong> / <strong>Again</strong> to shuffle weak cards forward.</p>
+    <div class="tsel" id="fc-mode">
+      <button class="on" data-m="rule">Rule recall</button>
+      <button data-m="deriv">Derivation chains</button>
+      <button data-m="def">Definitions</button>
+    </div>
+    <div class="fc-stage">
+      <div class="fc" id="fc">
+        <div class="fc-face fc-front"><div class="fc-kicker" id="fck">—</div><div class="fc-q" id="fcq">—</div><div class="fc-hint">tap to flip</div></div>
+        <div class="fc-face fc-back"><div class="fc-kicker">answer</div><div class="fc-a" id="fca">—</div></div>
+      </div>
+    </div>
+    <div class="fc-ctrl">
+      <button id="fc-again">↻ Again</button>
+      <button id="fc-flip" class="primary" style="background:var(--accent);color:#fff;border-color:var(--accent)">Flip</button>
+      <button id="fc-got">✓ Got it</button>
+    </div>
+    <div class="counter" id="fc-count">—</div>
+  </section>
+
+  <!-- MATCHING -->
+  <section class="view" id="v-match">
+    <h2 class="section">Matching Game</h2>
+    <p class="lede">Match each rule name to its signature example. Pick one tile from each side.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <button class="btn primary" id="m-new">New round</button>
+      <span class="counter" id="m-stat" style="margin:0;align-self:center">—</span>
+    </div>
+    <div class="match-grid" id="match-grid"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz">
+    <h2 class="section">Quiz</h2>
+    <p class="lede">Mixed: rule identification, "which rule applies", and derivation steps.</p>
+    <div class="tsel" id="quiz-mode">
+      <button class="on" data-qm="mixed">Mixed (20)</button>
+      <button data-qm="rules">Rules only</button>
+      <button data-qm="deriv">Derivations only</button>
+    </div>
+    <div id="quiz-out" class="qbox"></div>
+  </section>
+</main>
+
+<footer>
+  ʿIlm uṣ-Ṣīgha · Mufti ʿInāyat Aḥmad al-Kākorawī · study aid for tasreef + i'lāl rules
+</footer>
+
+<script>/* ===========================================================
+   DATA — Ilm us-Sigha rules + tasareef
+   Sourced from the kitab: Lessons 22-29 (qawaa'id) and 24,30-42 (tasareef)
+   =========================================================== */
+
+/* ---- RULES ---- */
+const RULES = {
+  mahmuz: [
+    {id:"M1", ar:"رأس / بوس / ذيب", name:"Lone sākin hamza takes the preceding vowel's letter",
+     type:"opt", body:"A lone sākin hamza optionally conforms to the vowel before it: after fatḥa → alif, after ḍamma → wāw, after kasra → yā'.",
+     chain:"رَأْس · بُؤْس · ذِئْب → رَاس · بُوس · ذِيب", note:"jawāzan"},
+    {id:"M2", ar:"آمَن / أُومِن", name:"Sākin hamza after a moving hamza — obligatory",
+     type:"obl", body:"When a sākin hamza follows a moving hamza, it MUST change to match the preceding vowel.",
+     chain:"أَأْمَن · أُؤْمِن → آمَن · أُومِن", note:"wujūban"},
+    {id:"M3", ar:"جون / مير", name:"Single maftūḥ hamza after ḍamma/kasra",
+     type:"opt", body:"A single maftūḥ lone hamza after ḍamma optionally → wāw; after kasra → yā'.",
+     chain:"جُؤَن · مِئَر → جُوَن · مِيَر", note:"jawāzan"},
+    {id:"M4", ar:"جاءٍ / أوادم", name:"Two moving hamzas — 2nd maksūr → yā', else → wāw",
+     type:"opt", body:"When two moving hamzas meet: if the second is maksūr it becomes yā' (جاءٍ); otherwise wāw (أوادم from أآدم).",
+     chain:"جائئ → جاءٍ ; أآدم → أوادم", note:"jawāzan"},
+    {id:"M5", ar:"أيمّة", name:"Two moving hamzas at word-start, 2nd maksūr → yā'",
+     type:"opt", body:"Two moving hamzas at the start of a word with the second maksūr → second optionally becomes yā'. (Author splits this from M4.)",
+     chain:"أَئِمّة → أَيِمّة", note:"jawāzan"},
+    {id:"M6", ar:"مقروّة / خطيّة", name:"Hamza after madd wāw/yā' or yā' of taṣghīr",
+     type:"obl", body:"Hamza after a zā'id madd wāw/yā' or after the yā' of taṣghīr changes to match it and is OBLIGATORILY assimilated (idghām).",
+     chain:"مَقْرُوءَة · مَحْطِيئَة · أُفَيْئِس → مَقْرُوّة · خَطِيّة · أُفَيّس", note:"wujūban idghām"},
+    {id:"M7", ar:"يَسْأل", name:"Moving hamza after a non-madd sākin → transfer + drop",
+     type:"opt", body:"A moving hamza after a sākin letter (not madd, not taṣghīr yā') transfers its vowel to that letter, then is optionally deleted. OBLIGATORY in all verbs of seeing (يرى); optional in derived nouns.",
+     chain:"يَسْأل → يَسَل ; قَدْ أَفْلَح → قَدْ فَلَح", note:"jawāzan / wājib in رأى"},
+    {id:"M8", ar:"بَيْن بَيْن (قريب وبعيد)", name:"Tas-hīl of moving hamza after a moving letter",
+     type:"opt", body:"A moving hamza preceded by a moving letter may be softened between two points — qarīb (between its makhraj and the weak-letter matching its own vowel) and baʿīd (matching the preceding vowel).",
+     chain:"سَأَل · سِئِم · لَؤُم", note:"tas-hīl"},
+    {id:"M9", ar:"أأنتم", name:"Interrogative hamza on another hamza — 3 options",
+     type:"opt", body:"Hamza of istifhām falling on a hamza: (a) أوادم rule, (b) tas-hīl bayna bayna, (c) insert a separating alif between the two.",
+     chain:"أَأنتم → آأنتم / أاأنتم", note:"3 wajh"},
+    {id:"M+", ar:"خطايا (امتداد M7)", name:"Hamza after the alif of muntahā-l-jumūʿ",
+     type:"obl", body:"Hamza after the alif of منتهى الجموع before yā' → maftūḥa yā' with idghām; final yā' → alif (via قال/باع). Worked: خَطائئ → خَطاءِئ → خَطائيّ → خَطايا.",
+     chain:"خَطائئ → خَطايا", note:"compound i'lāl"}
+  ],
+  mutall: [
+    {id:"1", grp:"mithal", ar:"يَعِد", name:"Wāw between maftūḥ muḍāriʿ-marker and kasra drops",
+     type:"obl", body:"A wāw between the maftūḥ muḍāriʿ marker and a kasra (absolutely), or a fatḥa in a verb whose ʿayn/lām is guttural, is obligatorily dropped.",
+     chain:"وَعَدَ → يَعِدُ ; يَهَب · يَسَع", note:""},
+    {id:"2", grp:"mithal", ar:"عِدَة", name:"Wāw in fā' of a fiʿl-maṣdar drops + compensatory ة",
+     type:"obl", body:"Wāw in the fā' of a maṣdar on fiʿl pattern drops, ʿayn takes kasra (sometimes fatḥa if muḍāriʿ maftūḥ-ʿayn), and a compensating ة is added at the end.",
+     chain:"وَعْد → عِدَة ; وَسْع → سِعَة", note:""},
+    {id:"3", grp:"mithal", ar:"ميعاد / موسر / قوتل", name:"Sākin wāw after kasra → yā'; sākin yā' after ḍamma → wāw",
+     type:"obl", body:"A non-doubled sākin wāw after kasra → yā' (ميعاد); a sākin yā' after ḍamma → wāw (موسر). Alif after ḍamma → wāw, after kasra → yā'.",
+     chain:"مِوْعاد → مِيعاد ; مُيْسِر → مُوسِر", note:""},
+    {id:"4", grp:"mithal", ar:"اتّعد", name:"Wāw/yā' as fā' of ifti'āl → tā' + idghām",
+     type:"obl", body:"When the fā' of iftiʿāl is an original wāw or yā', it changes to tā' and is assimilated into the tā' of iftiʿāl.",
+     chain:"اِوْتَعَد → اِتَّعَد", note:""},
+    {id:"5", grp:"mithal", ar:"أقّتت / إشاح", name:"Initial maḍmūm/maksūr wāw → hamza (optional)",
+     type:"opt", body:"A maḍmūm or maksūr wāw at word-start, or a maḍmūm wāw mid-word, may optionally become hamza. A maftūḥ initial wāw → hamza is irregular.",
+     chain:"وُجوه → أُجوه ; وِشاح → إِشاح", note:"jawāzan"},
+    {id:"6", grp:"mithal", ar:"أواصل / أويصل", name:"Two moving wāws at word-start → 1st becomes hamza",
+     type:"obl", body:"When two moving wāws meet at the start of a word, the first is obligatorily changed to hamza.",
+     chain:"وَواصِل → أَواصِل ; وَويصِل → أُويصِل", note:""},
+    {id:"7", grp:"ajwaf", ar:"قال / باع", name:"Moving wāw/yā' after fatḥa → alif (conditions)",
+     type:"obl", body:"Moving wāw/yā' after fatḥa → alif (قال، باع، دعا، رمى). Conditions: NOT the fā'; NOT ʿayn of a lafīf; NOT before alif of tathniya; NOT before zā'id madd; NOT before shadda-yā'/nūn tawkīd; NOT in colour/defect (عور، صيد); NOT in iftiʿāl with tafāʿul meaning.",
+     chain:"قَوَلَ · بَيَعَ → قال · باع", note:"8 shurūṭ"},
+    {id:"8", grp:"ajwaf", ar:"يقول / يبيع", name:"Vowel of wāw/yā' transfers to preceding sākin",
+     type:"obl", body:"The vowel of wāw/yā' transfers to the preceding sākin (يقول، يبيع); they become alif in the fatḥa case (يقال، يباع) under the same conditions as رule 7; drop if a sākin follows.",
+     chain:"يَقْوُل · يَبْيِع → يَقُول · يَبِيع", note:""},
+    {id:"9", grp:"ajwaf", ar:"قِيل / بِيع", name:"Passive ʿayn wāw/yā' transfer; ishmām allowed",
+     type:"obl", body:"(a) wāw/yā' in passive past ʿayn transfer forward, wāw → yā' (قُول→قِيل، بُيِع→بِيع); (b) keep the preceding vowel with wāw/yā' made sākin; (c) ishmām of ḍamma with kasra permitted. + qulna/biʿna: weak letter drops in fem-plural.",
+     chain:"قُوِل → قِيل ; بُيِع → بِيع", note:""},
+    {id:"10", grp:"ajwaf", ar:"يدعو / يرمي", name:"Lām wāw/yā' after ḍamma/kasra lose vowel",
+     type:"obl", body:"Wāw/yā' as lām after ḍamma/kasra lose their vowel in 5 muḍāriʿ ṣīghas (يدعو، يرمي); after fatḥa → alif (يخشى). Sub-rules: يدعون/ترمين drop for two sākins; تدعين wāw↔yā'.",
+     chain:"يَدْعُوُ · يَرْمِيُ → يَدْعُو · يَرْمِي", note:""},
+    {id:"11", grp:"naqis", ar:"دُعِي / داعية", name:"Wāw in ṭaraf (lām) after kasra → yā'",
+     type:"obl", body:"A wāw in the ṭaraf (the lām) after a kasra becomes yā'.",
+     chain:"دُعِوَ → دُعِيَ", note:""},
+    {id:"12", grp:"naqis", ar:"نَهُو", name:"Yā' in lām after ḍamma → wāw",
+     type:"obl", body:"A yā' in the lām after a ḍamma becomes wāw (from the karuma pattern).",
+     chain:"نَهُيَ → نَهُوَ", note:""},
+    {id:"13", grp:"naqis", ar:"قِيام / حِياض", name:"Wāw in ʿayn of maṣdar after kasra → yā'",
+     type:"obl", body:"A wāw in the ʿayn of a maṣdar after kasra → yā' if its verb is also muʿall (قِوام→قِيام، صِوام→صِيام، جِواض→جِياض).",
+     chain:"قِوام → قِيام ; صِوام → صِيام", note:"verb must be mu'all"},
+    {id:"14", grp:"naqis", ar:"سيّد / مرميّ", name:"Wāw + yā' meet, 1st sākin: wāw→yā', idghām",
+     type:"obl", body:"Non-converted wāw & yā' in one word, the first sākin → wāw becomes yā', obligatory idghām, preceding ḍamma → kasra.",
+     chain:"سَيْوِد → سَيِّد ; مَرْمُوي → مَرْمِيّ", note:""},
+    {id:"15", grp:"naqis", ar:"دُلِيّ", name:"Two wāws end of fuʿūl → both yā', idghām",
+     type:"obl", body:"Two wāws at the end of fuʿūl → both become yā', idghām, preceding ḍamma → kasra, fā' optionally kasra.",
+     chain:"دُلُوّو → دُلِيّ", note:""},
+    {id:"16", grp:"naqis", ar:"أَدْلٍ / أَظْبٍ", name:"Wāw after ḍamma in noun lām → drops",
+     type:"obl", body:"Wāw after ḍamma in the lām of a noun: ḍamma→kasra, wāw→yā', then drops at meeting of two sākins. Same for yā' (أظبي→أظبٍ).",
+     chain:"أَدْلُو → أَدْلٍ ; أَظْبُي → أَظْبٍ", note:""},
+    {id:"17", grp:"naqis", ar:"قائل / بائع", name:"Wāw/yā' of fāʿil (the ʿayn) → hamza",
+     type:"obl", body:"The wāw/yā' that is the ʿayn of فاعل becomes hamza, under the قال/باع condition.",
+     chain:"قاوِل · بايِع → قائِل · بائِع", note:""},
+    {id:"18", grp:"naqis", ar:"شرائف", name:"Zā'id weak letter after alif of fāʿil → hamza",
+     type:"obl", body:"A zā'id weak letter after the alif of فاعل (followed by exactly two letters) → hamza. Converting an original yā' (مصايب→مصائب) is irregular.",
+     chain:"شَرايف → شَرائف ; رَسايل → رَسائل", note:""},
+    {id:"19", grp:"naqis", ar:"دعاء", name:"Final wāw/yā' after zā'id alif → hamza",
+     type:"obl", body:"Final wāw/yā' after a zā'id alif → hamza.",
+     chain:"دُعاو → دُعاء ; كِساو → كِساء ; سَماي → سَماء", note:""},
+    {id:"20", grp:"naqis", ar:"يُدْعَى", name:"Wāw 4th in word → yā' (unless after ḍamma/sākin wāw)",
+     type:"obl", body:"A wāw 4th in a word or later, if not after ḍamma or sākin wāw, is obligatorily changed to yā'.",
+     chain:"دُعِوَ يُدْعَوان → يُدْعَيان ; أَعْلَوْت → أَعْلَيْت", note:""},
+    {id:"21", grp:"naqis", ar:"الألف المقصورة", name:"Zā'id alif before tathniya/sound-fem-pl → yā'",
+     type:"obl", body:"A zā'id alif before the alif of tathniya or sound feminine plural → yā' (حبلىان→حبليان). Plus: yā' after kasra in fiʿl / ʿayn of fuʿlā → yā' in adjective (بيض، حيكى), → wāw in noun (طوبى، كوسى).",
+     chain:"حُبْلىان → حُبْلَيان", note:""},
+    {id:"22", grp:"naqis", ar:"كينونة", name:"Wāw in ʿayn of fayʿūla maṣdar → yā'",
+     type:"obl", body:"A wāw in the ʿayn of a fayʿūla-pattern maṣdar → yā' (the author rejects the longer derivation).",
+     chain:"كَوْنونة → كَيْنونة", note:""},
+    {id:"23", grp:"naqis", ar:"جَوارٍ", name:"Yā' in lām of afāʿil/mafāʿil/fāʿil — raf'/jarr behaviour",
+     type:"obl", body:"Yā' in lām of أفاعِل/مَفاعِل/فاعِل: made sākin in raf'/jarr under definiteness/iḍāfa; if indefinite it drops with compensatory tanwīn; in naṣb the yā' stays absolutely.",
+     chain:"الجَواري ; جَوارٍ ; رأيت الجَواريَ", note:""},
+    {id:"24", grp:"naqis", ar:"دُنيا / تَقوى", name:"Wāw in lām of fuʿlā jāmid → yā'; fiʿlā yā'→wāw",
+     type:"obl", body:"(a) wāw in lām of فُعلى as a jāmid noun → yā' (دنوى→دنيا، علوى→عليا); (b) stays wāw in adjectives (غزوى); (c) yā' → wāw in فعلى (تقيى→تقوى).",
+     chain:"دُنْوى → دُنْيا ; تَقْيى → تَقْوى", note:""},
+    {id:"25", grp:"naqis", ar:"سُقْيا / رَضِيّ", name:"Remaining lām weak-letter cases",
+     type:"obl", body:"Closing rule covering remaining lām weak-letter cases (سُقْيا، دُعِيا، جُثِيّا، بُقْيا).",
+     chain:"سُقْوا → سُقْيا", note:""}
+  ]
+};
+
+/* ---- TASAREEF TABLES ----
+   Each: 14 sigha of al-madi al-ma'ruf (3rd m → ... → 1st pl)
+   labels follow the kitab order
+*/
+const SIGHA_LABELS = ["3 m.s","3 m.du","3 m.pl","3 f.s","3 f.du","3 f.pl","2 m.s","2 m.du","2 m.pl","2 f.s","2 f.du","2 f.pl","1 s","1 pl"];
+
+const TASREEF = [
+  /* ---------- MAHMUZ (Lesson 24) ---------- */
+  {key:"akhadha", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"أَخَذَ يأخُذ", gloss:"mahmūz al-fā', bāb naṣara — to take",
+   madi:["أَخَذَ","أَخَذَا","أَخَذُوا","أَخَذَتْ","أَخَذَتَا","أَخَذْنَ","أَخَذْتَ","أَخَذْتُمَا","أَخَذْتُمْ","أَخَذْتِ","أَخَذْتُمَا","أَخَذْتُنَّ","أَخَذْتُ","أَخَذْنَا"],
+   key_forms:[
+     {label:"الأمر — amr", chain:"أُؤْخُذْ → خُذْ", why:"Amr is khilāf al-qiyās; qiyās wants the 2nd hamza → wāw (rule M2 آمن), but here both hamzas dropped by usage. (also كُلْ from أُؤْكُلْ)", refs:["M2"]},
+     {label:"المجهول — majhūl", chain:"أُخِذَ → أوخِذ patterns", why:"بوس/ذيب rule (M1/M3) runs in the majhūl (non-1st-person).", refs:["M1","M3"]},
+     {label:"التفضيل المؤنث", chain:"أَأْخَذ → آخَذ", why:"two hamzas, آمن rule.", refs:["M2"]}
+   ]},
+  {key:"itamana", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"اِئْتَمَرَ (افتعال)", gloss:"mahmūz al-fā' from iftiʿāl — to obey/comply",
+   madi:["اِئْتَمَرَ","اِئْتَمَرَا","اِئْتَمَرُوا","اِئْتَمَرَتْ","اِئْتَمَرَتَا","اِئْتَمَرْنَ","اِئْتَمَرْتَ","اِئْتَمَرْتُمَا","اِئْتَمَرْتُمْ","اِئْتَمَرْتِ","اِئْتَمَرْتُمَا","اِئْتَمَرْتُنَّ","اِئْتَمَرْتُ","اِئْتَمَرْنَا"],
+   key_forms:[
+     {label:"الماضي المعروف", chain:"اِأْتَمَرَ → اِئْتَمَرَ", why:"sākin hamza after kasra → yā' form (M1 رأس).", refs:["M1"]},
+     {label:"الماضي المجهول", chain:"اُؤْتُمِرَ", why:"آمن rule (M2): sākin hamza after moving hamza obligatorily conforms.", refs:["M2"]},
+     {label:"المضارع المعروف", chain:"يَأْتَمِر → يَاتَمِر", why:"رأس rule (M1).", refs:["M1"]},
+     {label:"اسم الفاعل/المفعول/الظرف", chain:"مُؤْتَمِر / مُؤْتَمَر", why:"وبر / واو form per M3.", refs:["M3"]}
+   ]},
+  {key:"qaraa", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"قَرَأَ يقرأ", gloss:"mahmūz al-lām — to read",
+   madi:["قَرَأَ","قَرَآ","قَرَؤُوا","قَرَأَتْ","قَرَأَتَا","قَرَأْنَ","قَرَأْتَ","قَرَأْتُمَا","قَرَأْتُمْ","قَرَأْتِ","قَرَأْتُمَا","قَرَأْتُنَّ","قَرَأْتُ","قَرَأْنَا"],
+   key_forms:[
+     {label:"الماضي/المضارع", chain:"قَرَأَ — bayna bayn", why:"Fā'ida: in māḍī of mahmūz al-ʿayn the bayna-bayn rule (M8) runs; in muḍāriʿ & amr the يسأل rule (M7).", refs:["M8","M7"]},
+     {label:"الواحد المجهول", chain:"قُرِئَ", why:"مير rule (M3) in the single majhūl.", refs:["M3"]},
+     {label:"الأمر / المجزوم", chain:"اِقْرَأْ · لم يَقْرَأْ", why:"lone sākin hamza rule (M1): after fatḥa → alif (اقرا), after ḍamma → wāw, after kasra → yā'.", refs:["M1"]}
+   ]},
+
+  /* ---------- MITHAL (Lesson 30) ---------- */
+  {key:"waada", cat:"mithāl", catClass:"mt", lesson:"L30",
+   title:"وَعَدَ يَعِد", gloss:"mithāl wāwī, bāb ḍaraba — to promise",
+   madi:["وَعَدَ","وَعَدَا","وَعَدُوا","وَعَدَتْ","وَعَدَتَا","وَعَدْنَ","وَعَدْتَ","وَعَدْتُمَا","وَعَدْتُمْ","وَعَدْتِ","وَعَدْتُمَا","وَعَدْتُنَّ","وَعَدْتُ","وَعَدْنَا"],
+   key_forms:[
+     {label:"المضارع المعروف", chain:"يَوْعِد → يَعِد", why:"wāw between maftūḥ muḍāriʿ-marker & kasra drops (rule 1 يعد).", refs:["1"]},
+     {label:"المصدر", chain:"وَعْد → عِدَة", why:"wāw of fiʿl-maṣdar drops + compensatory ة (rule 2 عدة).", refs:["2"]},
+     {label:"الماضي (تخفيف)", chain:"وَعَدَ → أَعَدَ", why:"optional: initial wāw → hamza (rule 5 أقّتت/إشاح).", refs:["5"]},
+     {label:"جمع اسم الفاعل", chain:"وَواعِد → أَواصِل-type", why:"two wāws at start → 1st → hamza (rule 6).", refs:["6"]},
+     {label:"اسم الآلة", chain:"مِوْعاد → مِيعاد", why:"sākin wāw after kasra → yā' (rule 3).", refs:["3"]}
+   ]},
+  {key:"yasara", cat:"mithāl", catClass:"mt", lesson:"L30",
+   title:"يَسَرَ يَيْسِر", gloss:"mithāl yā'ī — to gamble / be easy",
+   madi:["يَسَرَ","يَسَرَا","يَسَرُوا","يَسَرَتْ","يَسَرَتَا","يَسَرْنَ","يَسَرْتَ","يَسَرْتُمَا","يَسَرْتُمْ","يَسَرْتِ","يَسَرْتُمَا","يَسَرْتُنَّ","يَسَرْتُ","يَسَرْنَا"],
+   key_forms:[
+     {label:"المضارع المجهول", chain:"يُيْسَر → يُوسَر", why:"the only iʿlāl here: yā' → wāw per rule 3 (موسر).", refs:["3"]}
+   ]},
+  {key:"wajila", cat:"mithāl", catClass:"mt", lesson:"L30",
+   title:"وَجِلَ يَوْجَل", gloss:"mithāl wāwī, bāb samiʿa — to fear",
+   madi:["وَجِلَ","وَجِلَا","وَجِلُوا","وَجِلَتْ","وَجِلَتَا","وَجِلْنَ","وَجِلْتَ","وَجِلْتُمَا","وَجِلْتُمْ","وَجِلْتِ","وَجِلْتُمَا","وَجِلْتُنَّ","وَجِلْتُ","وَجِلْنَا"],
+   key_forms:[
+     {label:"الأمر/اسم الآلة", chain:"اِوْجَل → اِيجَل ; مِوْجَل → مِيجَل", why:"wāw → yā' per rule 3 (ميعاد).", refs:["3"]},
+     {label:"جمع التكسير", chain:"أَوْجال (همز)", why:"rule 5 (أعد/إشاج): wāw → hamza.", refs:["5"]}
+   ]},
+
+  /* ---------- AJWAF (Lessons 31-33) ---------- */
+  {key:"qala", cat:"ajwaf", catClass:"mt", lesson:"L31",
+   title:"قَالَ يَقُول", gloss:"ajwaf wāwī, bāb naṣara — to say",
+   madi:["قَالَ","قَالَا","قَالُوا","قَالَتْ","قَالَتَا","قُلْنَ","قُلْتَ","قُلْتُمَا","قُلْتُمْ","قُلْتِ","قُلْتُمَا","قُلْتُنَّ","قُلْتُ","قُلْنَا"],
+   key_forms:[
+     {label:"الماضي المعروف", chain:"قَوَلَ → قَالَ", why:"moving wāw after fatḥa → alif (rule 7 قال/باع). From قُلْنَ onward the alif drops for two sākins and qāf takes ḍamma.", refs:["7"]},
+     {label:"الماضي المجهول", chain:"قُوِلَ → قِيلَ", why:"rule 9 (قيل/بيع): vowel transfers, wāw → yā'. Also forms قُوْل / ishmām allowed.", refs:["9"]},
+     {label:"المضارع", chain:"يَقْوُل → يَقُول", why:"vowel of wāw transfers to sākin qāf (rule 8 يقول/يبيع).", refs:["8"]},
+     {label:"المضارع المجهول", chain:"يُقْوَل → يُقَال", why:"rule 8: transfers then → alif (يقال/يباع).", refs:["8"]},
+     {label:"اسم الفاعل", chain:"قاوِل → قائِل", why:"ʿayn wāw → hamza (rule 17 قائل/بائع).", refs:["17"]},
+     {label:"اسم المفعول", chain:"مَقْوُول → مَقُول", why:"rule 8 transfer + drop wāw for two sākins. (debate: which wāw drops — author prefers the first).", refs:["8"]}
+   ]},
+  {key:"baa", cat:"ajwaf", catClass:"mt", lesson:"L32",
+   title:"بَاعَ يَبِيع", gloss:"ajwaf yā'ī, bāb ḍaraba — to sell",
+   madi:["بَاعَ","بَاعَا","بَاعُوا","بَاعَتْ","بَاعَتَا","بِعْنَ","بِعْتَ","بِعْتُمَا","بِعْتُمْ","بِعْتِ","بِعْتُمَا","بِعْتُنَّ","بِعْتُ","بِعْنَا"],
+   key_forms:[
+     {label:"الماضي المعروف", chain:"بَيَعَ → بَاعَ", why:"yā' after fatḥa → alif (rule 7). From بِعْنَ on, alif drops (two sākins), fā' → kasra to signal dropped yā'.", refs:["7"]},
+     {label:"الماضي المجهول", chain:"بُيِعَ → بِيعَ", why:"rule 9 قيل/بيع: vowel transfers to bā'.", refs:["9"]},
+     {label:"المضارع", chain:"يَبْيِع → يَبِيع", why:"vowel transfer rule 8 يقول/يبيع.", refs:["8"]},
+     {label:"اسم الفاعل / المفعول", chain:"بايِع → بائِع ; مَبْيُوع → مَبِيع", why:"rule 17 (hamza) & rule 8 (transfer+drop).", refs:["17","8"]}
+   ]},
+  {key:"khafa", cat:"ajwaf", catClass:"mt", lesson:"L32",
+   title:"خَافَ يَخَاف", gloss:"ajwaf wāwī, bāb samiʿa — to fear",
+   madi:["خَافَ","خَافَا","خَافُوا","خَافَتْ","خَافَتَا","خِفْنَ","خِفْتَ","خِفْتُمَا","خِفْتُمْ","خِفْتِ","خِفْتُمَا","خِفْتُنَّ","خِفْتُ","خِفْنَا"],
+   key_forms:[
+     {label:"من خِفْنَ للأخير", chain:"خَوِفْنَ → خِفْنَ", why:"fā' takes kasra after ʿayn drops, marking original kasra of ʿayn.", refs:["7"]},
+     {label:"الأمر", chain:"تَخَافُ → خَفْ", why:"alif drops after dropping tā' & making last sākin (two sākins).", refs:["8"]},
+     {label:"تمييز عن مهموز العين", chain:"خَفْ vs زِرْ", why:"Fā'ida: in ajwaf the ʿayn is NOT dropped in all ṣīghas (قُلْ، بِعْ، خَفْ + only in single & fem-pl); in mahmūz al-ʿayn (زِرْ from اِزْأَرْ) the ʿayn drops in all.", refs:["M7","8"]}
+   ]},
+  {key:"iqtada", cat:"ajwaf", catClass:"mt", lesson:"L33",
+   title:"اِقْتَادَ (افتعال)", gloss:"ajwaf wāwī from iftiʿāl — to be led",
+   madi:["اِقْتَادَ","اِقْتَادَا","اِقْتَادُوا","اِقْتَادَتْ","اِقْتَادَتَا","اِقْتَدْنَ","اِقْتَدْتَ","اِقْتَدْتُمَا","اِقْتَدْتُمْ","اِقْتَدْتِ","اِقْتَدْتُمَا","اِقْتَدْتُنَّ","اِقْتَدْتُ","اِقْتَدْنَا"],
+   key_forms:[
+     {label:"اسم الفاعل/المفعول/الظرف", chain:"مُقْتَوِد / مُقْتَوَد → مُقْتَاد", why:"all become مُقْتَاد by rule 7; distinguished only by aṣl (kasra=fāʿil, fatḥa=mafʿūl).", refs:["7"]},
+     {label:"الاستفعال", chain:"اِسْتَقْوَمَ → اِسْتَقَامَ", why:"rule 8 then rule 7 (qāl/bāʿ).", refs:["8","7"]}
+   ]},
+
+  /* ---------- NAQIS (Lessons 34-36) ---------- */
+  {key:"daa", cat:"nāqiṣ", catClass:"mt", lesson:"L34",
+   title:"دَعَا يَدْعُو", gloss:"nāqiṣ wāwī, bāb naṣara — to call",
+   madi:["دَعَا","دَعَوَا","دَعَوْا","دَعَتْ","دَعَتَا","دَعَوْنَ","دَعَوْتَ","دَعَوْتُمَا","دَعَوْتُمْ","دَعَوْتِ","دَعَوْتُمَا","دَعَوْتُنَّ","دَعَوْتُ","دَعَوْنَا"],
+   key_forms:[
+     {label:"دَعَا", chain:"دَعَوَ → دَعَا", why:"wāw after fatḥa → alif (rule 7).", refs:["7"]},
+     {label:"دَعَتْ", chain:"دَعَوَتْ → دَعَا...→ دَعَتْ", why:"alif drops at meeting of sākins with tā' ta'nīth.", refs:["7"]},
+     {label:"دَعَوْا (3 m.pl)", chain:"دَعَوُوا → دَعَوْا", why:"two sākins → wāw dropped (rule 10 group).", refs:["10"]},
+     {label:"المجهول", chain:"دُعِوَ → دُعِيَ", why:"wāw in ṭaraf after kasra → yā' (rule 11 دُعِي).", refs:["11"]},
+     {label:"المضارع يَدْعُو", chain:"يَدْعُوُ → يَدْعُو", why:"lām wāw loses vowel (rule 10).", refs:["10"]},
+     {label:"اسم الفاعل داعٍ", chain:"داعِو → داعِي → داعٍ", why:"rule 11 then جوارٍ rule 23 (drops, compensatory tanwīn).", refs:["11","23"]}
+   ]},
+  {key:"rama", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"رَمَى يَرْمِي", gloss:"nāqiṣ yā'ī, bāb ḍaraba — to throw",
+   madi:["رَمَى","رَمَيَا","رَمَوْا","رَمَتْ","رَمَتَا","رَمَيْنَ","رَمَيْتَ","رَمَيْتُمَا","رَمَيْتُمْ","رَمَيْتِ","رَمَيْتُمَا","رَمَيْتُنَّ","رَمَيْتُ","رَمَيْنَا"],
+   key_forms:[
+     {label:"رَمَى", chain:"رَمَيَ → رَمَى", why:"yā' after fatḥa → alif (rule 7).", refs:["7"]},
+     {label:"رَمَوْا (3 m.pl)", chain:"رَمَيُوا → رَمَوْا", why:"rule 10: transfer, two sākins drop.", refs:["10"]},
+     {label:"المجهول رُمِيَ", chain:"رُمِيَ", why:"stays; in رُمُوا the yā' drops after vowel transfer (rule 10).", refs:["10"]},
+     {label:"اسم المفعول مَرْمِيّ", chain:"مَرْمُوي → مَرْمِيّ", why:"wāw+yā' meet, wāw→yā', idghām, ḍamma→kasra (rule 14 سيّد).", refs:["14"]},
+     {label:"الظرف مَرْمَى", chain:"why fatḥ ʿayn", why:"ẓarf of nāqiṣ comes maftūḥ al-ʿayn though muḍāriʿ is maksūr; tā' compensated by alif then drops with tanwīn.", refs:["7"]}
+   ]},
+  {key:"radiya", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"رَضِيَ يَرْضَى", gloss:"nāqiṣ wāwī, bāb samiʿa — to be pleased",
+   madi:["رَضِيَ","رَضِيَا","رَضُوا","رَضِيَتْ","رَضِيَتَا","رَضِينَ","رَضِيتَ","رَضِيتُمَا","رَضِيتُمْ","رَضِيتِ","رَضِيتُمَا","رَضِيتُنَّ","رَضِيتُ","رَضِينَا"],
+   key_forms:[
+     {label:"رَضُوا", chain:"رَضِيُوا → رَضُوا", why:"rule 10 sub-rule; mafʿūl مَرْضِيّ from مَرْضُوو via rule 15 (دُلِيّ) خلافًا للقياس.", refs:["10","15"]}
+   ]},
+  {key:"khashiya", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"خَشِيَ يَخْشَى", gloss:"nāqiṣ yā'ī, bāb samiʿa — to fear",
+   madi:["خَشِيَ","خَشِيَا","خَشُوا","خَشِيَتْ","خَشِيَتَا","خَشِينَ","خَشِيتَ","خَشِيتُمَا","خَشِيتُمْ","خَشِيتِ","خَشِيتُمَا","خَشِيتُنَّ","خَشِيتُ","خَشِينَا"],
+   key_forms:[
+     {label:"يَخْشَى", chain:"يَخْشَيُ → يَخْشَى", why:"lām yā' after fatḥa → alif (rule 10 / rule 7).", refs:["10","7"]}
+   ]},
+
+  /* ---------- LAFIF (Lesson 38) ---------- */
+  {key:"waqa", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"وَقَى يَقِي", gloss:"lafīf mafrūq, bāb ḍaraba — to protect",
+   madi:["وَقَى","وَقَيَا","وَقَوْا","وَقَتْ","وَقَتَا","وَقَيْنَ","وَقَيْتَ","وَقَيْتُمَا","وَقَيْتُمْ","وَقَيْتِ","وَقَيْتُمَا","وَقَيْتُنَّ","وَقَيْتُ","وَقَيْنَا"],
+   key_forms:[
+     {label:"الفاء (مثال)", chain:"يَوْقِي → يَقِي", why:"mithāl rule 1 (يعد) runs in the fā'.", refs:["1"]},
+     {label:"اللام (ناقص)", chain:"وَقَيَ → وَقَى", why:"nāqiṣ rule 7 in the lām; both mithāl & nāqiṣ rules operate.", refs:["7"]},
+     {label:"الأمر قِ", chain:"تَوْقِي → قِ", why:"after dropping muḍāriʿ marker the letter is moving; final yā' drops at waqf → قِ (one letter!).", refs:["1","10"]}
+   ]},
+  {key:"tawa", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"طَوَى يَطْوِي", gloss:"lafīf maqrūn, bāb ḍaraba — to fold",
+   madi:["طَوَى","طَوَيَا","طَوَوْا","طَوَتْ","طَوَتَا","طَوَيْنَ","طَوَيْتَ","طَوَيْتُمَا","طَوَيْتُمْ","طَوَيْتِ","طَوَيْتُمَا","طَوَيْتُنَّ","طَوَيْتُ","طَوَيْنَا"],
+   key_forms:[
+     {label:"العين سالمة", chain:"طَوَى — ʿayn safe", why:"In lafīf maqrūn the ʿayn (wāw) stays; rule 7 condition #2 excludes ʿayn of lafīf. Lām behaves like nāqiṣ.", refs:["7"]},
+     {label:"تَحِيّة (مضاعف+لفيف)", chain:"why naql here", why:"تحيّة is also muḍāʿaf, so ʿayn vowel transfers — unlike تقوية which is lafīf only.", refs:["14"]}
+   ]},
+  {key:"waliya", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"وَلِيَ يَلِي", gloss:"lafīf mafrūq, bāb ḥasiba — to be in charge",
+   madi:["وَلِيَ","وَلِيَا","وَلُوا","وَلِيَتْ","وَلِيَتَا","وَلِينَ","وَلِيتَ","وَلِيتُمَا","وَلِيتُمْ","وَلِيتِ","وَلِيتُمَا","وَلِيتُنَّ","وَلِيتُ","وَلِينَا"],
+   key_forms:[
+     {label:"الإعلال", chain:"like وَقَى يَقِي", why:"iʿlāl & taṣrīf same as وقى يقي (mithāl rule in fā', nāqiṣ in lām).", refs:["1","7"]}
+   ]},
+
+  /* ---------- MUDAAF (Lessons 40-41) ---------- */
+  {key:"madda", cat:"muḍāʿaf", catClass:"m", lesson:"L41",
+   title:"مَدَّ يَمُدّ", gloss:"muḍāʿaf, bāb naṣara — to extend",
+   madi:["مَدَّ","مَدَّا","مَدُّوا","مَدَّتْ","مَدَّتَا","مَدَدْنَ","مَدَدْتَ","مَدَدْتُمَا","مَدَدْتُمْ","مَدَدْتِ","مَدَدْتُمَا","مَدَدْتُنَّ","مَدَدْتُ","مَدَدْنَا"],
+   key_forms:[
+     {label:"مَدَّ (3 m.s)", chain:"مَدَدَ → مَدَّ", why:"two like letters, both moving, preceded by moving → 1st sākin, idghām (rule مَدَّ/فَرَّ #2).", refs:["MD2"]},
+     {label:"من مَدَدْنَ للأخير", chain:"no idghām", why:"2nd dāl is sākin → no idghām. From مَدَدْتُ on, dāl→tā' idghām (عبّدتم rule #1) for makhraj closeness.", refs:["MD1"]},
+     {label:"الماضي المجهول مُدَّ", chain:"مُدِدَ → مُدَّ", why:"rule مَدَّ/فَرَّ.", refs:["MD2"]},
+     {label:"الأمر / المجزوم", chain:"مُدَّ / مُدِّ / اُمْدُدْ", why:"rule لم يَمُدَّ #5: fatḥa, kasra, or fakk al-idghām; if preceding ḍamma, ḍamma also (4 wajh).", refs:["MD5"]}
+   ]},
+  {key:"farra", cat:"muḍāʿaf", catClass:"m", lesson:"L41",
+   title:"فَرَّ يَفِرّ", gloss:"muḍāʿaf, bāb ḍaraba — to flee",
+   madi:["فَرَّ","فَرَّا","فَرُّوا","فَرَّتْ","فَرَّتَا","فَرَرْنَ","فَرَرْتَ","فَرَرْتُمَا","فَرَرْتُمْ","فَرَرْتِ","فَرَرْتُمَا","فَرَرْتُنَّ","فَرَرْتُ","فَرَرْنَا"],
+   key_forms:[
+     {label:"الظرف مَفِرّ", chain:"why kasr", why:"maṣdar/ẓarf مَفِرّ with kasr (from فَرَّ يَفِرّ); the kitab refutes فَتْح as in القيامة المَفَرّ.", refs:["MD2"]}
+   ]},
+
+  /* ---------- MURAKKABAT (Lesson 39) ---------- */
+  {key:"aala", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"آلَ يَؤول", gloss:"mahmūz al-fā' + ajwaf wāwī — to return",
+   madi:["آلَ","آلَا","آلُوا","آلَتْ","آلَتَا","أُلْنَ","أُلْتَ","أُلْتُمَا","أُلْتُمْ","أُلْتِ","أُلْتُمَا","أُلْتُنَّ","أُلْتُ","أُلْنَا"],
+   key_forms:[
+     {label:"تعارض القواعد", chain:"أَأْوَل → آل", why:"mahmūz rule M1 wants hamza→alif; ajwaf rule 8 wants vowel transfer. When they conflict, the muʿtall rule wins → آل.", refs:["M1","8"]}
+   ]},
+  {key:"raa", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"رَأَى يَرَى", gloss:"mahmūz al-ʿayn + nāqiṣ yā'ī — to see",
+   madi:["رَأَى","رَأَيَا","رَأَوْا","رَأَتْ","رَأَتَا","رَأَيْنَ","رَأَيْتَ","رَأَيْتُمَا","رَأَيْتُمْ","رَأَيْتِ","رَأَيْتُمَا","رَأَيْتُنَّ","رَأَيْتُ","رَأَيْنَا"],
+   key_forms:[
+     {label:"المضارع يَرَى", chain:"يَرْأَى → يَرَى", why:"يسأل rule (M7) runs obligatorily in verbs of seeing — hamza vowel transfers & hamza drops; then rule 7 on the lām.", refs:["M7","7"]},
+     {label:"الأمر رَ", chain:"تَرْأَى → رَ", why:"after marker drop letter is moving; alif drops at waqf → just رَ.", refs:["M7","7"]},
+     {label:"المجهول رُئِيَ", chain:"رُئِيَ", why:"M7/M8 may apply (bayna bayn جوازًا) in the asmā' mushtaqqa; nāqiṣ rules on the lām.", refs:["M7","M8"]}
+   ]},
+  {key:"jaa", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"جَاءَ يَجِيء", gloss:"ajwaf yā'ī + mahmūz al-lām — to come",
+   madi:["جَاءَ","جَاءَا","جَاؤُوا","جَاءَتْ","جَاءَتَا","جِئْنَ","جِئْتَ","جِئْتُمَا","جِئْتُمْ","جِئْتِ","جِئْتُمَا","جِئْتُنَّ","جِئْتُ","جِئْنَا"],
+   key_forms:[
+     {label:"اسم الفاعل جاءٍ", chain:"جايِئ → جاءِئ → جائيٌ → جاءٍ", why:"rule 17 (قائل/بائع) → then أيمّة M5 → then rule 11/23 like رامٍ.", refs:["17","M5","23"]},
+     {label:"جِئْنَ", chain:"fā' kasra", why:"like بِعْنَ — fā' kasra signals dropped ʿayn; bayna bayn permitted in the hamza جوازًا.", refs:["8","M8"]}
+   ]}
+];
+
+/* mudaaf extra rule refs (MD1..MD5) */
+const MUDAAF_RULES = [
+  {id:"MD1", ar:"عَبَّدْتُمْ", name:"Sākin 1st of two like/near letters → idghām", body:"If the first of two like or near letters is sākin, it assimilates into the 2nd — within one word or across two (مَدْد→مَدّ, اِذْهَبْ بِـ), unless the sākin is a madd letter (في يوم)."},
+  {id:"MD2", ar:"مَدَّ / فَرَّ", name:"Two like letters both moving, preceded by moving", body:"Two like letters in one word, both moving, preceding letter also moving → 1st made sākin, idghām into 2nd (مَدَّ، فَرَّ) — unless in a noun with moving ʿayn (شَرَر، سُرُر)."},
+  {id:"MD3", ar:"يَمُدّ / يَفِرّ", name:"Preceding sākin (non-madd) → transfer + idghām", body:"Two like letters, the letter before the 1st is sākin non-madd → transfer 1st's vowel back, then idghām (يَمْدُد→يَمُدّ, يَعْضُض→يَعُضّ)."},
+  {id:"MD4", ar:"حاجَّ / مُودّ", name:"Preceding zā'id madd → drop 1st's vowel + idghām", body:"Two like/near letters both moving, preceded by a zā'id madd → drop the 1st's vowel, idghām (حاجَجَ→حاجَّ, مُوْدِد→مُودّ)."},
+  {id:"MD5", ar:"لم يَمُدَّ / لم يَمُرّ", name:"At waqf/jazm — 4 wajh", body:"On the 2nd letter after idghām at amr-waqf or jāzim: fatḥa, kasra, or fakk al-idghām; if preceding is ḍamma, ḍamma is also allowed → 4 states."}
+];
+</script>
+<script>/* ===========================================================
+   APP — Ilm us-Sigha study guide interactions
+   =========================================================== */
+'use strict';
+
+const ALL_RULES = {};
+RULES.mahmuz.forEach(r=>ALL_RULES[r.id]=r);
+RULES.mutall.forEach(r=>ALL_RULES[r.id]=r);
+MUDAAF_RULES.forEach(r=>ALL_RULES[r.id]=r);
+
+const VIEWS = [
+  ["home","Home"],["rules","Rules"],["tasreef","Tasareef"],
+  ["cards","Flashcards"],["match","Matching"],["quiz","Quiz"]
+];
+
+/* ---------- NAV ---------- */
+const navEl = document.getElementById('nav');
+VIEWS.forEach(([id,label],i)=>{
+  const b=document.createElement('button');
+  b.textContent=label; b.dataset.v=id;
+  if(i===0) b.classList.add('on');
+  b.onclick=()=>go(id);
+  navEl.appendChild(b);
+});
+function go(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('v-'+id).classList.add('on');
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='cards') buildCard();
+  if(id==='match') newMatch();
+  if(id==='quiz') startQuiz();
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+/* ---------- helper: rule ref chip ---------- */
+function refChip(id){
+  const r=ALL_RULES[id];
+  const isM = id.startsWith('M');
+  const label = isM ? id : (id.startsWith('MD')? id : 'ق'+id);
+  const cls = isM||id.startsWith('MD') ? 'rref m' : 'rref';
+  return `<a class="${cls}" data-rule="${id}" title="${r?escapeHtml(r.name):id}">${label}</a>`;
+}
+function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ---------- RULES VIEW ---------- */
+function renderRules(filter){
+  const out=document.getElementById('rules-out');
+  out.innerHTML='';
+  const blocks=[];
+  if(filter==='all'||filter==='mahmuz'){
+    blocks.push({h:'قواعد المهموز · Mahmūz Rules',sub:'Lesson 22-24',cls:'',list:RULES.mahmuz});
+  }
+  if(filter==='all'||['mithal','ajwaf','naqis'].includes(filter)){
+    let list=RULES.mutall;
+    if(filter==='mithal') list=RULES.mutall.filter(r=>r.grp==='mithal');
+    if(filter==='ajwaf') list=RULES.mutall.filter(r=>r.grp==='ajwaf');
+    if(filter==='naqis') list=RULES.mutall.filter(r=>r.grp==='naqis');
+    blocks.push({h:'قواعد المعتل · Muʿtall Rules',sub:'Lesson 25-29',cls:'mt',list});
+  }
+  if(filter==='all'){
+    blocks.push({h:'قواعد المضاعف · Muḍāʿaf Rules',sub:'Lesson 40',cls:'',list:MUDAAF_RULES.map(r=>({...r,type:'',chain:'',note:''}))});
+  }
+  blocks.forEach(bl=>{
+    const gh=document.createElement('div');
+    gh.className='grp-h';
+    gh.innerHTML=`<span class="ar">${bl.h.split('·')[0]}</span><h3>${bl.h.split('·')[1]||''}</h3><span class="pill">${bl.sub}</span>`;
+    out.appendChild(gh);
+    bl.list.forEach(r=>{
+      const c=document.createElement('div');
+      c.className='card rulecard '+(bl.cls||'');
+      c.id='rule-'+r.id;
+      const typeTag = r.type==='obl'?'<span class="tag obl">obligatory</span>':r.type==='opt'?'<span class="tag opt">optional · جوازًا</span>':'';
+      c.innerHTML=`
+        <div class="rid">${r.id.startsWith('M')||r.id.startsWith('MD')?r.id:'قاعدة '+r.id}</div>
+        <div class="rulename"><span class="ar">${r.ar}</span> ${r.name} ${typeTag} ${r.note?`<span class="tag">${r.note}</span>`:''}</div>
+        <div class="rulebody">${r.body}</div>
+        ${r.chain?`<div class="ex"><span class="chain">${r.chain}</span></div>`:''}`;
+      out.appendChild(c);
+    });
+  });
+}
+document.querySelectorAll('#rule-filter button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#rule-filter button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    renderRules(b.dataset.f);
+  };
+});
+renderRules('all');
+
+/* jump to rule when chip clicked (delegate) */
+document.body.addEventListener('click',e=>{
+  const a=e.target.closest('[data-rule]');
+  if(!a) return;
+  go('rules');
+  document.querySelectorAll('#rule-filter button').forEach(x=>x.classList.toggle('on',x.dataset.f==='all'));
+  renderRules('all');
+  setTimeout(()=>{
+    const el=document.getElementById('rule-'+a.dataset.rule);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});
+      el.style.transition='background .2s';el.style.background='#fff0d2';
+      setTimeout(()=>el.style.background='',1400);}
+  },120);
+});
+
+/* ---------- TASREEF VIEW ---------- */
+const CATS=[...new Set(TASREEF.map(t=>t.cat))];
+const tsel=document.getElementById('tsel');
+let curCat=CATS[0];
+CATS.forEach((c,i)=>{
+  const b=document.createElement('button');
+  b.textContent=c;
+  if(TASREEF.find(t=>t.cat===c).catClass==='mt') b.classList.add('mtb');
+  if(i===0)b.classList.add('on');
+  b.onclick=()=>{curCat=c;document.querySelectorAll('#tsel button').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderTasreef();};
+  tsel.appendChild(b);
+});
+function renderTasreef(){
+  const out=document.getElementById('tasreef-out');
+  out.innerHTML='';
+  TASREEF.filter(t=>t.cat===curCat).forEach(t=>{
+    const card=document.createElement('div');
+    card.className='tcard';
+    let rows='';
+    for(let i=0;i<7;i++){
+      rows+=`<tr>
+        <td class="lab">${SIGHA_LABELS[i]}</td><td>${t.madi[i]||''}</td>
+        <td class="lab">${SIGHA_LABELS[i+7]}</td><td>${t.madi[i+7]||''}</td>
+      </tr>`;
+    }
+    let deriv='';
+    t.key_forms.forEach(k=>{
+      const chips=(k.refs||[]).map(refChip).join(' ');
+      deriv+=`<div class="deriv-row">
+        <strong>${k.label}</strong> ${chips}
+        <div class="chain">${k.chain}</div>
+        <div class="why">${k.why}</div>
+      </div>`;
+    });
+    card.innerHTML=`
+      <h3><span class="ar" style="font-size:1.5rem">${t.title}</span></h3>
+      <div class="meta">${t.lesson} · ${escapeHtml(t.gloss)}</div>
+      <div class="scrollx">
+        <table class="tasreef"><tr><th>—</th><th>الصيغة</th><th>—</th><th>الصيغة</th></tr>${rows}</table>
+      </div>
+      <div class="deriv-list">
+        <details open><summary>الإعلال — derivation & rules (${t.key_forms.length})</summary>${deriv}</details>
+      </div>`;
+    out.appendChild(card);
+  });
+}
+renderTasreef();
+
+/* ---------- FLASHCARDS ---------- */
+let fcMode='rule', fcDeck=[], fcIdx=0;
+function buildDeck(){
+  if(fcMode==='rule'){
+    fcDeck=[...RULES.mahmuz,...RULES.mutall].map(r=>({
+      k:r.id.startsWith('M')?'mahmūz rule '+r.id:'muʿtall qāʿida '+r.id,
+      q:`<span class="ar">${r.ar}</span>What does this rule do?`,
+      a:`${r.name}<br><br>${r.body}`
+    }));
+  } else if(fcMode==='deriv'){
+    fcDeck=[];
+    [...RULES.mahmuz,...RULES.mutall].filter(r=>r.chain).forEach(r=>{
+      const parts=r.chain.split('→');
+      fcDeck.push({k:'derivation · '+r.id,
+        q:`Origin: <span class="ar">${parts[0].trim()}</span>What is the final form & which rule?`,
+        a:`<span class="ar">${(parts[1]||'').trim()}</span> rule <strong>${r.id}</strong> — ${r.ar}`});
+    });
+    TASREEF.forEach(t=>t.key_forms.forEach(k=>{
+      if(k.chain.includes('→')){
+        fcDeck.push({k:t.title+' · '+t.cat,
+          q:`<span class="ar">${t.title}</span>${k.label}: explain the derivation.`,
+          a:`<span class="ar">${k.chain}</span><br>${k.why}`});
+      }
+    }));
+  } else {
+    fcDeck=[
+      {k:'definition',q:'مهموز الفاء / العين / اللام',a:'hamza in the fā\' (أمَر), the ʿayn (سأل), or the lām (قرأ).'},
+      {k:'definition',q:'مثال',a:'muʿtall whose <strong>fā\'</strong> is a weak letter (وَعَدَ).'},
+      {k:'definition',q:'أجوف',a:'muʿtall whose <strong>ʿayn</strong> is a weak letter — also معتل العين (قال، باع).'},
+      {k:'definition',q:'ناقص',a:'muʿtall whose <strong>lām</strong> is a weak letter — also معتل اللام (دعا، رمى).'},
+      {k:'definition',q:'لفيف مقرون vs مفروق',a:'مقرون: two weak letters adjacent (طوى). مفروق: separated (ولي، وقى).'},
+      {k:'definition',q:'مضاعف',a:'a verb with two identical root letters (مَدَّ، فَرَّ).'},
+      {k:'definition',q:'تخفيف · تعليل · إدغام',a:'changing a hamza = taḫfīf; changing a weak letter = i\'lāl; doubling final letter mushaddad = idghām.'},
+      {k:'definition',q:'Why ظرف of nāqiṣ is maftūḥ al-ʿayn',a:'The ẓarf of nāqiṣ comes on وزن مَفعَل (maftūḥ ʿayn) even though the muḍāriʿ is maksūr — e.g. مَرْمَى.'},
+      {k:'definition',q:'Rule priority when mahmūz vs muʿtall conflict',a:'The <strong>muʿtall</strong> rule is preferred (e.g. آل from أَأْوَل — rule 8 wins over M1).'},
+      {k:'definition',q:'يسأل rule in verbs of seeing',a:'Runs <strong>obligatorily</strong> in رأى/يرى (hamza vowel transfers & drops); only optional in derived nouns.'}
+    ];
+  }
+  shuffle(fcDeck); fcIdx=0;
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+function buildCard(){
+  if(!fcDeck.length) buildDeck();
+  const c=fcDeck[fcIdx];
+  document.getElementById('fc').classList.remove('flip');
+  document.getElementById('fck').textContent=c.k;
+  document.getElementById('fcq').innerHTML=c.q;
+  document.getElementById('fca').innerHTML=c.a;
+  document.getElementById('fc-count').textContent=`card ${fcIdx+1} / ${fcDeck.length}`;
+}
+document.getElementById('fc').onclick=()=>document.getElementById('fc').classList.toggle('flip');
+document.getElementById('fc-flip').onclick=e=>{e.stopPropagation();document.getElementById('fc').classList.toggle('flip');};
+document.getElementById('fc-got').onclick=()=>{fcIdx=(fcIdx+1)%fcDeck.length;buildCard();};
+document.getElementById('fc-again').onclick=()=>{
+  const c=fcDeck.splice(fcIdx,1)[0];fcDeck.push(c);
+  if(fcIdx>=fcDeck.length)fcIdx=0;buildCard();
+};
+document.querySelectorAll('#fc-mode button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#fc-mode button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');fcMode=b.dataset.m;buildDeck();buildCard();
+  };
+});
+
+/* ---------- MATCHING ---------- */
+let mSel=null,mPairs=[],mDone=0;
+function newMatch(){
+  const pool=[...RULES.mahmuz,...RULES.mutall].filter(r=>r.chain);
+  shuffle(pool);
+  mPairs=pool.slice(0,6).map(r=>({id:r.id,name:r.name,ar:r.ar,ex:r.chain.split('→')[0].trim()}));
+  mDone=0;mSel=null;
+  const left=mPairs.map(p=>({type:'name',pid:p.id,html:`<span>${p.name}</span>`}));
+  const right=mPairs.map(p=>({type:'ex',pid:p.id,html:`<span class="ar">${p.ex}</span>`}));
+  shuffle(left);shuffle(right);
+  const g=document.getElementById('match-grid');
+  g.innerHTML='';
+  const order=[];
+  for(let i=0;i<6;i++){order.push(left[i]);order.push(right[i]);}
+  order.forEach(o=>{
+    const t=document.createElement('div');
+    t.className='mtile';t.innerHTML=o.html;t.dataset.pid=o.pid;t.dataset.type=o.type;
+    t.onclick=()=>pickTile(t);
+    g.appendChild(t);
+  });
+  updMStat();
+}
+function pickTile(t){
+  if(t.classList.contains('done'))return;
+  if(!mSel){mSel=t;t.classList.add('sel');return;}
+  if(mSel===t){t.classList.remove('sel');mSel=null;return;}
+  if(mSel.dataset.type===t.dataset.type){
+    mSel.classList.remove('sel');mSel=t;t.classList.add('sel');return;
+  }
+  if(mSel.dataset.pid===t.dataset.pid){
+    mSel.classList.remove('sel');mSel.classList.add('done');t.classList.add('done');
+    mSel=null;mDone++;updMStat();
+    if(mDone===6){document.getElementById('m-stat').textContent='✓ All matched! Great. New round?';}
+  } else {
+    const a=mSel,b=t;
+    a.classList.add('wrong');b.classList.add('wrong');
+    setTimeout(()=>{a.classList.remove('wrong','sel');b.classList.remove('wrong');},420);
+    mSel=null;
+  }
+}
+function updMStat(){document.getElementById('m-stat').textContent=`${mDone} / 6 matched`;}
+document.getElementById('m-new').onclick=newMatch;
+
+/* ---------- QUIZ ---------- */
+let quizMode='mixed',qSet=[],qPos=0,qScore=0;
+function buildQuiz(){
+  const ruleQs=[];
+  [...RULES.mahmuz,...RULES.mutall].forEach(r=>{
+    // Q: identify rule from example
+    if(r.chain){
+      const wrong=pickWrong(r,'name');
+      ruleQs.push({
+        prompt:`Which rule produces this change?<br><span class="ar" style="font-size:1.6rem">${r.chain}</span>`,
+        opts:shuffleKeep([r.name,...wrong]),ans:r.name,
+        exp:`<strong>${r.id} · ${r.ar}</strong> — ${r.body}`
+      });
+    }
+    // Q: name -> signature example
+    const wrongEx=pickWrong(r,'ar');
+    ruleQs.push({
+      prompt:`Signature example of: <em>${r.name}</em>`,
+      opts:shuffleKeep([r.ar,...wrongEx]).map(x=>`<span class="ar">${x}</span>`),
+      ansHtml:`<span class="ar">${r.ar}</span>`,ans:r.ar,plainAns:r.ar,
+      exp:`<strong>${r.id}</strong>: ${r.ar} — ${r.body}`
+    });
+  });
+  const derivQs=[];
+  TASREEF.forEach(t=>t.key_forms.forEach(k=>{
+    if(!k.chain.includes('→'))return;
+    const parts=k.chain.split('→');
+    const aslGuess=parts[0].trim();
+    const fin=parts[parts.length-1].trim();
+    // Q: what is the asl
+    const others=TASREEF.flatMap(x=>x.key_forms).filter(z=>z.chain.includes('→')&&z!==k)
+      .map(z=>z.chain.split('→')[0].trim());
+    shuffle(others);
+    derivQs.push({
+      prompt:`<span class="ar">${t.title}</span> — for "<em>${k.label}</em>" (${fin}), what is the original (al-aṣl)?`,
+      opts:shuffleKeep([aslGuess,...others.slice(0,3)]).map(x=>`<span class="ar">${x}</span>`),
+      ans:aslGuess,plainAns:aslGuess,
+      exp:`${k.chain}<br><br>${k.why}`
+    });
+    // Q: which rule(s)
+    if(k.refs&&k.refs.length){
+      const correctR=ALL_RULES[k.refs[0]];
+      if(correctR){
+        const others2=[...RULES.mahmuz,...RULES.mutall].filter(r=>r.id!==k.refs[0]);
+        shuffle(others2);
+        derivQs.push({
+          prompt:`<span class="ar">${t.title}</span> — "${k.label}": which rule causes <span class="ar">${k.chain}</span>?`,
+          opts:shuffleKeep([correctR.ar,...others2.slice(0,3).map(r=>r.ar)]).map(x=>`<span class="ar">${x}</span>`),
+          ans:correctR.ar,plainAns:correctR.ar,
+          exp:`Rule <strong>${correctR.id}</strong> (${correctR.ar}): ${correctR.body}`
+        });
+      }
+    }
+  }));
+  shuffle(ruleQs);shuffle(derivQs);
+  if(quizMode==='rules') qSet=ruleQs.slice(0,20);
+  else if(quizMode==='deriv') qSet=derivQs.slice(0,20);
+  else qSet=shuffleKeep([...ruleQs.slice(0,10),...derivQs.slice(0,10)]).map(x=>x);
+  if(quizMode==='mixed'){qSet=[...ruleQs.slice(0,10),...derivQs.slice(0,10)];shuffle(qSet);}
+  qPos=0;qScore=0;
+}
+function pickWrong(r,field){
+  const pool=[...RULES.mahmuz,...RULES.mutall].filter(x=>x.id!==r.id);
+  shuffle(pool);
+  return pool.slice(0,3).map(x=>x[field]);
+}
+function shuffleKeep(arr){const a=[...arr];shuffle(a);return a;}
+function startQuiz(){buildQuiz();renderQ();}
+function renderQ(){
+  const out=document.getElementById('quiz-out');
+  if(qPos>=qSet.length){
+    const pct=Math.round(qScore/qSet.length*100);
+    out.innerHTML=`<div class="scorebanner">
+      <div class="big">${qScore} / ${qSet.length}</div>
+      <p style="color:var(--muted);margin:8px 0 20px">${pct}% — ${pct>=85?'Exam-ready. Do a derivation-only pass to be safe.':pct>=65?'Solid. Revisit missed rules in the Rules tab.':'Keep drilling — flashcards in Derivation mode next.'}</p>
+      <button class="btn primary" onclick="startQuiz()">Restart</button>
+    </div>`;
+    return;
+  }
+  const q=qSet[qPos];
+  out.innerHTML=`
+    <div class="progress"><span style="width:${qPos/qSet.length*100}%"></span></div>
+    <div class="counter" style="text-align:left;margin:0 0 10px">Q${qPos+1} / ${qSet.length} · score ${qScore}</div>
+    <div class="card">
+      <div class="qprompt">${q.prompt}</div>
+      <div id="qopts"></div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div id="qnext" style="margin-top:14px;display:none">
+        <button class="btn primary" onclick="nextQ()">Next →</button>
+      </div>
+    </div>`;
+  const oc=document.getElementById('qopts');
+  q.opts.forEach(opt=>{
+    const plain=opt.replace(/<[^>]+>/g,'');
+    const btn=document.createElement('button');
+    btn.className='qopt';btn.innerHTML=opt;
+    btn.onclick=()=>{
+      const correct = plain===(q.plainAns||q.ans);
+      document.querySelectorAll('.qopt').forEach(x=>{
+        x.disabled=true;
+        const xp=x.textContent.trim();
+        if(xp===(q.plainAns||q.ans)) x.classList.add('correct');
+      });
+      if(correct){btn.classList.add('correct');qScore++;}
+      else btn.classList.add('incorrect');
+      document.getElementById('qexp').classList.add('show');
+      document.getElementById('qnext').style.display='block';
+    };
+    oc.appendChild(btn);
+  });
+}
+function nextQ(){qPos++;renderQ();}
+document.querySelectorAll('#quiz-mode button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#quiz-mode button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');quizMode=b.dataset.qm;startQuiz();
+  };
+});
+
+/* keyboard: arrows for flashcards */
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('v-cards').classList.contains('on'))return;
+  if(e.key===' '||e.key==='Enter'){e.preventDefault();document.getElementById('fc').classList.toggle('flip');}
+  if(e.key==='ArrowRight'){fcIdx=(fcIdx+1)%fcDeck.length;buildCard();}
+  if(e.key==='ArrowLeft'){fcIdx=(fcIdx-1+fcDeck.length)%fcDeck.length;buildCard();}
+});
+
+/* init */
+buildDeck();
+
+/* ---------- FILL-IN DRILL (bonus feature) ---------- */
+/* Accessed from tasreef view: a "Blank Drill" button per verb */
+function addBlankDrills(){
+  document.querySelectorAll('.tcard').forEach((card, ci) => {
+    const t = TASREEF.filter(x => x.cat === curCat)[ci];
+    if(!t) return;
+    const existing = card.querySelector('.blank-drill');
+    if(existing) return;
+    const section = document.createElement('div');
+    section.className='blank-drill';
+    section.style.cssText='margin-top:14px;border-top:1px solid var(--line);padding-top:12px';
+    section.innerHTML=`<button class="btn" style="font-size:.78rem" onclick="toggleBlankDrill(this)">✎ Blank drill — test yourself</button><div class="bdrill-body" style="display:none;margin-top:12px"></div>`;
+    card.appendChild(section);
+  });
+}
+function toggleBlankDrill(btn){
+  const body = btn.nextElementSibling;
+  if(body.style.display==='none'){
+    body.style.display='block';
+    const ci = Array.from(document.querySelectorAll('.tcard')).indexOf(btn.closest('.tcard'));
+    const t = TASREEF.filter(x => x.cat === curCat)[ci];
+    if(!t || body.innerHTML.trim()) return;
+    // pick 5 random sigha to blank out
+    const blanks = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+    shuffle(blanks);
+    const blankSet = new Set(blanks.slice(0,7));
+    let rows='';
+    for(let i=0;i<14;i++){
+      const val = t.madi[i]||'';
+      const isBlank = blankSet.has(i);
+      rows+=`<tr>
+        <td class="lab" style="font-size:.7rem;background:#fff8;border:1px solid var(--line);padding:5px">${SIGHA_LABELS[i]}</td>
+        <td style="border:1px solid var(--line);padding:5px;text-align:center;font-family:'Amiri',serif;font-size:1.4rem;direction:rtl">
+          ${isBlank
+            ? `<input type="text" dir="rtl" data-ans="${val}" style="font-family:'Amiri',serif;font-size:1.25rem;width:120px;border:1px solid var(--line);border-radius:6px;padding:3px 8px;text-align:center;background:#fff" placeholder="؟؟؟" oninput="checkBlank(this)">`
+            : `<span style="opacity:.5">${val}</span>`}
+        </td>
+      </tr>`;
+    }
+    body.innerHTML=`<div class="scrollx"><table style="width:100%;border-collapse:collapse">${rows}</table></div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="revealBlanks(this)">Reveal all</button>
+        <button class="btn" onclick="resetBlankDrill(this)">Reset</button>
+      </div>
+      <div class="bd-score" style="margin-top:8px;font-family:'Spline Sans Mono',monospace;font-size:.82rem;color:var(--muted)"></div>`;
+    btn.textContent='✎ Hide drill';
+  } else {
+    body.style.display='none';
+    btn.textContent='✎ Blank drill — test yourself';
+  }
+}
+function checkBlank(inp){
+  const ans = inp.dataset.ans;
+  const val = inp.value.trim();
+  if(!val){inp.style.background='#fff';return;}
+  if(val===ans){inp.style.background='#dfeee7';inp.style.color='var(--accent-2)';}
+  else{inp.style.background='#f3ddd5';inp.style.color='var(--accent)';}
+  const body = inp.closest('.bdrill-body');
+  const all = body.querySelectorAll('input[data-ans]');
+  const correct = [...all].filter(x=>x.value.trim()===x.dataset.ans).length;
+  const scoreEl = body.querySelector('.bd-score');
+  if(scoreEl) scoreEl.textContent=`${correct} / ${all.length} correct`;
+}
+function revealBlanks(btn){
+  const body = btn.closest('.bdrill-body');
+  body.querySelectorAll('input[data-ans]').forEach(inp=>{
+    inp.value = inp.dataset.ans;
+    inp.style.background='#fff7ea';
+  });
+}
+function resetBlankDrill(btn){
+  const body = btn.closest('.bdrill-body');
+  body.querySelectorAll('input[data-ans]').forEach(inp=>{
+    inp.value='';inp.style.background='#fff';inp.style.color='inherit';
+  });
+  const s=body.querySelector('.bd-score');if(s)s.textContent='';
+}
+
+/* Hook into renderTasreef to add drills after render */
+const _origRenderT = renderTasreef;
+// Patch: after renderTasreef runs, attach blank drills
+const _tselBtns = document.querySelectorAll('#tsel button');
+_tselBtns.forEach(b=>{
+  const orig = b.onclick;
+  b.onclick = function(){
+    if(orig) orig.call(this);
+    setTimeout(addBlankDrills, 80);
+  };
+});
+setTimeout(addBlankDrills, 120);
+
+</script>
+</body>
+</html>
