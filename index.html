@@ -84,6 +84,9 @@
     padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff6}
   .tag.obl{color:#fff;background:var(--accent);border-color:var(--accent)}
   .tag.opt{color:var(--accent-2);border-color:var(--accent-2)}
+  .mqline .mqtr{display:none}
+  .mqline.open .mqtr{display:block}
+  .mqline:hover{border-right-color:var(--accent)}
   .rulebody{margin-top:10px;font-size:.97rem}
   .ex{margin-top:10px;background:#fff7ea;border:1px dashed var(--line);border-radius:9px;padding:9px 12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
   .ex .chain{font-family:'Amiri',serif;font-size:1.5rem;direction:rtl;letter-spacing:.02em}
@@ -1985,51 +1988,51 @@ const MUALLAQAT=[
    epithet:"al-Malik al-Dillīl — the wandering king; father killed, spent life seeking revenge",
    theme:"Archetypal nasīb (love-prelude), desert wanderings, hunting — most imitated opening in Arabic poetry",
    lines:[
-    ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ","بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ"],
-    ["وَلَيْلٍ كَمَوْجِ البَحْرِ أَرْخَى سُدُولَهُ","عَلَيَّ بِأَنْوَاعِ الهُمُومِ لِيَبْتَلِي"],
-    ["كَأَنَّ قُلُوبَ الطَّيْرِ رَطْبًا وَيَابِسًا","لَدَى وَكْرِهَا العُنَّابُ وَالحَشَفُ البَالِي"]]},
+    ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ","بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ","Halt, you two, and let us weep at the memory of a beloved and an abode, by the rim of the twisted sands between al-Dakhūl and Ḥawmal."],
+    ["وَلَيْلٍ كَمَوْجِ البَحْرِ أَرْخَى سُدُولَهُ","عَلَيَّ بِأَنْوَاعِ الهُمُومِ لِيَبْتَلِي","And many a night like the sea's waves has let down its curtains over me with all kinds of cares, to test me."],
+    ["كَأَنَّ قُلُوبَ الطَّيْرِ رَطْبًا وَيَابِسًا","لَدَى وَكْرِهَا العُنَّابُ وَالحَشَفُ البَالِي","As if the hearts of the birds, moist and dry, lay by its nest like jujube fruits and rotten dried dates."]]},
   {id:"tarafa",poet:"Ṭarafa ibn al-ʿAbd",ar:"طرفة بن العبد",tribe:"Bakr (Rabīʿa)",
    epithet:"Died ~26 years old — executed by the Lakhmid king for a satirical poem",
    theme:"Carpe diem, wine, generosity; contains the most detailed camel description in Arabic poetry",
    lines:[
-    ["لِخَوْلَةَ أَطْلَالٌ بِبُرْقَةِ ثَهْمَدِ","تَلُوحُ كَبَاقِي الوَشْمِ فِي ظَاهِرِ اليَدِ"],
-    ["سَتُبْدِي لَكَ الأَيَّامُ مَا كُنْتَ جَاهِلًا","وَيَأْتِيكَ بِالأَخْبَارِ مَنْ لَمْ تُزَوِّدِ"],
-    ["وَلَسْتُ بِحَلَّالِ التِّلَاعِ مَخَافَةً","وَلَكِنْ مَتَى يُسْتَرْفَدِ القَوْمُ أُرْفِدِ"]]},
+    ["لِخَوْلَةَ أَطْلَالٌ بِبُرْقَةِ ثَهْمَدِ","تَلُوحُ كَبَاقِي الوَشْمِ فِي ظَاهِرِ اليَدِ","Khawla has ruined campsites on the stony tract of Thahmad, faintly visible like the remnant of a tattoo on the back of a hand."],
+    ["سَتُبْدِي لَكَ الأَيَّامُ مَا كُنْتَ جَاهِلًا","وَيَأْتِيكَ بِالأَخْبَارِ مَنْ لَمْ تُزَوِّدِ","The days will reveal to you what you were ignorant of, and one whom you never provisioned will bring you the news."],
+    ["وَلَسْتُ بِحَلَّالِ التِّلَاعِ مَخَافَةً","وَلَكِنْ مَتَى يُسْتَرْفَدِ القَوْمُ أُرْفِدِ","I am not one to camp on the safe hilltops out of fear; but whenever the people are asked for aid, I give it."]]},
   {id:"zuhayr",poet:"Zuhayr ibn Abī Sulmā",ar:"زهير بن أبي سلمى",tribe:"Muzayna / Ghaṭafān alliance",
    epithet:"Poet of ḥikma (wisdom) — composed each poem over a full year, polished like gold",
    theme:"Praise of peacemakers (Ḥārith ibn ʿAwf & Ḥarim ibn Sinān) after the Dāḥis war; anti-war wisdom",
    lines:[
-    ["أَمِنْ أُمِّ أَوْفَى دِمْنَةٌ لَمْ تَكَلَّمِ","بِحَوْمَانَةِ الدَّرَّاجِ فَالمُتَثَلَّمِ"],
-    ["سَئِمْتُ تَكَالِيفَ الحَيَاةِ وَمَنْ يَعِشْ","ثَمَانِينَ حَوْلًا لا أَبَا لَكَ يَسْأَمِ"],
-    ["وَمَنْ لَا يَذُدْ عَنْ حَوْضِهِ بِسِلَاحِهِ","يُهَدَّمْ وَمَنْ لَا يَظْلِمِ النَّاسَ يُظْلَمِ"]]},
+    ["أَمِنْ أُمِّ أَوْفَى دِمْنَةٌ لَمْ تَكَلَّمِ","بِحَوْمَانَةِ الدَّرَّاجِ فَالمُتَثَلَّمِ","Is there of Umm Awfā a silent ruined dwelling that gives no answer, at Ḥawmānat al-Darrāj and al-Mutathallam?"],
+    ["سَئِمْتُ تَكَالِيفَ الحَيَاةِ وَمَنْ يَعِشْ","ثَمَانِينَ حَوْلًا لا أَبَا لَكَ يَسْأَمِ","I am weary of life's burdens; whoever lives eighty years — may you have no father! — grows weary too."],
+    ["وَمَنْ لَا يَذُدْ عَنْ حَوْضِهِ بِسِلَاحِهِ","يُهَدَّمْ وَمَنْ لَا يَظْلِمِ النَّاسَ يُظْلَمِ","Whoever does not defend his cistern with his weapons will have it destroyed; and whoever does not wrong others will himself be wronged."]]},
   {id:"labid",poet:"Labīd ibn Rabīʿa",ar:"لبيد بن ربيعة",tribe:"ʿĀmir ibn Ṣaʿṣaʿa (Hawāzin)",
    epithet:"Only Muʿallaqa poet to accept Islam — stopped composing after conversion; lived ~140 years",
    theme:"Ruined encampments (aṭlāl), desert life, mortality — ends with the most famous verse in pre-Islamic poetry",
    lines:[
-    ["عَفَتِ الدِّيَارُ مَحَلُّهَا فَمُقَامُهَا","بِمِنًى تَأَبَّدَ غَوْلُهَا فَرِجَامُهَا"],
-    ["أَلَا كُلُّ شَيْءٍ مَا خَلَا اللهَ بَاطِلٌ","وَكُلُّ نَعِيمٍ لَا مَحَالَةَ زَائِلٌ"],
-    ["وَمَا المَرْءُ إِلَّا كَالشِّهَابِ وَضَوْئِهِ","يَحُورُ رَمَادًا بَعْدَ إِذْ هُوَ سَاطِعُ"]]},
+    ["عَفَتِ الدِّيَارُ مَحَلُّهَا فَمُقَامُهَا","بِمِنًى تَأَبَّدَ غَوْلُهَا فَرِجَامُهَا","The abodes are effaced — their halting-places and their dwellings — at Minā; desolate now are Ghawl and Rijām."],
+    ["أَلَا كُلُّ شَيْءٍ مَا خَلَا اللهَ بَاطِلٌ","وَكُلُّ نَعِيمٍ لَا مَحَالَةَ زَائِلٌ","Indeed, everything other than God is vain, and every delight will inevitably pass away."],
+    ["وَمَا المَرْءُ إِلَّا كَالشِّهَابِ وَضَوْئِهِ","يَحُورُ رَمَادًا بَعْدَ إِذْ هُوَ سَاطِعُ","Man is nothing but like a flame and its light: it turns to ashes after it was once blazing."]]},
   {id:"amribn",poet:"ʿAmr ibn Kulthūm",ar:"عمرو بن كلثوم",tribe:"Taghlib (Rabīʿa)",
    epithet:"Killed the Lakhmid king ʿAmr ibn Hind with his own sword after an insult to his mother",
    theme:"Fakhr (tribal boasting) — longest of the Muʿallaqāt, fiercely proud, defiant of Lakhmid authority",
    lines:[
-    ["أَلَا هُبِّي بِصَحْنِكِ فَاصْبَحِينَا","وَلَا تُبْقِي خُمُورَ الأَنْدَرِينَا"],
-    ["بِأَيِّ مَشِيئَةٍ عَمْرَو بنَ هِنْدٍ","نَكُونُ لِقَيْلِكُمْ فِيهَا قَطِينَا"],
-    ["أَلَا لَا يَجْهَلَنَّ أَحَدٌ عَلَيْنَا","فَنَجْهَلَ فَوْقَ جَهْلِ الجَاهِلِينَا"]]},
+    ["أَلَا هُبِّي بِصَحْنِكِ فَاصْبَحِينَا","وَلَا تُبْقِي خُمُورَ الأَنْدَرِينَا","Ho there! Rise with your bowl and give us our morning draught, and spare not the wines of al-Andarīn."],
+    ["بِأَيِّ مَشِيئَةٍ عَمْرَو بنَ هِنْدٍ","نَكُونُ لِقَيْلِكُمْ فِيهَا قَطِينَا","By what right, O ʿAmr son of Hind, should we become servile subjects to your chieftain?"],
+    ["أَلَا لَا يَجْهَلَنَّ أَحَدٌ عَلَيْنَا","فَنَجْهَلَ فَوْقَ جَهْلِ الجَاهِلِينَا","Let no one act recklessly against us, or we shall be more reckless than the recklessness of the reckless."]]},
   {id:"antara",poet:"ʿAntara ibn Shaddād",ar:"عنترة بن شداد",tribe:"ʿAbs (Qays ʿAylān)",
    epithet:"Warrior-poet of mixed ancestry who won freedom and honour through heroism in battle",
    theme:"Love for ʿAbla (his cousin), pride in courage over lineage, vivid battle scenes",
    lines:[
-    ["هَلْ غَادَرَ الشُّعَرَاءُ مِنْ مُتَرَدَّمِ","أَمْ هَلْ عَرَفْتَ الدَّارَ بَعْدَ تَوَهُّمِ"],
-    ["يَا دَارَ عَبْلَةَ بِالجِوَاءِ تَكَلَّمِي","وَعِمِّي صَبَاحًا دَارَ عَبْلَةَ وَاسْلَمِي"],
-    ["وَلَقَدْ أَبِيتُ عَلَى الطَّوَى وَأَظَلُّهُ","حَتَّى أَنَالَ بِهِ كَرِيمَ المَأْكَلِ"]]},
+    ["هَلْ غَادَرَ الشُّعَرَاءُ مِنْ مُتَرَدَّمِ","أَمْ هَلْ عَرَفْتَ الدَّارَ بَعْدَ تَوَهُّمِ","Have the poets left any theme unstitched? Or did you recognize the abode after uncertain recollection?"],
+    ["يَا دَارَ عَبْلَةَ بِالجِوَاءِ تَكَلَّمِي","وَعِمِّي صَبَاحًا دَارَ عَبْلَةَ وَاسْلَمِي","O abode of ʿAbla at al-Jiwāʾ, speak! Good morning, abode of ʿAbla, and may you be safe!"],
+    ["وَلَقَدْ أَبِيتُ عَلَى الطَّوَى وَأَظَلُّهُ","حَتَّى أَنَالَ بِهِ كَرِيمَ المَأْكَلِ","Indeed I spend the night hungry and endure it, until by it I attain an honourable means of living."]]},
   {id:"harith",poet:"al-Ḥārith ibn Ḥilliza",ar:"الحارث بن حلزة",tribe:"Bakr (Rabīʿa)",
    epithet:"Recited from behind a curtain before the Lakhmid king — had leprosy (baraṣ)",
    theme:"Defense of the Bakr tribe against Taghlib's accusations before king ʿAmr ibn Hind",
    lines:[
-    ["آذَنَتْنَا بِبَيْنِهَا أَسْمَاءُ","رُبَّ ثَاوٍ يُمَلُّ مِنْهُ الثَّوَاءُ"],
-    ["وَكَأَنَّ المَنُونَ تَرْدِي بِنَا","أَرْعَنَ جَوْنًا يَنْجَابُ عَنْهُ العَمَاءُ"],
-    ["إِنَّ إِخْوَانَنَا الأَرَاقِمَ يَغْلُو","نَ عَلَيْنَا فِي قِيلِهِمْ إِحْفَاءُ"]]}
+    ["آذَنَتْنَا بِبَيْنِهَا أَسْمَاءُ","رُبَّ ثَاوٍ يُمَلُّ مِنْهُ الثَّوَاءُ","Asmāʾ has announced to us her departure — many a one who stays long becomes wearisome by his staying."],
+    ["وَكَأَنَّ المَنُونَ تَرْدِي بِنَا","أَرْعَنَ جَوْنًا يَنْجَابُ عَنْهُ العَمَاءُ","As though fate hurls us down a towering dark mountain from whose summit the clouds part away."],
+    ["إِنَّ إِخْوَانَنَا الأَرَاقِمَ يَغْلُو","نَ عَلَيْنَا فِي قِيلِهِمْ إِحْفَاءُ","Indeed our kinsmen, the Arāqim (Taghlib), go to excess against us — in their speech is harsh insistence."]]}
 ];
 
 const MQ_Q=[
@@ -2091,9 +2094,13 @@ function renderMuallaqat(){
       <div style="margin-top:4px;font-size:.82rem;color:var(--muted);font-family:'Spline Sans Mono',monospace;font-style:italic">${p.epithet}</div>
       <div style="margin-top:5px;font-size:.9rem;color:var(--muted)">${p.theme}</div>
       <div style="margin-top:10px">
+        <div style="font-size:.74rem;color:var(--muted);font-style:italic;margin-bottom:4px">Tap a verse to reveal its English translation</div>
         ${p.lines.map(l=>`
-          <div style="background:#fbf2e2;border:1px solid var(--line);border-right:4px solid var(--gold);border-radius:8px;padding:10px 14px;margin:6px 0;font-family:'Amiri',serif;font-size:1.35rem;direction:rtl;line-height:2.1">
-            ${l[0]}<span style="color:var(--gold);font-size:1rem;padding:0 8px">···</span>${l[1]}
+          <div class="mqline" onclick="this.classList.toggle('open')" style="background:#fbf2e2;border:1px solid var(--line);border-right:4px solid var(--gold);border-radius:8px;padding:10px 14px;margin:6px 0;cursor:pointer">
+            <div style="font-family:'Amiri',serif;font-size:1.35rem;direction:rtl;line-height:2.1">
+              ${l[0]}<span style="color:var(--gold);font-size:1rem;padding:0 8px">···</span>${l[1]}
+            </div>
+            <div class="mqtr" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--accent-2);line-height:1.6">${l[2]}</div>
           </div>`).join('')}
       </div>
     </div>`).join('');
