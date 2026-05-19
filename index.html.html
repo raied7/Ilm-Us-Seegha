@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>علم الصيغة · Tasreef Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1410;
+    --paper:#f4ece0;
+    --paper-2:#ebe0cd;
+    --card:#fbf5ea;
+    --line:#cdbfa6;
+    --accent:#9c3a1f;
+    --accent-2:#1f5c4d;
+    --gold:#b88a2e;
+    --muted:#7a6c56;
+    --good:#1f5c4d;
+    --bad:#9c3a1f;
+    --shadow:0 1px 0 #fff8 inset,0 6px 22px -12px #4a36207a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Fraunces',Georgia,serif;
+    line-height:1.55;
+    min-height:100vh;
+    background-image:radial-gradient(circle at 12% 8%,#fff6e6 0,transparent 45%),radial-gradient(circle at 88% 92%,#e7d8bd 0,transparent 50%);
+  }
+  .ar{font-family:'Amiri','Scheherazade New',serif;direction:rtl;unicode-bidi:isolate}
+  .ar-lg{font-size:1.55em;line-height:1.9}
+  .mono{font-family:'Spline Sans Mono',monospace}
+
+  header{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(180deg,#1a1410,#241a12);
+    color:var(--paper);
+    border-bottom:2px solid var(--gold);
+  }
+  .hwrap{max-width:1080px;margin:0 auto;padding:14px 18px 0}
+  .brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .brand h1{font-size:clamp(1.15rem,3.6vw,1.7rem);font-weight:900;letter-spacing:-.01em}
+  .brand .sub{font-size:.8rem;color:#d8c79f;font-family:'Spline Sans Mono',monospace;letter-spacing:.04em}
+  .brand .ar{font-size:clamp(1.3rem,4vw,1.9rem);color:var(--gold)}
+  nav{display:flex;gap:2px;overflow-x:auto;margin-top:12px;padding-bottom:2px;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav button{
+    background:transparent;border:0;color:#cbb98f;
+    font-family:'Spline Sans Mono',monospace;font-size:.82rem;
+    padding:9px 14px;cursor:pointer;white-space:nowrap;
+    border-bottom:3px solid transparent;transition:.18s;
+  }
+  nav button:hover{color:#fff}
+  nav button.on{color:#fff;border-bottom-color:var(--accent)}
+
+  main{max-width:1080px;margin:0 auto;padding:26px 18px 90px}
+  .view{display:none;animation:fade .35s ease}
+  .view.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  h2.section{font-size:clamp(1.4rem,4vw,2rem);font-weight:900;margin-bottom:6px;letter-spacing:-.02em}
+  .lede{color:var(--muted);max-width:62ch;margin-bottom:22px;font-size:.98rem}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;box-shadow:var(--shadow);margin-bottom:14px;
+  }
+  .rulecard{position:relative;overflow:hidden}
+  .rulecard .rid{
+    position:absolute;top:0;right:0;background:var(--accent);color:#fff;
+    font-family:'Spline Sans Mono',monospace;font-size:.72rem;font-weight:500;
+    padding:4px 12px;border-bottom-left-radius:12px;
+  }
+  .rulecard.mt .rid{background:var(--accent-2)}
+  .rulename{font-weight:900;font-size:1.12rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-right:60px}
+  .rulename .ar{font-size:1.5rem;color:var(--accent)}
+  .rulecard.mt .rulename .ar{color:var(--accent-2)}
+  .tag{font-family:'Spline Sans Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;
+    padding:3px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff6}
+  .tag.obl{color:#fff;background:var(--accent);border-color:var(--accent)}
+  .tag.opt{color:var(--accent-2);border-color:var(--accent-2)}
+  .rulebody{margin-top:10px;font-size:.97rem}
+  .steps-ex{background:#fff7ea;border:1px dashed var(--line);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+  .chain-step{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding:4px 0;border-bottom:1px solid #f0e4cc}
+  .chain-step:last-child{border-bottom:none}
+  .step-label{font-family:'Spline Sans Mono',monospace;font-size:.75rem;color:var(--accent);font-weight:700;white-space:nowrap;min-width:70px;flex-shrink:0}
+  .step-chain{font-family:'Amiri','Scheherazade New',serif;font-size:1.45rem;direction:rtl;unicode-bidi:isolate;line-height:2}
+  .rulebody{font-size:.97rem;line-height:1.8;white-space:pre-line}
+  .rulebody .ar{font-family:'Amiri',serif;font-size:1.3em;direction:rtl;unicode-bidi:isolate;display:inline-block}
+
+  .grp-h{display:flex;align-items:center;gap:12px;margin:26px 0 12px;flex-wrap:wrap}
+  .grp-h h3{font-size:1.25rem;font-weight:900}
+  .grp-h .ar{font-size:1.6rem;color:var(--accent-2)}
+  .pill{font-family:'Spline Sans Mono',monospace;font-size:.7rem;background:var(--ink);color:var(--paper);padding:3px 10px;border-radius:999px}
+
+  .filterbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .filterbar button{
+    font-family:'Spline Sans Mono',monospace;font-size:.78rem;padding:7px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;transition:.15s
+  }
+  .filterbar button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* tasreef tables */
+  .tsel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .tsel button{font-family:'Spline Sans Mono',monospace;font-size:.78rem;padding:8px 14px;border-radius:10px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.15s}
+  .tsel button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tsel button.mtb.on{background:var(--accent-2);border-color:var(--accent-2)}
+  .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .tcard h3{font-size:1.05rem;margin-bottom:2px}
+  .tcard .meta{color:var(--muted);font-size:.85rem;margin-bottom:14px;font-family:'Spline Sans Mono',monospace}
+  table.tasreef{width:100%;border-collapse:collapse;font-family:'Amiri',serif;direction:rtl}
+  table.tasreef th,table.tasreef td{border:1px solid var(--line);padding:8px 6px;text-align:center}
+  table.tasreef th{background:var(--paper-2);font-size:.95rem;font-weight:700}
+  table.tasreef td{font-size:1.5rem}
+  table.tasreef td.lab{font-size:.78rem;font-family:'Spline Sans Mono',monospace;background:#fff8;color:var(--muted);direction:ltr}
+  .scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .deriv-list{margin-top:16px}
+  .deriv-list summary{cursor:pointer;font-weight:700;padding:10px 0;border-top:1px solid var(--line);list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .deriv-list summary::after{content:'+';font-family:'Spline Sans Mono',monospace;color:var(--accent)}
+  .deriv-list details[open] summary::after{content:'–'}
+  .deriv-row{padding:6px 0 14px;font-size:.95rem}
+  .deriv-row .chain{font-family:'Amiri',serif;font-size:1.5rem;direction:rtl;margin:6px 0}
+  .deriv-row .why{color:var(--muted);font-size:.86rem}
+  .rref{display:inline-block;font-family:'Spline Sans Mono',monospace;font-size:.7rem;background:var(--accent-2);color:#fff;padding:1px 7px;border-radius:6px;cursor:pointer;text-decoration:none}
+  .rref.m{background:var(--accent)}
+
+  /* flashcards */
+  .fc-stage{perspective:1400px;max-width:560px;margin:0 auto}
+  .fc-outer{position:relative;width:100%;min-height:320px}
+  .fc{position:absolute;inset:0;cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1)}
+  .fc.flip{transform:rotateY(180deg)}
+  .fc-face{
+    position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;border:1px solid var(--line);
+    background:var(--card);box-shadow:var(--shadow);
+    padding:20px 22px;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    text-align:center;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  /* front face: keep content centered vertically */
+  .fc-front{justify-content:center}
+  .fc-back{transform:rotateY(180deg);background:#fbf2e2;justify-content:flex-start}
+  .fc-kicker{font-family:'Spline Sans Mono',monospace;font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;flex-shrink:0}
+  .fc-q{font-size:1.1rem;font-weight:700;line-height:1.5}
+  .fc-q .ar{font-size:1.7rem;display:block;margin:8px 0;color:var(--accent);direction:rtl;unicode-bidi:isolate}
+  .fc-a{font-size:.9rem;line-height:1.6;text-align:left;width:100%;direction:ltr}
+  .fc-a .ar{font-size:1.35rem;color:var(--accent-2);display:block;margin:6px 0;direction:rtl;unicode-bidi:isolate;text-align:right}
+  .fc-a strong{color:var(--ink)}
+  /* step-chain inside flashcard answer */
+  .fc-a .ar-step{font-family:'Amiri','Scheherazade New',serif;font-size:1.2rem;direction:rtl;unicode-bidi:isolate;display:block;
+    background:#fff6e8;border-left:3px solid var(--gold);padding:3px 8px;margin:3px 0;text-align:right;border-radius:4px}
+  .fc-a .step-lbl{font-family:'Spline Sans Mono',monospace;font-size:.7rem;color:var(--accent);font-weight:700;display:inline-block;min-width:55px}
+  .fc-hint{margin-top:10px;font-size:.75rem;color:var(--muted);font-family:'Spline Sans Mono',monospace;flex-shrink:0}
+  .fc-ctrl{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+  .fc-ctrl button,.btn{font-family:'Spline Sans Mono',monospace;font-size:.82rem;padding:10px 18px;border-radius:10px;
+    border:1px solid var(--line);background:var(--card);cursor:pointer;transition:.15s;color:var(--ink)}
+  .fc-ctrl button:hover,.btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .btn.primary:hover{background:#7d2c14}
+  .counter{text-align:center;font-family:'Spline Sans Mono',monospace;font-size:.8rem;color:var(--muted);margin-top:14px}
+
+  /* matching */
+  .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:760px}
+  .mtile{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px;cursor:pointer;
+    transition:.14s;font-size:.95rem;min-height:58px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .mtile .ar{font-size:1.5rem}
+  .mtile:hover{border-color:var(--ink)}
+  .mtile.sel{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .mtile.done{background:#dfeee7;border-color:var(--accent-2);color:var(--accent-2);cursor:default;opacity:.65}
+  .mtile.wrong{animation:shake .4s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+
+  /* quiz */
+  .qbox{max-width:680px}
+  .qprompt{font-size:1.1rem;font-weight:700;margin-bottom:6px}
+  .qprompt .ar{font-size:1.7rem;color:var(--accent)}
+  .qopt{display:block;width:100%;text-align:right;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:13px 16px;margin:8px 0;cursor:pointer;font-family:inherit;font-size:1rem;transition:.14s;direction:rtl}
+  .qopt:hover{border-color:var(--ink)}
+  .qopt.correct{background:#dfeee7;border-color:var(--accent-2);color:var(--accent-2);font-weight:700}
+  .qopt.incorrect{background:#f3ddd5;border-color:var(--accent);color:var(--accent)}
+  .qopt .ar{font-size:1.4rem}
+  .qexp{margin-top:14px;padding:13px 16px;background:#fff7ea;border:1px dashed var(--line);border-radius:10px;font-size:.92rem;display:none}
+  .qexp.show{display:block}
+  .progress{height:7px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin:18px 0}
+  .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));transition:.4s}
+  .scorebanner{text-align:center;padding:30px}
+  .scorebanner .big{font-size:3rem;font-weight:900;font-family:'Fraunces',serif}
+
+  footer{text-align:center;color:var(--muted);font-size:.78rem;padding:30px 18px 50px;font-family:'Spline Sans Mono',monospace}
+  .kbd{font-family:'Spline Sans Mono',monospace;font-size:.72rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px;background:#fff8}
+  @media(max-width:560px){
+    table.tasreef td{font-size:1.25rem}
+    .match-grid{grid-template-columns:1fr}
+    main{padding:20px 14px 80px}
+  }
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <span class="ar">عِلْم الصِّيغة</span>
+      <h1>Tasreef Study Guide</h1>
+      <span class="sub">i'lāl · taḫfīf · idghām</span>
+    </div>
+    <nav id="nav"></nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section class="view on" id="v-home">
+    <h2 class="section">Final-Exam Study Guide</h2>
+    <p class="lede">Built from <em>ʿIlm uṣ-Ṣīgha</em> — the rules of <strong>mahmūz</strong> and <strong>muʿtall</strong> (Lesson 22–29) and how they apply in the <strong>tasareef</strong> (Lessons 24, 30–42). Everything works offline. Tap a card to flip; swipe tables sideways on mobile.</p>
+    <div class="card">
+      <div class="rulename"><span class="ar">١</span> Rules Reference</div>
+      <div class="rulebody">All 9 mahmūz rules (+ extensions) and 25 muʿtall rules, each with its signature example and derivation. Filterable.</div>
+      <div style="margin-top:12px"><button class="btn primary" data-go="rules">Open Rules →</button></div>
+    </div>
+    <div class="card">
+      <div class="rulename"><span class="ar">٢</span> Tasareef Tables</div>
+      <div class="rulebody">Full 14-ṣīgha conjugations for every category — mahmūz, mithāl, ajwaf, nāqiṣ, lafīf, muḍāʿaf, murakkabāt — with the <em>original → final</em> derivation written out and linked to the rule that caused each change.</div>
+      <div style="margin-top:12px"><button class="btn primary" data-go="tasreef">Open Tables →</button></div>
+    </div>
+    <div class="card">
+      <div class="rulename"><span class="ar">٣</span> Active Recall</div>
+      <div class="rulebody">Flashcards (rule recall + derivation chains), a matching game (rule ↔ example), and a quiz with MCQs and step-by-step derivation questions — exactly the format your exam uses.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" data-go="cards">Flashcards</button>
+        <button class="btn" data-go="match">Matching</button>
+        <button class="btn" data-go="quiz">Quiz</button>
+      </div>
+    </div>
+    <div class="card" style="background:#fbf2e2">
+      <div class="rulename"><span class="ar">★</span> How to use this the week before</div>
+      <div class="rulebody" style="margin-top:8px">
+        <strong>Mon–Tue:</strong> Read Rules, then Tasareef tables — recite each table aloud RTL.<br>
+        <strong>Wed–Thu:</strong> Flashcards on "Derivation" mode until you can produce the chain from memory.<br>
+        <strong>Fri:</strong> Matching + full Quiz; redo any rule you miss.<br>
+        <strong>Sat AM:</strong> Quiz "derivation" questions only — that's the heavy part of the test.
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section class="view" id="v-rules">
+    <h2 class="section">Rules Reference</h2>
+    <p class="lede">قواعد المهموز والمعتل. <span class="tag obl">obligatory</span> means the change must happen; <span class="tag opt">optional</span> (جوازًا) means it may. Click an example to see why.</p>
+    <div class="filterbar" id="rule-filter">
+      <button class="on" data-f="all">All</button>
+      <button data-f="mahmuz">Mahmūz (9+)</button>
+      <button data-f="mithal">Mithāl</button>
+      <button data-f="ajwaf">Ajwaf</button>
+      <button data-f="naqis">Nāqiṣ</button>
+    </div>
+    <div id="rules-out"></div>
+  </section>
+
+  <!-- TASREEF -->
+  <section class="view" id="v-tasreef">
+    <h2 class="section">Tasareef Tables</h2>
+    <p class="lede">Lessons 24, 30–42. Each card: the 14 ṣīgha (māḍī maʿrūf), plus the key derivations — <em>al-aṣl</em> and the rules that transform it. This is the "list the tasreef + explain the derivation" part of the exam.</p>
+    <div class="tsel" id="tsel"></div>
+    <div id="tasreef-out"></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section class="view" id="v-cards">
+    <h2 class="section">Flashcards</h2>
+    <p class="lede">Tap card to flip. Use <strong>Got it</strong> / <strong>Again</strong> to shuffle weak cards forward.</p>
+    <div class="tsel" id="fc-mode">
+      <button class="on" data-m="rule">Rule recall</button>
+      <button data-m="deriv">Derivation chains</button>
+      <button data-m="def">Definitions</button>
+    </div>
+    <div class="fc-stage">
+      <div class="fc-outer" id="fc-outer">
+        <div class="fc" id="fc">
+          <div class="fc-face fc-front"><div class="fc-kicker" id="fck">—</div><div class="fc-q" id="fcq">—</div><div class="fc-hint">tap to flip · ← → to navigate</div></div>
+          <div class="fc-face fc-back"><div class="fc-kicker">answer</div><div class="fc-a" id="fca">—</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-ctrl">
+      <button id="fc-again">↻ Again</button>
+      <button id="fc-flip" class="primary" style="background:var(--accent);color:#fff;border-color:var(--accent)">Flip</button>
+      <button id="fc-got">✓ Got it</button>
+    </div>
+    <div class="counter" id="fc-count">—</div>
+  </section>
+
+  <!-- MATCHING -->
+  <section class="view" id="v-match">
+    <h2 class="section">Matching Game</h2>
+    <p class="lede">Match each rule name to its signature example. Pick one tile from each side.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+      <button class="btn primary" id="m-new">New round</button>
+      <span class="counter" id="m-stat" style="margin:0;align-self:center">—</span>
+    </div>
+    <div class="match-grid" id="match-grid"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz">
+    <h2 class="section">Quiz</h2>
+    <p class="lede">Mixed: rule identification, "which rule applies", and derivation steps.</p>
+    <div class="tsel" id="quiz-mode">
+      <button class="on" data-qm="mixed">Mixed (20)</button>
+      <button data-qm="rules">Rules only</button>
+      <button data-qm="deriv">Derivations only</button>
+    </div>
+    <div id="quiz-out" class="qbox"></div>
+  </section>
+</main>
+
+<footer>
+  ʿIlm uṣ-Ṣīgha · Mufti ʿInāyat Aḥmad al-Kākorawī · study aid for tasreef + i'lāl rules
+</footer>
+
+<script>/* ===========================================================
+   DATA — Ilm us-Sigha: complete rules + tasareef
+   Source: ʿIlm uṣ-Ṣīgha of Mufti ʿInāyat Aḥmad al-Kākorawi
+   Lessons 22–42 | قواعد المهموز والمعتل والمضاعف + تصاريفها
+   =========================================================== */
+
+const RULES = {
+
+  /* ========================================================
+     MAHMUZ RULES  قواعد المهموز
+     Taḫfīf = "lightening" (تخفيف) of hamza.
+     Every rule here is a way to soften or remove hamza.
+     Key distinction: OBLIGATORY (وجوباً) vs OPTIONAL (جوازاً)
+     ======================================================== */
+  mahmuz: [
+
+    {id:"M1",
+     ar:"رَأس · بُؤس · ذِئب",
+     name:"Lone sākin hamza conforms to the preceding vowel",
+     type:"opt",
+     body:`TRIGGER: A hamza that is (1) alone/isolated (منفردة) and (2) sākin (vowel-less).
+CHANGE: It optionally takes the form of a weak letter matching the vowel BEFORE it:
+  • After fatḥa (a) → becomes ALIF:  رَأْس → رَاس
+  • After ḍamma (u) → becomes WĀW:  بُؤْس → بُوس
+  • After kasra (i)  → becomes YĀʾ:  ذِئْب → ذِيب
+WHY OPTIONAL: Hamza is the heaviest letter (أثقل الحروف), so lightening it is always preferred, but keeping the original hamza is also correct. Native Arabs use both forms.
+EXAM TIP: This rule runs in the majhūl of mahmūz verbs (non-1st-person forms) and in paused (waqf) pronunciation.`,
+     chain:"START: رَأْس (hamza sākin after fatḥ) · STEP 1 — after fatḥa → alif: رَأْس → رَاس · START: بُؤْس (hamza sākin after ḍamm) · STEP 1 — after ḍamma → wāw: بُؤْس → بُوس · START: ذِئْب (hamza sākin after kasr) · STEP 1 — after kasra → yāʾ: ذِئْب → ذِيب",
+     note:"jawāzan — 3 directions"},
+
+    {id:"M2",
+     ar:"آمَن · أُومِن · إِيمان",
+     name:"Sākin hamza after a moving hamza — OBLIGATORY conformity",
+     type:"obl",
+     body:`TRIGGER: A hamza that is (1) sākin AND (2) immediately follows another hamza that has a vowel (moving hamza).
+CHANGE: The sākin hamza MUST become the weak letter matching the preceding hamza's vowel:
+  • أَأْمَن: 1st hamza = fatḥ → 2nd hamza becomes ALIF → آمَن
+  • أُؤْمِن: 1st hamza = ḍamm → 2nd hamza becomes WĀW → أُومِن
+  • إِئْمان: 1st hamza = kasr → 2nd hamza becomes YĀʾ → إِيمان
+WHY OBLIGATORY: Two hamzas together—one moving, one sākin—is considered intolerably heavy (ثقيل جداً). Arabic phonology cannot accommodate it at all, so the change is compulsory.
+CONTRAST WITH M1: In M1 the sākin hamza follows a regular letter. Here it follows another hamza. The proximity of two hamzas makes this wājib instead of jāʾiz.
+EXAM TIP: This rule governs the amr and mājhūl of verbs like أَخَذ (→ خُذ from أُؤْخُذ), أَكَل (→ كُلْ from أُؤْكُلْ), and the amr of أَمَر.`,
+     chain:"START: أَأْمَنَ (1st hamza=fatḥ, 2nd hamza=sākin) · STEP 1 — 2nd sākin hamza after fatḥ → alif: أَأْمَنَ → آمَنَ · START: أُؤْمِنَ (1st hamza=ḍamm, 2nd hamza=sākin) · STEP 1 — 2nd sākin hamza after ḍamm → wāw: أُؤْمِنَ → أُومِنَ · START: إِئْمان (1st hamza=kasr, 2nd hamza=sākin) · STEP 1 — 2nd sākin hamza after kasr → yāʾ: إِئْمان → إِيمان",
+     note:"wujūban — all 3 vowel directions"},
+
+    {id:"M3",
+     ar:"جُوَن · مِيَر",
+     name:"Maftūḥ hamza after ḍamma → wāw; after kasra → yā'",
+     type:"opt",
+     body:`TRIGGER: A hamza that is (1) alone/isolated, (2) maftūḥa (has fatḥa on it), AND (3) the letter before it has either ḍamma OR kasra.
+CHANGE (optional):
+  • If preceding letter = ḍamma → hamza optionally becomes WĀW: جُؤَن → جُوَن
+  • If preceding letter = kasra  → hamza optionally becomes YĀʾ: مِئَر → مِيَر
+WHY NOT COVERED BY M1: M1 covers a sākin hamza (the hamza itself has no vowel). Here the hamza IS maftūḥa (has fatḥa). So this is a separate, additional rule for a moving hamza.
+SCOPE: Applies in nouns (أسماء) and adjectives. جُؤَن = plural of الجونة (a perfume box). مِئَر = plural of مِأرة (enmity).
+EXAM TIP: Remember: M1 = sākin hamza; M3 = maftūḥ hamza after ḍamma/kasra. Both are optional.`,
+     chain:"START: جُؤَن (hamza maftūḥ, letter before = ḍamm) · STEP 1 — maftūḥ hamza after ḍamm → wāw: جُؤَن → جُوَن · START: مِئَر (hamza maftūḥ, letter before = kasr) · STEP 1 — maftūḥ hamza after kasr → yāʾ: مِئَر → مِيَر",
+     note:"jawāzan"},
+
+    {id:"M4",
+     ar:"جاءٍ · أَوَادِم",
+     name:"Two moving hamzas meet — 2nd maksūr → yā'; otherwise → wāw",
+     type:"opt",
+     body:`TRIGGER: Two hamzas both moving (both have vowels) come together in one word.
+CHANGE depends on the 2nd hamza's vowel:
+  • 2nd hamza is MAKSŪRA (kasra) → it becomes YĀʾ: جائئٌ → جاءٍ
+    (اسم الفاعل of جاء: جايِئٌ → then M17 makes ʿayn → hamza → جاءِئٌ → then this rule makes 2nd hamza yā' → جائيٌ → then Rule 23 drops it in raf'/jarr indef.)
+  • 2nd hamza is NOT maksūra → it becomes WĀW: أَآدَم → أَوَادِم
+    (جمع آدم: the second hamza has fatḥa, so it → wāw)
+WHY YĀʾ FOR MAKSŪRA: Yā' is lighter than wāw and its makhraj is closer to hamza's. Kasra already "pulls" the sound toward yā'.
+OPTIONAL: This is still taḫfīf (lightening), not an absolute grammatical requirement.`,
+     chain:"START: جائئٌ (two moving hamzas, 2nd = maksūra) · STEP 1 — 2nd hamza maksūra → yāʾ: جائئٌ → جائيٌ · STEP 2 — Rule 23 drops yāʾ (indef. raf/jarr): جائيٌ → جاءٍ · START: أَآدَم (two moving hamzas, 2nd = fatḥa) · STEP 1 — 2nd hamza NOT maksūra → wāw: أَآدَم → أَوَادِم",
+     note:"jawāzan"},
+
+    {id:"M5",
+     ar:"أَيِمَّة",
+     name:"Two moving hamzas at word-start, 2nd maksūr → yā' (separate rule)",
+     type:"opt",
+     body:`TRIGGER: Two moving hamzas at the very BEGINNING of a word, and specifically the 2nd is maksūra.
+CHANGE: The 2nd hamza optionally → yā': أَئِمَّة → أَيِمَّة
+WHY SEPARATE FROM M4: The author (Mufti Kākorawi) splits this out as its own rule because this specific configuration—word-initial double hamza with the 2nd maksūra—has Qurānic evidence in multiple qirāʾāt (readings). Some readings of "أئمة" keep both hamzas, others show yā' (أَيِمَّة), confirming this is jāʾiz (optional), not wājib.
+CONTRAST WITH M2: In M2, the 2nd hamza is SĀKIN and conformity is wājib. Here both are moving, making it jāʾiz.
+EXAM TIP: أَئِمَّة / أَيِمَّة come from أَأْمَمَ via idghām. The 2nd hamza = kasra, so → yā' by this rule.`,
+     chain:"START: أَئِمَّة (two moving hamzas at word-start, 2nd = maksūra) · STEP 1 — 2nd hamza maksūra → yāʾ: أَئِمَّة → أَيِمَّة",
+     note:"jawāzan — Quranic support for both forms"},
+
+    {id:"M6",
+     ar:"مَقْرُوَّة · خَطِيَّة · أُفَيِّس",
+     name:"Hamza after zāʾid madd-wāw/yā' or after taṣghīr-yā' → MUST assimilate",
+     type:"obl",
+     body:`TRIGGER: Hamza falls immediately after:
+  (a) A WĀW that is a zāʾid (added) madd letter (like the wāw in مفعول), OR
+  (b) A YĀʾ that is a zāʾid madd letter (like the yā' in مفعيل/فعيل), OR
+  (c) The YĀʾ of taṣghīr (the yā' added to make a diminutive, like in أُفَيعل).
+CHANGE: The hamza OBLIGATORILY changes to match the preceding letter:
+  • After madd-WĀW → becomes WĀW, then idghām: مَقْرُوءَة → مَقْرُوَّة
+  • After madd-YĀʾ → becomes YĀʾ, then idghām: مَحْطِيئَة → مَحْطِيَّة (i.e. خَطِيئَة → خَطِيَّة)
+  • After taṣghīr-YĀʾ → becomes YĀʾ, then idghām: أُفَيْئِس → أُفَيِّس
+WHY OBLIGATORY: The madd vowel (long vowel) before the hamza creates such strong phonological pressure toward the weak letter that no alternative is acceptable. The resulting doubling (idghām) is smooth and natural.
+KEY POINT: This produces a shadda (تشديد) — two identical letters merge. This is both taḫfīf (hamza lightened) and idghām (assimilation).`,
+     chain:"START: مَقْرُوءَة (hamza after zāʾid madd-wāw) · STEP 1 — hamza → wāw (matches preceding wāw): مَقْرُوءَة → مَقْرُووَة · STEP 2 — idghām (two wāws merge): مَقْرُووَة → مَقْرُوَّة · START: خَطِيئَة (hamza after zāʾid madd-yāʾ) · STEP 1 — hamza → yāʾ: خَطِيئَة → خَطِييَة · STEP 2 — idghām: خَطِييَة → خَطِيَّة · START: أُفَيْئِس (hamza after taṣghīr-yāʾ) · STEP 1 — hamza → yāʾ: أُفَيْئِس → أُفَيْيِس · STEP 2 — idghām: أُفَيْيِس → أُفَيِّس",
+     note:"wujūban — results in shadda"},
+
+    {id:"M7",
+     ar:"يَسْأَل · يَرَى · مَرْأَة",
+     name:"Moving hamza after non-madd sākin — vowel transfers, hamza drops",
+     type:"opt",
+     body:`TRIGGER: Hamza (1) is moving (has a vowel), AND (2) falls after a letter that is sākin (has no vowel), AND that sākin letter is NOT a madd letter and NOT the yā' of taṣghīr.
+CHANGE (2 steps):
+  STEP 1: Transfer (naql نقل) — the hamza's vowel moves to the sākin letter before it.
+  STEP 2: The hamza, now vowel-less (sākin), optionally drops.
+EXAMPLE: يَسْأَلُ → يَسَلُ
+  • أ has fatḥa; the س before it is sākin
+  • Transfer: س gets the fatḥa → يَسَأْ (now أ is sākin)
+  • Drop hamza: يَسَلُ ✓
+OBLIGATORY IN VERBS OF SEEING (أفعال الرؤية):
+  يَرْأَى → يَرَى (MUST drop; no choice). Every form of رأى يرى undergoes this compulsorily.
+OPTIONAL IN DERIVED NOUNS (الأسماء المشتقة):
+  مَرْأَة may become مَرَاة (optional); مَرْأَى may become مَرَى (optional).
+EXAM TIP: The obligatory application in رأى يرى is a top exam question. Also: if a hamza follows a madd letter (like in مقروءة), Rule M6 applies instead of M7.`,
+     chain:"START: يَسْأَلُ (hamza moving, سْ before it is sākin) · STEP 1 — naql: transfer hamza's fatḥa to sākin سْ: يَسْأَلُ → يَسَأْلُ · STEP 2 — drop sākin hamza (optional): يَسَأْلُ → يَسَلُ · START: يَرْأَى (verb of seeing — OBLIGATORY) · STEP 1 — naql: transfer fatḥa to رْ: يَرْأَى → يَرَأْى · STEP 2 — drop hamza (wājib): يَرَأْى → يَرَى",
+     note:"jāʾiz generally; wājib in أفعال الرؤية"},
+
+    {id:"M8",
+     ar:"بَيْن بَيْن قريب · بَيْن بَيْن بعيد",
+     name:"Tas-hīl: softening a moving hamza between two pronunciation points",
+     type:"opt",
+     body:`TRIGGER: Hamza is moving (has a vowel) AND the letter before it is also moving (has a vowel) — so neither is sākin.
+CHANGE: Instead of fully pronouncing hamza or fully dropping it, it is "softened" (تسهيل) between two points:
+BAYNA BAYN QARĪB (بين بين قريب) = "between close points":
+  The hamza is pronounced between its own makhraj (throat) and the weak letter that matches ITS OWN vowel:
+  سَأَلَ: hamza has fatḥa → soften between hamza's throat and alif
+  سِئِمَ: hamza has kasra → soften between hamza's throat and yā'
+  لَؤُمَ: hamza has ḍamma → soften between hamza's throat and wāw
+BAYNA BAYN BAʿĪD (بين بين بعيد) = "between distant points":
+  The hamza is pronounced between its makhraj and the weak letter matching the PRECEDING letter's vowel.
+PRACTICAL MEANING: This is a Quranic recitation technique (tajwīd concept). In writing, the hamza is retained; in oral recitation, it is slightly lightened. Not a change in written form.
+EXAM TIP: Distinguish from M7: M7 = hamza after a SĀKIN letter. M8 = hamza after a MOVING letter. M8 produces a semi-hamza sound; M7 can drop it entirely.`,
+     chain:"START: سَأَلَ (hamza moving, letter before سَ also moving) · STEP 1 — tas-hīl qarīb: pronounce hamza between its makhraj and alif (matches hamza's own fatḥa): سَأَلَ · START: سِئِمَ (hamza has kasra) · STEP 1 — tas-hīl qarīb: between hamza's makhraj and yāʾ: سِئِمَ · START: لَؤُمَ (hamza has ḍamma) · STEP 1 — tas-hīl qarīb: between hamza's makhraj and wāw: لَؤُمَ",
+     note:"jawāzan — oral/recitation rule"},
+
+    {id:"M9",
+     ar:"أَأَنْتُمْ — 3 options",
+     name:"Interrogative hamza falls on another hamza — three permissible forms",
+     type:"opt",
+     body:`TRIGGER: The hamzat al-istifhām (interrogative أَ) is prefixed to a word that already starts with hamza.
+RESULT: Two hamzas meet, both moving. This is a specific application of Rule M4 plus two other options.
+
+THE STARTING POINT: أَأَنْتُمْ
+  • 1st hamza = hamzat al-istifhām — has FATḤA (moving)
+  • 2nd hamza = the original word's hamza — also has FATḤA (moving)
+  → Two moving hamzas. Too heavy to pronounce as-is. Three lightening options:
+
+══════════════════════════════════════════
+FORM 1 — Apply Rule M4 (أَوَادِم rule):
+  Rule M4 says: when two moving hamzas meet and the 2nd is NOT maksūra → 2nd hamza becomes WĀW.
+  Here the 2nd hamza has FATḤA (not kasra) → it becomes WĀW: أَوَنْتُمْ
+  BUT WAIT — now we have wāw (moving, with fatḥa) after fatḥa → Rule 7 (قال/باع) turns it into ALIF.
+  So: أَأَنْتُمْ → أَوَنْتُمْ → آنْتُمْ
+  The WĀW is only an intermediate step. It immediately converts to alif by Rule 7.
+  Written result: آأَنْتُمْ (the madda ā written on the alif shows the merged alif)
+  THIS IS WHERE THE WĀW WENT: it existed for one step as an intermediary, then Rule 7 absorbed it into alif.
+
+  ANOTHER EXAMPLE — if the 2nd hamza had KASRA (like أَإِنَّكُمْ):
+  Rule M4: 2nd maksūra → becomes YĀʾ (not wāw) → أَيِنَّكُمْ
+  No further Rule 7 change because yā' with kasra doesn't produce alif.
+
+══════════════════════════════════════════
+FORM 2 — Tas-hīl / Rule M8 (بين بين):
+  The 2nd hamza is NOT changed — it is softened in pronunciation.
+  It is said "between" its hamza makhraj and a lighter sound.
+  No wāw is created at all. The hamza is simply made softer.
+  Written form stays: أَأَنْتُمْ (but pronounced with a lighter 2nd hamza)
+
+══════════════════════════════════════════
+FORM 3 — Insert a separating alif (ألف فاصلة):
+  A spacing alif is inserted between the two hamzas to keep them apart visually:
+  أَأَنْتُمْ → أَاأَنْتُمْ
+  Both hamzas remain; they are just separated by a buffer alif.
+
+══════════════════════════════════════════
+SUMMARY OF WHERE THE WĀW IS IN FORM 1:
+  أَأَنْتُمْ → (M4 step) → أَوَنْتُمْ → (Rule 7 step) → آنْتُمْ / آأَنْتُمْ
+  The wāw is a transient intermediary. It appears when M4 converts the 2nd hamza,
+  then immediately disappears when Rule 7 converts the fatḥa+wāw into alif.
+  You never see it in the final written form — only in the derivation chain.
+
+EXAM TIP: "How many ways can you pronounce أَأَنْتُمْ?" → Three (ثلاثة أوجه).
+If the 2nd hamza is maksūra (like أَإِنَّكُمْ) → Form 1 gives yāʾ, not wāw+alif.`,
+     chain:"أَأَنْتُمْ →[M4]→ أَوَنْتُمْ →[Rule7]→ آنْتُمْ (Form 1) · بين بين (Form 2) · أَاأَنْتُمْ (Form 3)",
+     note:"3 wajh — wāw is only an intermediary step in Form 1"},
+
+    {id:"M+",
+     ar:"خَطَايَا · مَطَايَا",
+     name:"Hamza after the alif of muntahā-l-jumūʿ — compound iʿlāl chain",
+     type:"obl",
+     body:`TRIGGER: A hamza appears after the alif of منتهى الجموع (the broken plural pattern like فَعَائِل, مَفاعِل, etc.) AND a yā' follows it.
+This is a compound (مركّب) operation involving multiple rules in sequence.
+FULL DERIVATION of خَطَايَا from خَطِيئَة (pl. خَطَائِئُ):
+  STEP 1: خَطَائِئُ — two hamzas meet, 2nd is maksūra → Rule M4 → 2nd hamza becomes YĀʾ → خَطَائِيٌ
+  STEP 2: Now yā' is in the ṭaraf (end) after a kasra — Rule 11 (nāqiṣ) would make it stay as yā'. But then Rule 7 (قال/باع) applies: the yā' is moving after fatḥa (the fatḥa on the ء) → becomes ALIF → خَطَايَا
+  NET RESULT: خَطَائِئُ → خَطَائِيُ → خَطَايَا
+SAME PATTERN: مَطَايَا (from مَطِيَّة), حَشَايَا (from حَشِيَّة), وَصَايَا (from وَصِيَّة)
+WHY THIS MATTERS FOR EXAM: This multi-step chain is a prime "explain the derivation" question. You need to cite M4 then Rule 7 in sequence.`,
+     chain:"START: خَطَائِئُ (pl. of خَطِيئَة — two hamzas meet, 2nd maksūra) · STEP 1 — M4: 2nd hamza maksūra → yāʾ: خَطَائِئُ → خَطَائِيُ · STEP 2 — Rule 7 (قال/باع): yāʾ moving after fatḥa → alif: خَطَائِيُ → خَطَايَا · RESULT: خَطَايَا",
+     note:"compound — M4 then Rule 7"}
+  ],
+
+  /* ========================================================
+     MUʿTALL RULES  قواعد المعتل
+     Iʿlāl = change applied to a weak letter (حرف العلة: و · ا · ي)
+     Groups: Mithāl (1-6), Ajwaf (7-10), Nāqiṣ (11-25)
+     All are OBLIGATORY (وجوباً) unless noted.
+     ======================================================== */
+  mutall: [
+
+    /* ---- MITHĀL (فاء الكلمة weak) ---- */
+
+    {id:"1", grp:"mithal",
+     ar:"يَعِدُ · يَهَبُ · يَسَعُ",
+     name:"Wāw drops between maftūḥ muḍāriʿ-marker and kasra (or guttural fatḥa)",
+     type:"obl",
+     body:`TRIGGER: A wāw is in the fā' position (1st root letter) of a verb AND in the muḍāriʿ it falls between:
+  (a) The maftūḥ muḍāriʿ marker (يَـ/تَـ/أَـ/نَـ) AND a kasra on the ʿayn, OR
+  (b) The same marker AND a fatḥa BUT the ʿayn or lām is a guttural letter (حرف حلقي: ء ه ح خ ع غ).
+CHANGE: The wāw DROPS completely (falls out of the word).
+EXAMPLES:
+  وَعَدَ → يَوْعِدُ → يَعِدُ  (wāw between يَـ and kasra → drops)
+  وَهَبَ → يَوْهَبُ → يَهَبُ  (wāw, ʿayn is guttural ه, fatḥa → drops)
+  وَسِعَ → يَوْسَعُ → يَسَعُ  (ʿayn is guttural س by proximity, fatḥa → drops)
+WHY: The wāw between these two sounds (مفتوح marker + kasra) is awkward and heavy. Arabic phonology cannot sustain it in the muḍāriʿ where the verb is used constantly.
+SCOPE: ONLY affects the muḍāriʿ tense and all forms built from it (amr, nāhī, ism fāʿil from muḍāriʿ). The māḍī keeps its wāw: وَعَدَ (wāw stays).
+EXAM TIP: The amr of وَعَدَ is عِدْ — the wāw is gone, and the hamzat al-waṣl is also unneeded since the letter after it is moving. "عِدْ بوعدك" is correct.`,
+     chain:"START: يَوْعِدُ (wāw between maftūḥ يَـ and kasra on ʿayn) · STEP 1 — wāw drops: يَوْعِدُ → يَعِدُ · START: يَوْهَبُ (wāw, ʿayn is guttural ه) · STEP 1 — wāw drops: يَوْهَبُ → يَهَبُ · START: يَوْسَعُ (guttural ع in lām) · STEP 1 — wāw drops: يَوْسَعُ → يَسَعُ",
+     note:"wājib — muḍāriʿ and its derivatives only"},
+
+    {id:"2", grp:"mithal",
+     ar:"عِدَة · سِعَة · زِنَة",
+     name:"Wāw in fāʾ of a fiʿl-pattern maṣdar drops; ʿayn takes kasra; ة added as compensation",
+     type:"obl",
+     body:`TRIGGER: The maṣdar of a mithāl-wāwī verb on the pattern فِعْل (where the wāw is the fā').
+CHANGE (3 steps, all obligatory):
+  STEP 1: The wāw (fā') DROPS.
+  STEP 2: The ʿayn takes KASRA (or fatḥa if the muḍāriʿ has maftūḥ ʿayn).
+  STEP 3: A compensatory ة (tāʾ al-ʿiwaḍ) is added at the end to replace the dropped wāw.
+EXAMPLES:
+  وَعْد → عِدَة  (wāw dropped; ع gets kasra; ة added)
+  وَسْع → سِعَة  (same process)
+  وَزْن → زِنَة  (same)
+  وَصْف → صِفَة  (same; used as "quality/attribute")
+WHY: The pattern فِعْل with a wāw-fā' is considered too heavy to sustain in the maṣdar form, which is a static noun. The ة compensates for the "missing" wāw.
+CONDITION: Only for maṣdars on the specific فِعْل pattern. Not all wāw-fā' maṣdars drop the wāw (e.g., وُصُول retains it because it's on فُعُول).`,
+     chain:"START: وَعْد (maṣdar, wāw is fā') · STEP 1 — wāw drops: وَعْد → عْد · STEP 2 — ʿayn takes kasra: عْد → عِد · STEP 3 — compensatory ة added: عِد → عِدَة · START: وَسْع · STEP 1-3: وَسْع → سِعَة · START: وَزْن · STEP 1-3: وَزْن → زِنَة",
+     note:"wājib — maṣdar fiʿl pattern only"},
+
+    {id:"3", grp:"mithal",
+     ar:"مِيعَاد · مُوسِر · قُوتِلَ",
+     name:"Sākin wāw after kasra → yā'; sākin yā' after ḍamma → wāw; alif shifts too",
+     type:"obl",
+     body:`Three sub-rules under one heading — all OBLIGATORY:
+(A) Sākin WĀW after KASRA → becomes YĀʾ:
+  مِوْعَاد → مِيعَاد  (wāw is sākin; the letter before it has kasra)
+  اِوْتَعَد → but after Rule 4 applies...
+  Any اسم آلة مِفْعَال from مثال واوي shows this: مِيزَان، مِيقَاد، مِيعَاد
+(B) Sākin YĀʾ after ḌAMMA → becomes WĀW:
+  مُيْسِر → مُوسِر  (yā' is sākin; letter before it has ḍamma)
+  This is why مُوقِن، مُوسِر، مُوضِح all have wāw despite the root having yā' in fā'.
+(C) ALIF after ḍamma → wāw; alif after kasra → yā':
+  مُقَاتَلَ (majhūl of قَاتَلَ) → the ā in مُقَاتَلَ: here the alif after ḍamma stays as is in this case, but in قُوتِلَ: the alif of the pattern changes based on surrounding vowels.
+WHY: Arabic avoids the combination (kasra + wāw) and (ḍamma + yā') because these are phonologically jarring — the vowel and the weak letter "clash" in quality (kasra is "i-type" but wāw is "u-type"; ḍamma is "u-type" but yā' is "i-type").`,
+     chain:"START: مِوْعَاد (sākin wāw, letter before = kasra) · STEP 1 — sākin wāw after kasra → yāʾ: مِوْعَاد → مِيعَاد · START: مُيْسِر (sākin yāʾ, letter before = ḍamma) · STEP 1 — sākin yāʾ after ḍamma → wāw: مُيْسِر → مُوسِر",
+     note:"wājib — phonological harmony rule"},
+
+    {id:"4", grp:"mithal",
+     ar:"اِتَّعَدَ · اِتَّسَرَ",
+     name:"Original wāw or yā' as fā' of iftiʿāl → changes to tāʾ and merges (idghām)",
+     type:"obl",
+     body:`TRIGGER: A verb in the باب الافتعال (pattern اِفْتَعَلَ) whose ROOT's first letter (fā') is either wāw or yā'.
+CHANGE (2 steps, both obligatory):
+  STEP 1: The wāw/yā' (fā' of the root) is REPLACED by tāʾ.
+  STEP 2: This new tāʾ is ASSIMILATED (idghām) into the existing tāʾ of the افتعال pattern.
+  Result: a shadda on the tāʾ.
+EXAMPLES:
+  اِوْتَعَدَ (from وَعَدَ, iftiʿāl) → اِتْتَعَدَ → اِتَّعَدَ  ✓
+  اِوْتَسَرَ (from يَسَرَ) → اِتَّسَرَ
+WHY: The tāʾ of افتعال and a wāw/yā' immediately before it creates an impossible cluster. Arabic replaced the wāw/yā' with the easier-to-merge tāʾ, then merged them into one doubled tāʾ.
+NOTE: This only applies when wāw/yā' is the ORIGINAL root letter (أصلية). If the fā' is hamza (like in اِئْتَمَرَ), a different process applies (M1).`,
+     chain:"START: اِوْتَعَدَ (wāw is root fā', tāʾ of iftiʿāl follows) · STEP 1 — wāw → tāʾ: اِوْتَعَدَ → اِتْتَعَدَ · STEP 2 — idghām (two tāʾs merge): اِتْتَعَدَ → اِتَّعَدَ · START: اِيْتَسَرَ (yāʾ is root fā') · STEP 1 — yāʾ → tāʾ: اِيْتَسَرَ → اِتْتَسَرَ · STEP 2 — idghām: اِتْتَسَرَ → اِتَّسَرَ",
+     note:"wājib — iftiʿāl of mithāl roots"},
+
+    {id:"5", grp:"mithal",
+     ar:"أُجُوه · إِشَاح · أَقَّتَتْ",
+     name:"Wāw at start of word (maḍmūm/maksūr) or mid-word (maḍmūm) → optionally hamza",
+     type:"opt",
+     body:`TRIGGER: A wāw at the beginning of a word with ḍamma or kasra on it, OR a wāw in the middle of a word with ḍamma on it.
+CHANGE (optional): The wāw → hamza (أ).
+EXAMPLES:
+  وُجُوه → أُجُوه  (initial wāw + ḍamma → may become أ)
+  وِشَاح → إِشَاح  (initial wāw + kasra → may become إ)
+  وَقَّتَتْ → أَقَّتَتْ  (wāw in اسم الفاعل المؤنث of وَقَتَ; the maḍmūm wāw mid-word)
+NOTE — IRREGULAR (شاذ): A maftūḥ wāw at word-start becoming hamza is considered irregular (against the pattern), not covered by this rule.
+WHY OPTIONAL: The heaviness of wāw in these positions is real but not as severe as the cases requiring obligatory change. So Arabic allows both forms.
+EXAM TIP: This rule explains why some words appear with both وُجوه and أُجوه — both are correct.`,
+     chain:"START: وُجُوه (initial wāw with ḍamma) · STEP 1 — wāw → hamza: وُجُوه → أُجُوه · START: وِشَاح (initial wāw with kasra) · STEP 1 — wāw → hamza: وِشَاح → إِشَاح",
+     note:"jawāzan"},
+
+    {id:"6", grp:"mithal",
+     ar:"أَوَاصِل · أُوَيْصِل",
+     name:"Two moving wāws at word-start → first obligatorily becomes hamza",
+     type:"obl",
+     body:`TRIGGER: Two wāws both moving (both with vowels) appear at the very BEGINNING of a word.
+CHANGE: The FIRST wāw MUST become hamza. (Obligatory — وجوباً.)
+EXAMPLES:
+  وَوَاصِل (جمع واصلة, root و-ص-ل) → أَوَاصِل  (1st wāw → أ with fatḥa)
+  وُوَيْصِل (تصغير واصل)           → أُوَيْصِل  (1st wāw → أ with ḍamma)
+WHY OBLIGATORY: Two wāws at the start of a word is the heaviest possible opening combination. Arabic cannot tolerate it at all — hence the obligatory change.
+WHY M5 IS OPTIONAL BUT M6 IS OBLIGATORY: In M5, two hamzas meet (lighter than two wāws). In M6, two wāws meet (the heaviest possible pairing). The greater the phonological burden, the more the change becomes obligatory.
+COMPARE WITH M2: In M2, two hamzas meet (1st moving, 2nd sākin) → obligatory. In M6, two wāws meet (both moving) → obligatory. Doubles at word-start = always obligatory change.`,
+     chain:"START: وَوَاصِل (two moving wāws at word-start) · STEP 1 — 1st wāw → hamza: وَوَاصِل → أَوَاصِل · START: وُوَيْصِل (two moving wāws, 1st has ḍamma) · STEP 1 — 1st wāw → hamza: وُوَيْصِل → أُوَيْصِل",
+     note:"wājib — double-wāw at word-start"},
+
+    /* ---- AJWAF (عين الكلمة weak) ---- */
+
+    {id:"7", grp:"ajwaf",
+     ar:"قَالَ · بَاعَ · دَعَا · رَمَى",
+     name:"Moving wāw/yā' after fatḥa → alif (the core ajwaf rule, 8 conditions)",
+     type:"obl",
+     body:`THE MOST IMPORTANT AJWAF RULE. This is what makes the māḍī of ajwaf verbs.
+TRIGGER: The ʿayn (middle root letter) of a verb is wāw or yā', it is moving (has fatḥa on it), AND the letter before it also has fatḥa.
+CHANGE: The wāw/yā' MUST become ALIF.
+  قَوَلَ → قَالَ  (ʿayn = wāw; fatḥa before → alif)
+  بَيَعَ → بَاعَ  (ʿayn = yā'; fatḥa before → alif)
+  دَعَوَ → دَعَا  (lām = wāw; fatḥa before → alif) [nāqiṣ wāwī also uses this]
+  رَمَيَ → رَمَى  (lām = yā'; fatḥa before → alif) [nāqiṣ yāʾī also uses this]
+THE 8 CONDITIONS (شروط) — change does NOT apply when:
+  1. The wāw/yā' is the fā' (first letter): تَوَكَّلَ — no change (wāw is fā')
+  2. It is the ʿayn of a lafīf (two weak letters): طَوَى — ʿayn stays (only lām changes)
+  3. It comes before the alif of tathniya: دَعَوَا — no change (alif of dual follows)
+  4. It comes before a zāʾid madd letter: طَوِيل — no change
+  5. It comes before a shadda-yāʾ or nūn tawkīd: عَلَوِيّ — no change
+  6. In a colour/defect verb (فعل اللون والعيب): عَوِرَ، صَيِدَ — no change
+  7. In iftiʿāl meaning tafāʿul: اِحْتَوَرَ (meaning تَحَاوَرَ) — no change
+  8. [implicitly: any context where the alif would create ambiguity]
+WHY: A moving wāw/yā' after fatḥa is phonologically the most natural position for these weak letters to "spread" into a full alif sound.`,
+     chain:"START: قَوَلَ (ʿayn=wāw, moving, fatḥa before) · STEP 1 — wāw after fatḥa → alif: قَوَلَ → قَالَ · START: بَيَعَ (ʿayn=yāʾ, moving, fatḥa before) · STEP 1 — yāʾ after fatḥa → alif: بَيَعَ → بَاعَ · START: دَعَوَ (lām=wāw, nāqiṣ) · STEP 1 — wāw after fatḥa → alif: دَعَوَ → دَعَا · START: رَمَيَ (lām=yāʾ) · STEP 1 — yāʾ after fatḥa → alif: رَمَيَ → رَمَى",
+     note:"wājib — 8 conditions; most frequent iʿlāl rule"},
+
+    {id:"8", grp:"ajwaf",
+     ar:"يَقُول · يَبِيع · يُقَال · يُبَاع",
+     name:"Vowel of ʿayn wāw/yā' transfers to the preceding sākin letter",
+     type:"obl",
+     body:`THE CORE RULE FOR MUḌĀRIʿ OF AJWAF. Also governs مصدر، اسم المفعول, and all forms where the ʿayn follows a sākin.
+TRIGGER: The ʿayn of the verb is wāw/yā', AND the letter before it is SĀKIN (has no vowel of its own).
+CHANGE (2 steps):
+  STEP 1: NAQL (نقل) — the vowel on the wāw/yā' TRANSFERS to the sākin letter before it.
+  STEP 2: The wāw/yā', now carrying a vowel (fatḥa, ḍamma, or kasra), applies Rule 7 (becomes alif if fatḥa) or stays as a long vowel sound.
+EXAMPLES:
+  يَقْوُل: qāf is sākin; wāw has ḍamma → transfer ḍamma to qāf → يَقُوْل ✓
+  يَبْيِع: bāʾ is sākin; yāʾ has kasra → transfer kasra to bāʾ → يَبِيْع ✓
+  يُقْوَل (majhūl): transfer fatḥa to qāf, wāw with fatḥa → alif by Rule 7 → يُقَال ✓
+  يُبْيَع (majhūl): transfer fatḥa to bāʾ, yāʾ with fatḥa → alif by Rule 7 → يُبَاع ✓
+WHEN WĀW/YĀʾ DROPS: If a sākin comes AFTER them (like in جمع المؤنث يَقُلْنَ), the wāw/yāʾ drops because two sākins cannot meet.
+SAME CONDITIONS AS RULE 7: This rule operates under the same 8 conditions.
+EXAM TIP: مَقُول (مفعول of قول) works the same way: مَقْوُول → transfer → مَقُوْل → drop one wāw for two sākins → مَقُول.`,
+     chain:"START: يَقْوُل (qāf sākin, wāw has ḍamma) · STEP 1 — naql: transfer ḍamma to qāf: يَقْوُل → يَقُوْل · START: يَبْيِع (bāʾ sākin, yāʾ has kasra) · STEP 1 — naql: transfer kasra to bāʾ: يَبْيِع → يَبِيْع · START: يُقْوَل (majhūl, wāw has fatḥa) · STEP 1 — naql: transfer fatḥa to qāf: يُقْوَل → يُقَوْل · STEP 2 — Rule 7: wāw after fatḥa → alif: يُقَوْل → يُقَال",
+     note:"wājib — naql + then Rule 7 if fatḥa"},
+
+    {id:"9", grp:"ajwaf",
+     ar:"قِيلَ · بِيعَ · قُلْنَ",
+     name:"Majhūl māḍī of ajwaf: wāw→yā' with vowel transfer; 3 forms + fem-pl drop",
+     type:"obl",
+     body:`THE PASSIVE (MAJHŪL) RULE FOR AJWAF. Three accepted pronunciations, plus the feminine plural.
+TRIGGER: The ʿayn of the verb is wāw/yāʾ in the PASSIVE MĀḌĪ (mabnī lil-mafʿūl).
+BASE FORM: قُوِلَ (from قَوَلَ, passive = qāf+ḍamma, wāw+kasra)
+THREE FORMS (all valid):
+  FORM 1 — Full iʿlāl (الإعلال الكامل): 
+    Transfer the kasra from the wāw to what precedes it; wāw → yāʾ (by Rule 3: sākin wāw after kasra → yāʾ):
+    قُوِلَ → قِيلَ ✓ (standard)
+  FORM 2 — Keep original vowels (إبقاء الحركة):
+    Keep qāf with ḍamma; make the wāw sākin but keep it as wāw:
+    قُوْلَ (with wāw sākin, ḍamma on qāf)
+  FORM 3 — Ishmām (إشمام):
+    Pronounce قِيلَ but shape the lips slightly toward ḍamma to signal the original ḍamma of the pattern. This is a tajwīd/pronunciation feature, not a written change.
+FEMININE PLURAL DROP (قُلْنَ/بِعْنَ):
+  In جمع المؤنث الغائب (قُلْنَ) and forms built from it, the wāw/yāʾ DROPS because it meets two sākins. The preceding fāʾ takes:
+  • ḍamma if the root is ajwaf wāwī (قُلْنَ — qāf carries ḍamma as signal)
+  • kasra if the root is ajwaf yāʾī (بِعْنَ — bāʾ carries kasra as signal)
+EXAM TIP: "What are the three forms of قِيلَ?" is a classic exam question. Answer: قِيلَ / قُوْلَ / إشمام.`,
+     chain:"START: قُوِلَ (base passive, qāf=ḍamma, wāw=kasra) · Form 1 — STEP 1 naql: transfer kasra from wāw to qāf: قُوِلَ → قِوْلَ · STEP 2 Rule 3: sākin wāw after kasra → yāʾ: قِوْلَ → قِيلَ · Form 2 — keep ḍamma on qāf, make wāw sākin: قُوِلَ → قُوْلَ · Form 3 — إشمام: pronounce قِيلَ but lip-shape toward ḍamma (no written change) · FEM-PL: START: قَوَلْنَ → STEP 1: alif drops, qāf takes ḍamma: قُلْنَ · START: بَيَعْنَ → bāʾ takes kasra: بِعْنَ",
+     note:"wājib — 3 forms for majhūl; fem-pl drop"},
+
+    {id:"10", grp:"ajwaf",
+     ar:"يَدْعُو · يَرْمِي · يَخْشَى",
+     name:"Lām wāw/yāʾ loses its vowel in 5 muḍāriʿ ṣīghas; fatḥa case → alif",
+     type:"obl",
+     body:`THE CORE NĀQIṢ MUḌĀRIʿ RULE. Applies to all nāqiṣ verbs in the present tense.
+TRIGGER: The lām (last root letter) of the verb is wāw or yāʾ, and we are in one of the 5 basic muḍāriʿ ṣīghas (يفعل، تفعل، تفعل، أفعل، نفعل — the 5 forms without suffixes).
+CHANGE:
+  (a) If the lām has ḌAMMA or KASRA on it → it loses its vowel (the vowel is dropped/absorbed):
+      يَدْعُوُ → يَدْعُو  (wāw keeps its ḍamma-quality as a long vowel, but no iʿrāb vowel on top)
+      يَرْمِيُ → يَرْمِي  (same — yāʾ becomes a natural long vowel)
+  (b) If the lām would have FATḤA → it becomes ALIF by Rule 7:
+      يَخْشَيُ → يَخْشَى  (yāʾ with fatḥa before it → alif, written as ى)
+SUB-RULE 1 — Jāmiʿ al-mudhakkar (groups يَدْعُونَ/تَرْمِينَ):
+  In جمع المذكر, when -ون/-ين suffix follows, wāw/yāʾ is SĀKIN and another sākin follows → wāw/yāʾ DROPS:
+  يَدْعُوْنَ → يَدْعُونَ (wāw present but sākin, absorbed into the long vowel of -ون)
+  تَرْمِيْنَ → تَرْمِينَ (same for yāʾ)
+SUB-RULE 2 — تَدْعِينَ (واحدة مخاطبة from nāqiṣ wāwī):
+  The wāw changes to yāʾ here: تَدْعُوِينَ → تَدْعُوْيِنَ → تَدْعِينَ (wāw before yāʾ-ين → Rule 3).
+EXAM TIP: يَدْعُو in raf' looks like it has no case ending — that's because the wāw IS the case ending (long vowel). The verb stem ends here; the wāw cannot take another vowel on top.`,
+     chain:"START: يَدْعُوُ (lām=wāw, has ḍamma) · STEP 1 — lām loses its vowel: يَدْعُوُ → يَدْعُو · START: يَرْمِيُ (lām=yāʾ, has kasra) · STEP 1 — lām loses its vowel: يَرْمِيُ → يَرْمِي · START: يَخْشَيُ (lām=yāʾ, has fatḥa) · STEP 1 — Rule 7: yāʾ after fatḥa → alif: يَخْشَيُ → يَخْشَى · DROP example: يَدْعُوْنَ → suffix -ون, wāw sākin meets nūn sākin → yَدْعُونَ",
+     note:"wājib — 5 basic muḍāriʿ ṣīghas"},
+
+    /* ---- NĀQIṢ (لام الكلمة weak) ---- */
+
+    {id:"11", grp:"naqis",
+     ar:"دُعِيَ · دَاعِيَة",
+     name:"Wāw in the ṭaraf (lām) after kasra → must become yāʾ",
+     type:"obl",
+     body:`TRIGGER: The lām of a word is wāw, AND the letter immediately before it has KASRA.
+CHANGE: The wāw MUST become YĀʾ.
+EXAMPLES:
+  دُعِوَ (majhūl of دَعَا) → دُعِيَ  (wāw in lām; ʿayn has kasra → wāw → yāʾ)
+  دَاعِوَة (fāʿila of nāqiṣ wāwī) → دَاعِيَة  (wāw in lām; kasra before → yāʾ)
+WHY: The combination (kasra + wāw) at the end of a word is the most awkward possible phonological sequence. Arabic requires harmonizing the vowel and the weak letter: kasra is an "i-sound" → forces the "i-type" weak letter (yāʾ).
+SCOPE: This is one of the most frequently applied rules in nāqiṣ wāwī verbs. It explains why مَاضِي المجهول of all nāqiṣ wāwī verbs ends in -ِيَ (like دُعِيَ، سُمِّيَ، وُقِيَ).`,
+     chain:"START: دُعِوَ (wāw in lām, ʿayn has kasra) · STEP 1 — wāw after kasra → yāʾ: دُعِوَ → دُعِيَ · START: دَاعِوَة (wāw in lām, letter before = kasra) · STEP 1 — wāw → yāʾ: دَاعِوَة → دَاعِيَة",
+     note:"wājib — kasra + wāw in ṭaraf"},
+
+    {id:"12", grp:"naqis",
+     ar:"نَهُوَ",
+     name:"Yāʾ in lām after ḍamma → must become wāw",
+     type:"obl",
+     body:`TRIGGER: The lām of a word is yāʾ, AND the letter immediately before it has ḌAMMA.
+CHANGE: The yāʾ MUST become WĀW.
+EXAMPLE:
+  نَهُيَ (from باب كَرُمَ, verb meaning "to be intelligent") → نَهُوَ  (yāʾ in lām; ʿayn has ḍamma → yāʾ → wāw)
+WHY: The combination (ḍamma + yāʾ) at the end is phonologically disharmonious. Ḍamma is a "u-sound" → forces the "u-type" weak letter (wāw). This is the mirror image of Rule 11.
+SCOPE: This rule mainly applies to verbs on the كَرُمَ pattern (bāb 5, karuma) with nāqiṣ yāʾī roots. Such verbs are rare in Arabic, which is why this rule is less commonly seen than Rule 11.
+CONTRAST WITH RULE 11: Rule 11 = kasra pulls wāw toward yāʾ. Rule 12 = ḍamma pulls yāʾ toward wāw. Both are about phonological harmony.`,
+     chain:"START: نَهُيَ (yāʾ in lām, ʿayn has ḍamma) · STEP 1 — yāʾ after ḍamma → wāw: نَهُيَ → نَهُوَ",
+     note:"wājib — ḍamma + yāʾ in ṭaraf (mirror of Rule 11)"},
+
+    {id:"13", grp:"naqis",
+     ar:"قِيَام · صِيَام · حِيَاض",
+     name:"Wāw in ʿayn of maṣdar after kasra → yāʾ (if verb is also muʿall)",
+     type:"obl",
+     body:`TRIGGER: All three conditions must be true:
+  (1) The ʿayn of a MAṢDAR (not a verb) is wāw.
+  (2) It follows a KASRA.
+  (3) The VERB itself is also muʿall (undergoes iʿlāl — i.e., it's ajwaf wāwī like قَامَ).
+CHANGE: The wāw → YĀʾ.
+EXAMPLES:
+  قِوَام → قِيَام  (maṣdar of قَامَ; ʿayn = wāw; kasra before; verb is ajwaf wāwī → wāw → yāʾ)
+  صِوَام → صِيَام  (maṣdar of صَامَ; same conditions)
+  جِوَاض → حِيَاض  (plural of حَوْض; conditions met → wāw → yāʾ)
+NEGATIVE EXAMPLE:
+  قِوَام (maṣdar of قَاوَمَ, bāb mufāʿala) → STAYS as قِوَام — because the verb قَاوَمَ does NOT undergo iʿlāl. The condition (3) fails.
+WHY CONDITION 3: The maṣdar follows the verb in iʿlāl. If the verb is "healthy" (ṣaḥīḥ in this position), the maṣdar stays healthy too.
+EXAM TIP: This rule is often tested by giving students قِوَام and asking whether it changes — they must check if the verb is ajwaf.`,
+     chain:"START: قِوَام (maṣdar of قَامَ — wāw in ʿayn, kasra before, verb is muʿall) · STEP 1 — wāw → yāʾ: قِوَام → قِيَام · START: صِوَام (maṣdar of صَامَ) · STEP 1: صِوَام → صِيَام · COUNTER-EXAMPLE: قِوَام (maṣdar of قَاوَمَ — verb NOT muʿall) → NO CHANGE: stays قِوَام",
+     note:"wājib — condition: verb must be ajwaf wāwī"},
+
+    {id:"14", grp:"naqis",
+     ar:"سَيِّد · مَرْمِيّ · مُضِيّ",
+     name:"Sākin wāw + moving yāʾ in one word → wāw → yāʾ → idghām; ḍamma → kasra",
+     type:"obl",
+     body:`TRIGGER: In ONE word (not a lafīf-mafrūq — the weak letters must be non-original/non-split):
+  (1) A WĀW that is SĀKIN (no vowel).
+  (2) Immediately followed by a moving YĀʾ (has a vowel).
+CHANGE (4 steps, all obligatory):
+  STEP 1: Wāw → YĀʾ (it conforms to the following yāʾ).
+  STEP 2: Obligatory IDGHĀM — the two yāʾs merge into one shadda-yāʾ (يّ).
+  STEP 3: Any ḌAMMA immediately before the now-doubled yāʾ → KASRA (ḍamma cannot precede a doubled yāʾ in Arabic).
+  STEP 4: The result is a word ending in or containing يّ.
+EXAMPLES:
+  سَيْوِد (سَيِّد's original form) → sākin wāw + moving yāʾ:
+    سَيْوِد → سَيِيد → سَيِّد ✓ (steps 1-2; ḍamma issue doesn't arise here since ي has kasra)
+  مَرْمُوي (مرمي's original form) → sākin wāw + moving yāʾ:
+    مَرْمُوي → مَرْمُيي → then ḍamma before doubled yāʾ → kasra → مَرْمِيّ ✓
+  مُضُوي (مُضِيّ) → same process: مُضُيي → ḍamma → kasra → مُضِيّ
+EXCEPTION — Not in lafīf-mafrūq: The rule does NOT apply in وَقِيَ (wāw is the root fā', yāʾ is root lām — they are "separated" weak letters). Each is treated independently.
+EXAM TIP: The ḍamma→kasra shift is what students most often forget. Also: the resulting يّ in مَرْمِيّ must be explained as coming from two yāʾs (one was a wāw).`,
+     chain:"START: سَيْوِد (sākin wāw + moving yāʾ) · STEP 1 — wāw → yāʾ: سَيْوِد → سَيِيد · STEP 2 — idghām: سَيِيد → سَيِّد · START: مَرْمُوي (sākin wāw + moving yāʾ, ḍamma before) · STEP 1 — wāw → yāʾ: مَرْمُوي → مَرْمُيي · STEP 2 — idghām: مَرْمُيي → مَرْمُيّ · STEP 3 — ḍamma before doubled yāʾ → kasra: مَرْمُيّ → مَرْمِيّ",
+     note:"wājib — 4 steps; ḍamma→kasra is key"},
+
+    {id:"15", grp:"naqis",
+     ar:"دُلِيّ",
+     name:"Two wāws at end of fuʿūl pattern → both → yāʾ → idghām; ḍamma→kasra",
+     type:"obl",
+     body:`TRIGGER: The فُعُول pattern (plural) where the root's lām is wāw, creating two wāws at the end.
+  دُلُوّو (original form of جمع دَلْو "bucket" = دُلِيّ):
+  The pattern فُعُول + lām wāw = دُلُوْو (two wāws at end)
+CHANGE (same mechanism as Rule 14):
+  STEP 1: First wāw (sākin after the long wāw) + second wāw → both become YĀʾ.
+  STEP 2: IDGHĀM: two yāʾs → one shadda-yāʾ (يّ).
+  STEP 3: ḌAMMA before the doubled yāʾ → KASRA.
+  STEP 4 (optional): The fāʾ of the word may also optionally take kasra (اتباع).
+EXAMPLE:
+  دُلُوّو → دُلُيي → ḍamma → kasra → دُلِيّ ✓
+  Also: قُلِيّ (جمع قَلْو), عُدِيّ (جمع عَدْو), إن وُجد
+RELATION TO RULE 14: This is essentially Rule 14 applied to the double-wāw at the end of the فُعُول pattern. The mechanism (wāw→yāʾ, idghām, ḍamma→kasra) is identical.`,
+     chain:"START: دُلُوْو (fuʿūl + wāw-lām = two wāws at end) · STEP 1 — both wāws → yāʾ: دُلُوْو → دُلُيي · STEP 2 — idghām: دُلُيي → دُلُيّ · STEP 3 — ḍamma before doubled yāʾ → kasra: دُلُيّ → دُلِيّ",
+     note:"wājib — fuʿūl pattern with wāw-lām"},
+
+    {id:"16", grp:"naqis",
+     ar:"أَدْلٍ · أَظْبٍ",
+     name:"Wāw/yāʾ after ḍamma in noun lām: ḍamma→kasra, weak letter→yāʾ, then drops",
+     type:"obl",
+     body:`TRIGGER: The lām of a noun is wāw (or yāʾ), and the letter before it has ḌAMMA.
+CHANGE (3 steps for wāw; 2 steps for yāʾ):
+FOR WĀW (أَدْلٍ from أَدْلُو, plural of دَلْو):
+  STEP 1: Ḍamma before the wāw → KASRA (phonological harmonization rule: ḍamma + end-wāw is too heavy).
+  STEP 2: Wāw → YĀʾ (Rule 11: wāw in ṭaraf after kasra → yāʾ; this is now automatic).
+  STEP 3: Yāʾ meets the tanwīn sākin (two sākins meet) → yāʾ DROPS; compensatory tanwīn stays.
+  Result: أَدْلٍ ✓  (compare Rule 23 where yāʾ is also dropped with tanwīn)
+FOR YĀʾ (أَظْبٍ from أَظْبُي, plural of ظَبْي "gazelle"):
+  The original yāʾ already exists. Ḍamma before yāʾ in noun lām:
+  STEP 1: Ḍamma → KASRA (same phonological pressure).
+  STEP 2: Yāʾ (now after kasra, sākin) meets tanwīn sākin → DROPS; compensatory tanwīn.
+  Result: أَظْبٍ ✓
+COMPARE WITH RULE 23: Rule 23 = yāʾ in the lām of فاعل/أفاعل patterns. Rule 16 = wāw/yāʾ in the lām of plural patterns like أَفْعُل/أَفْعَال. The mechanism of the final drop is the same.
+EXAM TIP: The ḍamma→kasra shift in step 1 is the starting trigger. Without it, the wāw would never become yāʾ in these words.`,
+     chain:"START: أَدْلُو (wāw in lām, letter before = ḍamma) · STEP 1 — ḍamma → kasra: أَدْلُو → أَدْلِو · STEP 2 — Rule 11: wāw after kasra → yāʾ: أَدْلِو → أَدْلِي · STEP 3 — two sākins meet (yāʾ + tanwīn): أَدْلِي → أَدْلٍ · START: أَظْبُي (yāʾ in lām, letter before = ḍamma) · STEP 1 — ḍamma → kasra: أَظْبُي → أَظْبِي · STEP 2 — two sākins meet: أَظْبِي → أَظْبٍ",
+     note:"wājib — 3 steps for wāw, 2 for yāʾ"},
+
+    {id:"17", grp:"naqis",
+     ar:"قَائِل · بَائِع",
+     name:"Wāw/yāʾ as ʿayn of فاعل ism-fāʿil → becomes hamza",
+     type:"obl",
+     body:`TRIGGER: The ʿayn (middle letter) of the اسم الفاعل on the فاعِل pattern is wāw or yāʾ — which happens when the verb is ajwaf.
+THE MECHANISM:
+  The aṣl of قَائِل is قَاوِل (from قَوَلَ, fāʿil pattern).
+  The aṣl of بَائِع is بَايِع (from بَيَعَ, fāʿil pattern).
+CHANGE: The wāw/yāʾ that is the ʿayn of the فاعل pattern MUST become HAMZA.
+  قَاوِل → قَائِل  (wāw → hamza)
+  بَايِع → بَائِع  (yāʾ → hamza)
+WHY HAMZA: After the long alif of فاعل, the wāw/yāʾ is in a "stretched" position. When a weak letter falls after a long alif (zāʾid alif), it becomes hamza — this is a general Arabic phonological principle (related to Rules 18 and 19 as well).
+THE THREE HAMZA RULES (17, 18, 19 together):
+  17 = ʿayn of فَاعِل → hamza
+  18 = zāʾid weak letter after alif of منتهى الجموع (فَاعِل with 2 letters after) → hamza
+  19 = final wāw/yāʾ after zāʾid alif → hamza
+EXAM TIP: Always describe قائل as coming from قاوِل → قائِل. The exam question "what is the اسم الفاعل of قال?" has a hidden iʿlāl chain.`,
+     chain:"START: قَاوِل (ism fāʿil of قَالَ, ʿayn=wāw after alif) · STEP 1 — wāw after zāʾid alif → hamza: قَاوِل → قَائِل · START: بَايِع (ism fāʿil of بَاعَ, ʿayn=yāʾ after alif) · STEP 1 — yāʾ after zāʾid alif → hamza: بَايِع → بَائِع",
+     note:"wājib — ʿayn of فاعل after alif → hamza"},
+
+    {id:"18", grp:"naqis",
+     ar:"شَرَائِف · رَسَائِل",
+     name:"Zāʾid weak letter after alif of muntahā-l-jumūʿ (2 letters follow) → hamza",
+     type:"obl",
+     body:`TRIGGER: In the broken plural pattern منتهى الجموع (فَعَائِل, مَفَاعِل, فَوَاعِل, etc.):
+  (1) A ZĀʾID (added, non-root) weak letter (wāw or yāʾ) follows the long alif (مدة زائدة).
+  (2) EXACTLY TWO letters follow this weak letter after the alif.
+CHANGE: The zāʾid weak letter MUST become HAMZA.
+EXAMPLES:
+  شَرَايِف (جمع شَرِيفَة: شَ + رَا + يِ + فَ) → yāʾ after alif, 2 letters follow → شَرَائِف ✓
+  رَسَايِل (جمع رِسَالَة) → yāʾ after alif, 2 letters follow → رَسَائِل ✓
+  قَصَايِد (جمع قَصِيدَة) → يَ after alif → قَصَائِد ✓
+IRREGULAR (شاذ — against qiyās): Converting an ORIGINAL (root) yāʾ, like مَصَائِب from مَصَايِب (جمع مُصِيبَة). The yāʾ of مُصِيبَة IS the root ʿayn (ص-و-ب), not a zāʾid letter. Its change is considered irregular (شاذ) by the author.
+THE "3 HAMZA RULES": Rules 17, 18, and 19 all describe the same phonological pressure: a weak letter after a long alif in noun patterns → hamza. Rule 17 = فاعل; Rule 18 = منتهى الجموع with exactly 2 after; Rule 19 = final position after zāʾid alif.`,
+     chain:"START: شَرَايِف (zāʾid yāʾ after alif of منتهى الجموع, 2 letters follow) · STEP 1 — zāʾid yāʾ → hamza: شَرَايِف → شَرَائِف · START: رَسَايِل · STEP 1: رَسَايِل → رَسَائِل · START: قَصَايِد · STEP 1: قَصَايِد → قَصَائِد",
+     note:"wājib — zāʾid weak after alif + 2 letters follow"},
+
+    {id:"19", grp:"naqis",
+     ar:"دُعَاء · كِسَاء · سَمَاء",
+     name:"Final wāw/yāʾ after a zāʾid alif → hamza",
+     type:"obl",
+     body:`TRIGGER: A wāw or yāʾ at the END of a word (ṭaraf/lām), AND it comes immediately after a ZĀʾID (added) alif.
+CHANGE: The wāw/yāʾ MUST become HAMZA.
+EXAMPLES:
+  دُعَاو (from دَعَا, maṣdar دُعَاو) → دُعَاء ✓  (wāw after zāʾid alif → hamza)
+  كِسَاو (from كَسَا، maṣdar or plural) → كِسَاء ✓
+  سَمَاي (from سَمَا) → سَمَاء ✓  (yāʾ after zāʾid alif → hamza)
+WHY: After a long alif (which creates phonological "length"), adding a wāw/yāʾ at the end produces a very heavy syllable structure. Converting to hamza normalizes it.
+THE ALIF MUST BE ZĀʾID (added, not root): The alif in دُعَاء is the alif of the maṣdar pattern — it is zāʾid. If the alif were a ROOT letter (ṭabīʿī), this rule might not apply in the same way.
+RELATION TO RULES 17 & 18: All three rules describe the phenomenon: weak letter immediately after a zāʾid alif → hamza. Rule 19 is the most general (any final position); Rules 17 and 18 are specific patterns.`,
+     chain:"START: دُعَاو (wāw at end, after zāʾid alif) · STEP 1 — wāw → hamza: دُعَاو → دُعَاء · START: سَمَاي (yāʾ at end, after zāʾid alif) · STEP 1 — yāʾ → hamza: سَمَاي → سَمَاء",
+     note:"wājib — ṭaraf wāw/yāʾ after zāʾid alif"},
+
+    {id:"20", grp:"naqis",
+     ar:"يُدْعَى · أَعْلَيْت",
+     name:"Wāw 4th+ in word (not after ḍamma or sākin-wāw) → must become yāʾ",
+     type:"obl",
+     body:`TRIGGER: A wāw appears as the 4th letter or later in a word, AND it is NOT preceded by ḍamma AND NOT preceded by a sākin wāw.
+CHANGE: The wāw MUST become YĀʾ.
+EXAMPLES:
+  يُدْعَوَانِ (muḍāriʿ majhūl dual of دَعَا) → wāw is 4th letter → يُدْعَيَانِ ✓
+  أَعْلَوْت → 4th letter is wāw, not preceded by ḍamma → أَعْلَيْت ✓
+EXCEPTIONS (when rule does NOT apply):
+  • If wāw is preceded by ḍamma: يَدْعُو — wāw stays (ḍamma before wāw = harmony).
+  • If wāw is preceded by another sākin wāw: يَدْعُونَ — wāw stays (two wāws together, first sākin is a different scenario).
+WHY: A wāw appearing late in a word (4th position+) without a supporting ḍamma before it is unstable in Arabic phonology. The yāʾ is lighter and fits better in that structural position.
+SCOPE: Most visible in majhūl forms of nāqiṣ wāwī verbs in the dual (يُدْعَيَانِ not يُدْعَوَانِ) and in derived forms.`,
+     chain:"START: يُدْعَوَانِ (wāw is 4th letter, preceded by fatḥa — not ḍamma) · STEP 1 — wāw → yāʾ: يُدْعَوَانِ → يُدْعَيَانِ · START: أَعْلَوْت (wāw is 4th, not preceded by ḍamma) · STEP 1 — wāw → yāʾ: أَعْلَوْت → أَعْلَيْت · EXCEPTION: يَدْعُو (wāw 4th but preceded by ḍamma) → NO CHANGE",
+     note:"wājib — 4th+ position wāw without ḍamma support"},
+
+    {id:"21", grp:"naqis",
+     ar:"حُبْلَيَانِ · بِيض · طُوبَى",
+     name:"Zāʾid alif before tathniya/sound-fem-pl → yāʾ; fiʿl and fuʿlā adjective/noun vowel shifts",
+     type:"obl",
+     body:`A compound rule covering three distinct scenarios:
+PART A — Zāʾid alif before tathniya or جمع المؤنث السالم:
+  When adding -ān (dual) or -āt (plural) to a word ending in a zāʾid alif (مقصورة):
+  The final alif MUST become YĀʾ: حُبْلَى → حُبْلَيَانِ (not حُبْلَاانِ)
+  Why: Two alifs together (one of the word stem, one of the dual suffix) cannot coexist.
+PART B — Yāʾ after kasra in فِعْل pattern OR ʿayn of فُعْلَى:
+  In ADJECTIVES: the weak letter → YĀʾ.
+    بِيض (plural of أَبْيَض) — from بَيَاض root; the ʿayn: بِوَاض → بِيَاض → بِيض
+  In NOUNS: the weak letter → WĀW.
+    طُوبَى (originally طُيْبَى, noun of excellence from طَيِّب) → yāʾ becomes wāw.
+    Why the split: adjectives prefer yāʾ (lighter), nouns prefer wāw (heavier/more substantive).
+PART C — kūsā and dūnyā patterns (from yaʾisā/kaysā root forms):
+  طُوبَى، كُوسَى: yāʾ → wāw because it's a noun on فُعْلَى.
+  حُيْكَى → جِيكَى (adjective): yāʾ stays because it's an adjective on فِعْلَى.`,
+     chain:"START: حُبْلَى (zāʾid alif at end) + dual suffix -ان · STEP 1 — alif → yāʾ before alif of dual: حُبْلَى → حُبْلَيَانِ · START: بِوَاض (wāw after kasra, adjective) · STEP 1 — wāw → yāʾ: بِوَاض → بِيَاض → بِيض · START: طُيْبَى (yāʾ in fuʿlā noun) · STEP 1 — yāʾ → wāw: طُيْبَى → طُوبَى",
+     note:"wājib — 3 sub-rules"},
+
+    {id:"22", grp:"naqis",
+     ar:"كَيْنُونَة · طَيْرُورَة",
+     name:"Wāw in ʿayn of fayʿūla maṣdar → yāʾ (author rejects the long derivation)",
+     type:"obl",
+     body:`TRIGGER: A maṣdar on the pattern فَيْعُولَة (or similar) where the ʿayn is wāw.
+CHANGE: The wāw → YĀʾ.
+EXAMPLE:
+  كَوْنُونَة (from كَانَ، maṣdar on فَيْعُولَة pattern) → كَيْنُونَة ✓
+THE TRADITIONAL (LONG) DERIVATION (which the author REJECTS):
+  Traditional scholars said: كَيْنُونَة came from كَوَنُونَة → then Rule 14 applied (wāw + yāʾ) → etc.
+  The author (Mufti Kākorawi) says: This long chain is unnecessary. Simply apply: wāw in the ʿayn of this pattern → yāʾ directly. No complex multi-step justification needed.
+AUTHOR'S POSITION: The direct rule (wāw→yāʾ in ʿayn of فيعولة) is simpler and more elegant. The multi-step derivation is "تطويل بلا فائدة" (lengthening without benefit).
+OTHER EXAMPLES: طَيْرُورَة (from طَارَ)، سَيْرُورَة (from سَارَ)، دَيْمُومَة (from دَامَ).
+EXAM TIP: If asked to derive كينونة, the author's preferred answer is: the pattern فيعولة with ajwaf wāwī root → wāw in ʿayn → yāʾ → كيعولة → كينونة.`,
+     chain:"START: كَوْنُونَة (فَيْعُولَة pattern, ʿayn=wāw) · STEP 1 — wāw in ʿayn → yāʾ: كَوْنُونَة → كَيْنُونَة · START: طَوْرُورَة (ʿayn=wāw) · STEP 1: طَوْرُورَة → طَيْرُورَة",
+     note:"wājib — author rejects long derivation"},
+
+    {id:"23", grp:"naqis",
+     ar:"قَاضٍ · جَوَارٍ · دَاعٍ",
+     name:"Yāʾ in lām of فاعِل/أفاعِل/مفاعِل — three cases based on definiteness and case",
+     type:"obl",
+     body:`THE MOST EXAM-TESTED NĀQIṢ RULE. Applies to اسم الفاعل of nāqiṣ verbs and to منتهى الجموع plurals.
+THE ORIGINAL FORM of قَاضٍ is قَاضِيٌ (from قَضَى يَقْضِي — ism fāʿil on فاعل pattern).
+THREE DIFFERENT TREATMENTS based on case + definiteness:
+══════════════════════════════════════════
+CASE 1 — INDEFINITE (نكرة) + RAF' or JARR:
+  Starting form: قَاضِيٌ
+  STEP 1: Yāʾ → SĀKIN (it loses its vowel; made sukūn): قَاضِيْ
+  STEP 2: Two sākins meet — yāʾ (sākin) + nūn of tanwīn (also effectively sākin/silent) → yāʾ DROPS.
+  STEP 3: TANWĪN AL-ʿIWAḌ (تنوين العوض = compensatory tanwīn) falls on the ḍ: قَاضٍ ✓
+  Both raf' and jarr: جَاءَ قَاضٍ · مَرَرْتُ بِقَاضٍ (same tanwīn kasratain)
+══════════════════════════════════════════
+CASE 2 — DEFINITE (with ال) or MUḌĀF + RAF' or JARR:
+  The tanwīn is gone (definite nouns don't have tanwīn) → so no "two sākins meeting."
+  STEP 1: Yāʾ → SĀKIN only.
+  STEP 2: The yāʾ STAYS (it doesn't drop because no tanwīn follows it).
+  Full case endings go on the ḍ:
+    Raf': القَاضِيُ · Jarr: القَاضِيِ ✓
+══════════════════════════════════════════
+CASE 3 — NAṢB (any — definite or indefinite):
+  In naṣb, the yāʾ STAYS COMPLETELY VISIBLE (no changes at all).
+  Indefinite: قَاضِياً ✓  (yāʾ with fatḥa + tanwīn)
+  Definite: القَاضِيَ ✓  (yāʾ with fatḥa)
+WHY NAṢB IS DIFFERENT: The fatḥa in naṣb is "lighter" and does not create the phonological awkwardness. Arabic "tolerates" the yāʾ in naṣb.
+══════════════════════════════════════════
+SAME RULE FOR PLURALS (جَوَارٍ):
+  Indef. raf'/jarr: جَوَارٍ · Definite raf': الجَوَارِيُ · Definite jarr: الجَوَارِيِ · Naṣb: الجَوَارِيَ/جَوَارِيَ
+ALSO APPLIES TO: دَاعٍ (from دَعَا)، رَامٍ (from رَمَى)، مَاشٍ، مُحَامٍ، بَاغٍ، etc.
+QURANIC EVIDENCE: يَوْمَ يَدْعُ الدَّاعِ إِلَى شَيْءٍ نُكُرٍ — the yāʾ is dropped in الدَّاعِ here even with ال. This is because the ال here does not create iḍāfa-type definiteness in the same way; a rare usage.`,
+     chain:"START: قَاضِيٌ (aṣl — indef. raf'/jarr) · STEP 1 — yāʾ → sākin: قَاضِيٌ → قَاضِيْ · STEP 2 — two sākins meet (yāʾ + tanwīn): قَاضِيْ → قَاضِ · STEP 3 — compensatory tanwīn: قَاضِ → قَاضٍ · START: قَاضِيٌ (def. raf' with ال) · STEP 1 — yāʾ → sākin only (no tanwīn to cause drop): القَاضِيُ · START: قَاضِيٌ (naṣb — any) · NO CHANGE: yāʾ stays visible: قَاضِياً / القَاضِيَ",
+     note:"wājib — 3 cases; most tested rule on exam"},
+
+    {id:"24", grp:"naqis",
+     ar:"دُنْيَا · تَقْوَى · غَزْوَى",
+     name:"Wāw in lām of fuʿlā jāmid → yāʾ; adjective stays wāw; fiʿlā yāʾ → wāw",
+     type:"obl",
+     body:`THREE SUB-RULES under one heading:
+(A) Wāw in lām of فُعْلَى as a JĀMID NOUN (جامد = non-derived noun; treated as a "thing-word"):
+  The wāw → YĀʾ.
+  دُنْوَى → دُنْيَا  (دُنْيَا from دَنَا يَدْنُو: the فُعلى form of this root would have wāw in lām → yāʾ)
+  عُلْوَى → عُلْيَا  (from عَلَا يَعْلُو: فُعلى form → lām wāw → yāʾ)
+  اسم التفضيل (which behaves like a noun here): أَفْعَل/فُعْلَى pair → fā' takes kasra: العُلْيَا
+(B) Adjective (صفة) on فُعْلَى: wāw STAYS.
+  غَزْوَى (adjective: "woman who goes on military expeditions") → stays غَزْوَى, wāw does NOT change.
+  Why: Adjectives in Arabic show more flexibility; they don't undergo the same compression as nouns.
+(C) Yāʾ in lām of فِعْلَى → becomes WĀW (NOUN only):
+  تَقْيَى → تَقْوَى  (from وَقَى، on فِعْلَى noun pattern → yāʾ in lām → wāw)
+  This creates the "kufr" of Rule 11 in reverse: for nouns on فِعْلَى, yāʾ → wāw.
+SUMMARY TABLE:
+  Pattern    | Jāmid noun | Adjective | Why
+  فُعْلَى     | wāw→yāʾ   | wāw stays | Noun gets lighter; adjective stays
+  فِعْلَى     | yāʾ→wāw   | —         | Noun needs heavier sound`,
+     chain:"START: دُنْوَى (wāw in lām, فُعْلَى jāmid noun) · STEP 1 — wāw → yāʾ: دُنْوَى → دُنْيَا · START: غَزْوَى (wāw in lām, adjective) · NO CHANGE: wāw stays: غَزْوَى · START: تَقْيَى (yāʾ in lām, فِعْلَى noun) · STEP 1 — yāʾ → wāw: تَقْيَى → تَقْوَى",
+     note:"wājib — noun vs adjective distinction key"},
+
+    {id:"25", grp:"naqis",
+     ar:"سُقْيَا · دُعَيَا · جُثِيَّا",
+     name:"Remaining lām weak-letter cases — suqyā, duʿiyā, juthiyyā, buqyā",
+     type:"obl",
+     body:`A CLOSING RULE covering the remaining nāqiṣ lām-letter scenarios not handled by Rules 11-24.
+EXAMPLES:
+(1) سُقْيَا (from سَقَى، maṣdar on فُعْلَى): The lām is yāʾ. On this pattern with yāʾ-lām, the yāʾ STAYS as yāʾ (not → wāw like in Rule 24c, because the conditions of that rule differ here).
+(2) دُعَيَا (تثنية دَعْوَى): When the زائدة alif of دعوى is followed by alif of tathniya, the zāʾid alif → yāʾ (Rule 21 Part A), giving دَعْوَيَانِ → دَعْوَيَا in naṣb.
+(3) جُثِيَّا (from جَثَا، maṣdar جُثُوّ، alternate form جُثِيَّا): Here two wāws at end (جُثُوو) apply Rule 15 (like دُلِيّ) → جُثِيَّا with the alif of maqṣūra added.
+(4) بُقْيَا (from بَقِيَ، maṣdar): lām yāʾ stays as yāʾ on this pattern.
+WHY A SEPARATE RULE: The preceding rules (11-24) cover most common patterns. Rule 25 is a "catch-all" for edge cases and less common maṣdar patterns that require analogical treatment.
+EXAM TIP: When you encounter a nāqiṣ-derived form that doesn't fit neatly into Rules 11-24, Rule 25 is the fallback. The exam rarely asks for Rule 25 in isolation — it's more about recognizing it exists.`,
+     chain:"سُقْيَا · دُعَيَا · جُثِيَّا · بُقْيَا",
+     note:"wājib — catch-all for remaining lām-weak cases"}
+  ]
+};
+
+/* ========================================================
+   MUḌĀʿAF RULES  قواعد المضاعف
+   Idghām = merging two like/similar letters into one shadda
+   ======================================================== */
+const MUDAAF_RULES = [
+
+  {id:"MD1",
+   ar:"مَدَدَ · عَبَّدْتُمْ · اذْهَبْ بِي",
+   name:"First of two like/near letters is sākin → assimilation (idghām) — in one word or across two",
+   body:`TRIGGER: The FIRST of two like letters (متجانسان) or two phonologically close letters (متقاربان) is SĀKIN (has no vowel).
+CHANGE: The first assimilates INTO the second (idghām) — whether they are in the same word or in two adjacent words.
+IN ONE WORD:
+  مَدَدَ: ONLY when both dāls are moving (see MD2). But if 1st is sākin: مَدْد → مَدَّ ✓
+ACROSS TWO WORDS:
+  اذْهَبْ بِي: bāʾ of اذهب is sākin; next word starts with bāʾ → assimilation جائز:
+    اذهبْ بي → اذهبِّبي (in fast speech)
+EXCEPTION: If the sākin is a MADD LETTER (a long vowel sound like alif in فِي أَو يَوْم), no assimilation:
+  فِي يَوْمٍ — the yāʾ of فِي is a madd letter; it stays separate.
+WHY: When the first letter is sākin, there is no phonological "barrier" preventing it from merging into the identical sound that follows. Two identical sounds with nothing separating them naturally merge.
+NEAR LETTERS (متقاربان): Letters sharing the same makhraj or nearly so, like:
+  ت + ت, د + ت, ذ + ذ, ط + ت, ظ + ت, ن + ن (across words), etc.
+  مَدَدْتُمْ: dāl is sākin, then tāʾ follows → dāl → tāʾ by proximity → عَبَّدْتُمْ type.`},
+
+  {id:"MD2",
+   ar:"مَدَّ · فَرَّ · شَدَّ",
+   name:"Two like letters both moving, preceded by a moving letter → 1st made sākin → idghām",
+   body:`THE CORE MUḌĀʿAF RULE. This is what makes مَدَّ from مَدَدَ.
+TRIGGER: THREE conditions all true:
+  (1) Two LIKE letters in one word (both the same letter: د+د, ر+ر, etc.).
+  (2) BOTH have vowels (both are moving, متحركان).
+  (3) The letter BEFORE the first also has a vowel (is moving).
+CHANGE:
+  STEP 1: Make the FIRST letter sākin (give it sukūn).
+  STEP 2: Idghām (assimilation) — the now-sākin first letter merges into the second → shadda.
+EXAMPLES:
+  مَدَدَ: mīm (moving) + dāl (moving) + dāl (moving) → all 3 conditions met → مَدَّ ✓
+  فَرَرَ: fāʾ (moving) + rāʾ (moving) + rāʾ (moving) → فَرَّ ✓
+  شَدَدَ → شَدَّ · رَدَدَ → رَدَّ · عَدَدَ → عَدَّ
+EXCEPTION — NOUN with moving ʿayn: شَرَرٌ (sparks), سُرُرٌ (beds): The ʿayn (rāʾ) is moving and the letter before is moving, BUT in these nouns Arabic keeps both letters unmerged. This is شاذ (irregular usage) — or more precisely, Arabic nouns have more tolerance for double letters than verbs.
+WHY: This is the classic "if you can avoid repetitive effort, do so" principle. Two identical sounds with a moving-voweled letter before them can naturally "absorb" into one doubled sound.`},
+
+  {id:"MD3",
+   ar:"يَمُدُّ · يَفِرُّ · يَعُضُّ",
+   name:"Letter before 1st is sākin (non-madd) → transfer 1st's vowel back, then idghām",
+   body:`TRIGGER: Two like letters in a word, but the letter BEFORE the first is SĀKIN (and not a madd letter).
+CHANGE:
+  STEP 1: Transfer the vowel of the FIRST like-letter BACK to the sākin letter before it (naql).
+  STEP 2: The first like-letter, now vowel-less, assimilates into the second (idghām).
+EXAMPLES:
+  يَمْدُدُ: mīm is sākin; first dāl has ḍamma → transfer ḍamma to mīm → يَمُدُّ ✓
+    يَمْدُدُ →[naql dāl's ḍamma to mīm]→ يَمُدْدُ →[idghām]→ يَمُدُّ
+  يَفْرِرُ → يَفِرُّ  (rāʾ's kasra transferred to fāʾ)
+  يَعْضُضُ → يَعُضُّ  (ḍāʾ's ḍamma transferred to ʿayn)
+CONTRAST WITH MD2: In MD2, the letter BEFORE is moving → you make 1st sākin directly. In MD3, the letter before is ALREADY sākin → you first transfer the vowel to it, THEN the 1st becomes sākin, then idghām.
+This is the muḍāriʿ form of muḍāʿaf verbs.`},
+
+  {id:"MD4",
+   ar:"حَاجَّ · مُودَّ · جَادَّ",
+   name:"Preceding letter is a zāʾid madd → drop 1st's vowel directly, then idghām",
+   body:`TRIGGER: Two like letters in a word, and the letter BEFORE the first is a ZĀʾID MADD letter (a long vowel added to the word pattern, like the alif of مفاعلة, the wāw of مفعول, etc.).
+CHANGE:
+  STEP 1: DROP (not transfer) the vowel of the first like-letter.
+  STEP 2: Idghām — the now-vowel-less first letter merges into the second.
+EXAMPLES:
+  حَاجَجَ (from باب المفاعلة, root ح-ج-ج): The alif is zāʾid madd. First jīm has fatḥa → drop it → حَاجَّ ✓
+  مُوْدِدَ (majhūl of أَوَدَّ, اسم مفعول مُودَد): wāw is zāʾid madd → drop dāl's kasra → مُودَّ ✓
+  جَادَدَ → جَادَّ (from باب المفاعلة)
+WHY DROP INSTEAD OF TRANSFER: The zāʾid madd already "uses up" the phonological space before the double letters. There is nowhere to transfer the vowel (the madd letter cannot take another vowel). So the vowel is simply dropped.
+CONTRAST WITH MD3: MD3 = sākin non-madd before → transfer vowel. MD4 = zāʾid madd before → drop vowel. Different solutions for different contexts.`},
+
+  {id:"MD5",
+   ar:"لم يَمُدَّ · اُمْدُدْ · مُدَّ / مُدِّ",
+   name:"At jazm/waqf on muḍāʿaf — 4 options (or 3 for non-ḍamma-preceded)",
+   body:`TRIGGER: A muḍāʿaf verb form is MAJZŪM (by lam jazm, amr, nahy, etc.) or at WAQF (pause at end of speech) — meaning the last letter must take sukūn.
+PROBLEM: After idghām the verb ends in a shadda (like يَمُدُّ). If we impose sukūn on the last letter to jaz, the doubled letter needs special treatment.
+THE FORMS AVAILABLE:
+  FORM 1 — FATḤA on the final letter: لَمْ يَمُدَّ ✓ (fatḥa is the default/lightest)
+  FORM 2 — KASRA on the final letter: لَمْ يَمُدِّ ✓
+  FORM 3 — FAKK AL-IDGHĀM (فك الإدغام) = break up the doubled letter back into two: لَمْ يَمْدُدْ ✓
+    (The idghām is "undone" and the two dāls are written/pronounced separately)
+  FORM 4 — ḌAMMA on the final letter: لَمْ يَمُدُّ ✓ ONLY IF the letter before the doubled consonant has ḍamma.
+    (iʿtibār al-aṣl — honoring the original ḍamma)
+    If the preceding letter does NOT have ḍamma, Form 4 is NOT available → only 3 forms.
+SUMMARY:
+  Preceding letter = ḍamma → 4 forms available
+  Preceding letter ≠ ḍamma → 3 forms (no Form 4)
+EXAM TIP: For the amr: اُمُدَّ / اُمُدِّ / اُمْدُدْ / اُمُدُّ (if ḍamma precedes). For the majzūm: لم يَمُدَّ / يَمُدِّ / يَمْدُدْ / يَمُدُّ.`}
+];
+
+/* ========================================================
+   TASAREEF TABLES
+   Source: Lessons 24 (mahmūz), 30-42 (muʿtall + muḍāʿaf)
+   14 ṣīgha of māḍī maʿrūf per verb, plus key derivation chains.
+   ======================================================== */
+const SIGHA_LABELS = [
+  "3 m.s","3 m.du","3 m.pl",
+  "3 f.s","3 f.du","3 f.pl",
+  "2 m.s","2 m.du","2 m.pl",
+  "2 f.s","2 f.du","2 f.pl",
+  "1 s","1 pl"
+];
+
+const TASREEF = [
+
+  /* ---- MAHMŪZ ---- */
+  {key:"akhadha", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"أَخَذَ يَأْخُذُ", gloss:"mahmūz al-fā', bāb naṣara — to take",
+   madi:["أَخَذَ","أَخَذَا","أَخَذُوا","أَخَذَتْ","أَخَذَتَا","أَخَذْنَ","أَخَذْتَ","أَخَذْتُمَا","أَخَذْتُمْ","أَخَذْتِ","أَخَذْتُمَا","أَخَذْتُنَّ","أَخَذْتُ","أَخَذْنَا"],
+   key_forms:[
+     {label:"الأمر — خُذْ (irregular)", chain:"اُؤْخُذْ → خُذْ",
+      why:"Qiyās (analogy) would give اُؤْخُذْ → apply M2 (sākin hamza after moving hamza) → 2nd hamza becomes wāw → اُوْخُذْ. BUT by convention (كثرة الاستعمال), both hamzas are dropped entirely → خُذْ. The same happens with كُلْ (from أَكَلَ) and مُرْ (from أَمَرَ).", refs:["M2"]},
+     {label:"الماضي المجهول — أُخِذَ", chain:"أُخِذَ (with M1 or M3 optional)",
+      why:"In the majhūl: أُخِذَ is the base form. Rule M3 optionally applies: hamza is maftūḥ after ḍamma → may become wāw → أُوخِذَ (optional). Rule M1 also applies if hamza is sākin.", refs:["M1","M3"]},
+     {label:"المضارع المجهول — يُؤْخَذُ", chain:"يُأْخَذُ → يُؤْخَذُ",
+      why:"The hamza after ḍamma in يُأخذ: Rule M3 (maftūḥ hamza after ḍamma → wāw). But here the hamza HAS a vowel on it and the preceding has ḍamma → the hamza appears in its regular form. In recitation, M8 (tas-hīl) may apply.", refs:["M3","M8"]},
+     {label:"اسم التفضيل المؤنث", chain:"أَأْخَذُ → آخَذُ",
+      why:"Two hamzas: 1st moving (fatḥ), 2nd sākin → OBLIGATORY M2: 2nd hamza becomes alif (matching fatḥa of 1st hamza) → آخَذُ.", refs:["M2"]}
+   ]},
+
+  {key:"itamana", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"اِئْتَمَرَ (افتعال)", gloss:"mahmūz al-fā', iftiʿāl — to comply/obey (from أَمَرَ)",
+   madi:["اِئْتَمَرَ","اِئْتَمَرَا","اِئْتَمَرُوا","اِئْتَمَرَتْ","اِئْتَمَرَتَا","اِئْتَمَرْنَ","اِئْتَمَرْتَ","اِئْتَمَرْتُمَا","اِئْتَمَرْتُمْ","اِئْتَمَرْتِ","اِئْتَمَرْتُمَا","اِئْتَمَرْتُنَّ","اِئْتَمَرْتُ","اِئْتَمَرْنَا"],
+   key_forms:[
+     {label:"الماضي — اِئْتَمَرَ derivation", chain:"اِأْتَمَرَ → اِئْتَمَرَ",
+      why:"The base form اِأْتَمَرَ has hamzat al-waṣl + hamza (fā' of root أَمَرَ) + tāʾ of iftiʿāl. After hamzat al-waṣl (kasra), the root hamza is sākin → Rule M1: sākin hamza after kasra → yāʾ → اِيْتَمَرَ. But written with ء under the yāʾ seat → اِئْتَمَرَ.", refs:["M1"]},
+     {label:"الماضي المجهول — اُؤْتُمِرَ", chain:"اُؤْتُمِرَ (M2 applies)",
+      why:"Hamzat al-waṣl carries ḍamma in majhūl → اُ + root hamza (now moving with ḍamma): two hamzas, 1st moving with ḍamma, 2nd would be sākin → OBLIGATORY M2: 2nd hamza → wāw matching the ḍamma → اُوتُمِرَ.", refs:["M2"]},
+     {label:"المضارع — يَأْتَمِرُ", chain:"يَأْتَمِرُ → يَاتَمِرُ optional",
+      why:"Rule M1 (optional): sākin hamza after fatḥa → alif. يَأْتَمِرُ with the hamza sākin after fatḥa may optionally become يَاتَمِرُ.", refs:["M1"]},
+     {label:"اسم الفاعل/المفعول — مُؤْتَمِر/مُؤْتَمَر", chain:"مُأْتَمِر → مُؤْتَمِر",
+      why:"Hamza after ḍamma (on mīm of muḍāriʿ marker): Rule M3 (maftūḥ hamza after ḍamma → wāw) → may become مُوتَمِر (optional). The standard written form uses ء after wāw seat: مُؤْتَمِر.", refs:["M3"]}
+   ]},
+
+  {key:"qaraa", cat:"mahmūz", catClass:"m", lesson:"L24",
+   title:"قَرَأَ يَقْرَأُ", gloss:"mahmūz al-lām — to read",
+   madi:["قَرَأَ","قَرَآ","قَرَؤُوا","قَرَأَتْ","قَرَأَتَا","قَرَأْنَ","قَرَأْتَ","قَرَأْتُمَا","قَرَأْتُمْ","قَرَأْتِ","قَرَأْتُمَا","قَرَأْتُنَّ","قَرَأْتُ","قَرَأْنَا"],
+   key_forms:[
+     {label:"قَرَآ (dual, m.3)", chain:"قَرَأَا → قَرَآ",
+      why:"Two hamzas: 1st moving (fatḥa on the verb hamza), 2nd sākin (the alif of dual). OBLIGATORY M2: 2nd sākin hamza → alif (matching fatḥa before) → the two alifs merge visually as مدة → قَرَآ.", refs:["M2"]},
+     {label:"الماضي — M8 in moving positions", chain:"قَرَأَ — tas-hīl optional in recitation",
+      why:"In the māḍī of mahmūz al-ʿayn (سأل، بأر), Rule M8 (tas-hīl/bayna bayn) applies: moving hamza after a moving letter → soften in recitation. In the muḍāriʿ and amr of mahmūz al-ʿayn, Rule M7 (naql + drop) applies.", refs:["M8","M7"]},
+     {label:"المجهول واحد — قُرِئَ", chain:"قُرِءَ → قُرِئَ (M3)",
+      why:"In the single majhūl, the hamza has fatḥa and comes after kasra (on the rāʾ). Rule M3: maftūḥ hamza after kasra → yāʾ → قُرِيَ. Written with hamza on yāʾ seat: قُرِئَ.", refs:["M3"]},
+     {label:"الأمر — اِقْرَأْ (sākin hamza options)", chain:"اِقْرَأْ — M1 applies in waqf",
+      why:"The hamza in اِقْرَأْ is sākin in waqf. Rule M1: sākin hamza after fatḥa → alif → اِقْرَا (in waqf/pause). After ḍamma → wāw: اُرْدُو from أَرَادَ. After kasra → yāʾ: اِقْرِي (hypothetical).", refs:["M1"]}
+   ]},
+
+  /* ---- MITHĀL ---- */
+  {key:"waada", cat:"mithāl", catClass:"mt", lesson:"L30",
+   title:"وَعَدَ يَعِدُ", gloss:"mithāl wāwī, bāb ḍaraba — to promise",
+   madi:["وَعَدَ","وَعَدَا","وَعَدُوا","وَعَدَتْ","وَعَدَتَا","وَعَدْنَ","وَعَدْتَ","وَعَدْتُمَا","وَعَدْتُمْ","وَعَدْتِ","وَعَدْتُمَا","وَعَدْتُنَّ","وَعَدْتُ","وَعَدْنَا"],
+   key_forms:[
+     {label:"المضارع — يَعِدُ", chain:"يَوْعِدُ → يَعِدُ",
+      why:"Rule 1: wāw (fā') between maftūḥ muḍāriʿ marker (يَـ) and kasra on ʿayn (عِ) → drops. The wāw simply falls out. The rest of the form stays.", refs:["1"]},
+     {label:"الأمر — عِدْ", chain:"تَعِدُ → عِدْ",
+      why:"Build amr from muḍāriʿ تَعِدُ: drop تَـ → عِدُ. Final vowel is dropped at waqf → عِدْ. No hamzat al-waṣl needed because the letter after it (ʿayn) is moving.", refs:["1"]},
+     {label:"المصدر — عِدَة", chain:"وَعْد → عِدَة",
+      why:"Rule 2: wāw in fā' of fiʿl-maṣdar drops; ʿayn gets kasra; compensatory ة added. وَعْد (maṣdar on فَعْل) → remove wāw + kasra + ة → عِدَة.", refs:["2"]},
+     {label:"اسم الآلة — مِيعَاد", chain:"مِوْعَاد → مِيعَاد",
+      why:"Rule 3: sākin wāw after kasra → yāʾ. The mīm of مِفْعَال has kasra; the wāw (fā') is sākin → wāw → yāʾ → مِيعَاد.", refs:["3"]},
+     {label:"الافتعال — اِتَّعَدَ", chain:"اِوْتَعَدَ → اِتَّعَدَ",
+      why:"Rule 4: fā' of iftiʿāl is wāw → replace with tāʾ → اِتْتَعَدَ → idghām of two tāʾs → اِتَّعَدَ.", refs:["4"]},
+     {label:"جمع اسم الفاعل — أَوَاعِد", chain:"وَوَاعِد → أَوَاعِد",
+      why:"Rule 6: two moving wāws at word-start → 1st becomes hamza. The plural وَوَاعِد starts with two wāws (both moving) → 1st wāw → أ → أَوَاعِد.", refs:["6"]}
+   ]},
+
+  {key:"wajila", cat:"mithāl", catClass:"mt", lesson:"L30",
+   title:"وَجِلَ يَوْجَلُ", gloss:"mithāl wāwī, bāb samiʿa — to fear",
+   madi:["وَجِلَ","وَجِلَا","وَجِلُوا","وَجِلَتْ","وَجِلَتَا","وَجِلْنَ","وَجِلْتَ","وَجِلْتُمَا","وَجِلْتُمْ","وَجِلْتِ","وَجِلْتُمَا","وَجِلْتُنَّ","وَجِلْتُ","وَجِلْنَا"],
+   key_forms:[
+     {label:"المضارع — يَوْجَلُ (Rule 1 does NOT apply)", chain:"وَجِلَ: muḍāriʿ = يَوْجَلُ (wāw STAYS)",
+      why:"Rule 1 says: wāw drops between maftūḥ muḍāriʿ marker and KASRA. Here the ʿayn has FATḤA (not kasra) and the lām is not guttural → Rule 1 does NOT apply → wāw STAYS: يَوْجَلُ.", refs:["1"]},
+     {label:"الأمر/اسم الآلة — اِيجَلْ/مِيجَل", chain:"اِوْجَلْ → اِيجَلْ · مِوْجَل → مِيجَل",
+      why:"Rule 3: sākin wāw after kasra → yāʾ. Hamzat al-waṣl اِـ has kasra; wāw (fā') is sākin → wāw → yāʾ → اِيجَلْ. Similarly mīm of مِفْعَل has kasra; wāw sākin → مِيجَل.", refs:["3"]}
+   ]},
+
+  /* ---- AJWAF ---- */
+  {key:"qala", cat:"ajwaf", catClass:"mt", lesson:"L31",
+   title:"قَالَ يَقُولُ", gloss:"ajwaf wāwī, bāb naṣara — to say",
+   madi:["قَالَ","قَالَا","قَالُوا","قَالَتْ","قَالَتَا","قُلْنَ","قُلْتَ","قُلْتُمَا","قُلْتُمْ","قُلْتِ","قُلْتُمَا","قُلْتُنَّ","قُلْتُ","قُلْنَا"],
+   key_forms:[
+     {label:"قَالَ derivation", chain:"قَوَلَ → قَالَ",
+      why:"Rule 7: ʿayn = wāw, moving, after fatḥa → ALIF. قَوَلَ: qāf has fatḥa, wāw has fatḥa → wāw becomes alif → قَالَ.", refs:["7"]},
+     {label:"قُلْنَ derivation (wāw drops)", chain:"قَوَلَ + نَ suffix → قُلْنَ",
+      why:"For the 3rd f.pl. and all later ṣīghas (where a sākin consonant suffix follows): the alif drops because two sākins meet (alif sākin + suffix consonant sākin). The qāf takes ḍamma to signal the original wāw. قَوَلْنَ → qāf gets ḍamma, wāw drops → قُلْنَ.", refs:["7"]},
+     {label:"يَقُولُ derivation (muḍāriʿ)", chain:"يَقْوُلُ → يَقُولُ",
+      why:"Rule 8: qāf is sākin; wāw has ḍamma → transfer ḍamma to qāf; wāw becomes long-vowel wāw → يَقُولُ.", refs:["8"]},
+     {label:"قِيلَ (majhūl māḍī) — 3 forms", chain:"قُوِلَ →(1) قِيلَ ·(2) قُوْلَ ·(3) إشمام",
+      why:"Rule 9: Transfer kasra of wāw to qāf; wāw → yāʾ (Rule 3: sākin wāw after kasra → yāʾ) → قِيلَ [Form 1]. OR keep qāf with ḍamma; make wāw sākin → قُوْلَ [Form 2]. OR pronounce قِيلَ with lips shaped toward ḍamma = ishmām [Form 3].", refs:["9"]},
+     {label:"قَائِل (ism fāʿil)", chain:"قَاوِل → قَائِل",
+      why:"Rule 17: wāw is the ʿayn of فاعل pattern, after the zāʾid alif → must become hamza → قَائِل.", refs:["17"]},
+     {label:"مَقُول (ism mafʿūl)", chain:"مَقْوُول → مَقُول",
+      why:"Rule 8 (naql): mīm is sākin; first wāw has ḍamma → transfer to mīm → مَقُوْوْل. Then two wāws meet, one is sākin → drop one by two-sākins rule → مَقُول. The author says the FIRST wāw drops (not the second).", refs:["8"]}
+   ]},
+
+  {key:"baa", cat:"ajwaf", catClass:"mt", lesson:"L32",
+   title:"بَاعَ يَبِيعُ", gloss:"ajwaf yāʾī, bāb ḍaraba — to sell",
+   madi:["بَاعَ","بَاعَا","بَاعُوا","بَاعَتْ","بَاعَتَا","بِعْنَ","بِعْتَ","بِعْتُمَا","بِعْتُمْ","بِعْتِ","بِعْتُمَا","بِعْتُنَّ","بِعْتُ","بِعْنَا"],
+   key_forms:[
+     {label:"بَاعَ derivation", chain:"بَيَعَ → بَاعَ",
+      why:"Rule 7: ʿayn = yāʾ, moving after fatḥa → alif → بَاعَ.", refs:["7"]},
+     {label:"بِعْنَ (wāw drops, kasra signals)", chain:"بَيَعَ + نَ → بِعْنَ",
+      why:"Alif drops when sākin suffix follows (two sākins). The bāʾ takes KASRA (not ḍamma like قَالَ) to signal that the original ʿayn was YĀʾ (i-type). This is the key diagnostic: ḍamma → wāwī root; kasra → yāʾī root.", refs:["7"]},
+     {label:"يَبِيعُ derivation", chain:"يَبْيِعُ → يَبِيعُ",
+      why:"Rule 8: bāʾ is sākin; yāʾ has kasra → transfer kasra to bāʾ → يَبِيعُ (yāʾ becomes long vowel).", refs:["8"]},
+     {label:"بِيعَ (majhūl, 3 forms)", chain:"بُيِعَ →(1) بِيعَ ·(2) بُوعَ ·(3) إشمام",
+      why:"Rule 9: transfer kasra of yāʾ to bāʾ → بِيعَ. OR keep bāʾ with ḍamma, yāʾ sākin → بُوعَ (Rule 3: sākin yāʾ after ḍamma → wāw). OR ishmām.", refs:["9"]},
+     {label:"بَائِع / مَبِيع", chain:"بَايِع → بَائِع · مَبْيُوع → مَبِيع",
+      why:"Rule 17: yāʾ as ʿayn of فاعل → hamza. Rule 8 for مبيع: transfer then drop one yāʾ.", refs:["17","8"]}
+   ]},
+
+  {key:"khafa", cat:"ajwaf", catClass:"mt", lesson:"L32",
+   title:"خَافَ يَخَافُ", gloss:"ajwaf wāwī, bāb samiʿa — to fear",
+   madi:["خَافَ","خَافَا","خَافُوا","خَافَتْ","خَافَتَا","خِفْنَ","خِفْتَ","خِفْتُمَا","خِفْتُمْ","خِفْتِ","خِفْتُمَا","خِفْتُنَّ","خِفْتُ","خِفْنَا"],
+   key_forms:[
+     {label:"خَافَ derivation", chain:"خَوِفَ → خَافَ",
+      why:"Rule 7: ʿayn = wāw, moving after fatḥa → alif. (But note: this is bāb samiʿa where the ʿayn would have kasra → but the special form خَافَ comes by analogy.)", refs:["7"]},
+     {label:"خِفْنَ (kasra signals wāw root originally kasra)", chain:"خَوِفَ + نَ → خِفْنَ",
+      why:"The alif drops (two sākins); fā' gets KASRA — this signals the original ʿayn vowel was kasra (bāb samiʿa). Distinctive feature of this verb.", refs:["7"]},
+     {label:"الأمر — خَفْ (alif drops)", chain:"تَخَافُ → خَفْ",
+      why:"Amr from muḍāriʿ تَخَافُ: drop تَـ → خَافُ; make last sākin: خَافْ. Alif before sākin = two sākins → alif drops → خَفْ. No hamzat al-waṣl needed (letter after it is moving).", refs:["8"]},
+     {label:"Distinguishing from mahmūz al-ʿayn (زارَ)", chain:"خَفْ vs زِرْ",
+      why:"In ajwaf (خاف → خَفْ): ʿayn drops ONLY in single forms and feminine plural. In mahmūz al-ʿayn (زار from زَأَرَ → اِزْأَرْ → Rule M7 drops hamza → زِرْ): the hamza drops in ALL ṣīghas. This is a key diagnostic distinction.", refs:["M7","8"]}
+   ]},
+
+  /* ---- NĀQIṢ ---- */
+  {key:"qadin", cat:"nāqiṣ", catClass:"mt", lesson:"L34-35",
+   title:"قَاضٍ — اسم الفاعل (قَضَى يَقْضِي)", gloss:"Rule 23 — complete three-case declension of nāqiṣ ism fāʿil",
+   madi:["قَاضٍ (indef. raf')","قَاضِيَانِ (indef. du.)","قَاضُونَ (indef. pl.)","قَاضِيَةٌ (f. s.)","قَاضِيَتَانِ","قَاضِيَاتٌ","القَاضِي (def. raf')","القَاضِيَانِ","القَاضُونَ","القَاضِيَةُ","القَاضِيَتَانِ","القَاضِيَاتُ","قَاضٍ (indef. jarr)","القَاضِيَ (def. naṣb)"],
+   key_forms:[
+     {label:"الأصل — original form is قَاضِيٌ", chain:"قَضَى → قَاضِيٌ (aṣl, before iʿlāl)",
+      why:"The aṣl of قَاضٍ is قَاضِيٌ (fāʿil from قَضَى, root ق-ض-ي, lām = yāʾ). The iʿlāl of Rule 23 then applies to produce different forms. Always cite the aṣl first on the exam.", refs:["23"]},
+     {label:"CASE 1: Indef. raf'/jarr → قَاضٍ (yāʾ drops)", chain:"قَاضِيٌ →[R23 step1]→ قَاضِيْ →[two sākins]→ قَاضٍ",
+      why:"STEP 1 (Rule 23): yāʾ is made sākin (sukūn added). STEP 2: Two sākins meet — yāʾ (sākin) + nūn of tanwīn (effectively sākin at the end of word) → yāʾ drops. STEP 3: Tanwīn al-ʿiwaḍ (compensatory tanwīn) remains on ḍ. Both raf' (dhamma tanwīn) and jarr (kasra tanwīn) look the same here: جَاءَ قَاضٍ · مَرَرْتُ بِقَاضٍ.", refs:["23"]},
+     {label:"CASE 2: Definite (ال/iḍāfa) raf'/jarr → القَاضِي (yāʾ sākin but stays)", chain:"القَاضِيٌ →[R23]→ القَاضِيْ (stays, no drop)",
+      why:"With ال: there is NO tanwīn. STEP 1: yāʾ → sākin. STEP 2: no tanwīn follows → no two-sākins meeting → yāʾ STAYS. Full case endings on ḍ: Raf' القَاضِيُ · Jarr القَاضِيِ · (yāʾ written without visible vowel = sākin).", refs:["23"]},
+     {label:"CASE 3: Naṣb (all) → قَاضِياً / القَاضِيَ (yāʾ stays with fatḥa)", chain:"قَاضِياً · القَاضِيَ (no change — yāʾ never drops in naṣb)",
+      why:"In naṣb, Rule 23 does NOT cause yāʾ to drop. The yāʾ is fully visible with fatḥa (either + tanwīn for indef. → قَاضِياً, or without tanwīn for def. → القَاضِيَ). This is the absolute naṣb rule: يَبْقَى في النَّصبِ مطلقاً.", refs:["23"]},
+     {label:"جَوَارٍ/الجَوَارِي — same rule on plural", chain:"جَوَارٍ (indef.) · الجَوَارِي (def. raf'/jarr) · الجَوَارِيَ (naṣb)",
+      why:"The plural جَوَارِي (sing. جَارِيَة) follows the exact same three-case rule. The yāʾ drops in indef. raf'/jarr → جَوَارٍ; stays sākin in definite raf'/jarr → الجَوَارِيُ/الجَوَارِيِ; visible in naṣb → الجَوَارِيَ.", refs:["23"]},
+     {label:"دَاعٍ · رَامٍ · مَاشٍ — all same", chain:"دَاعِيٌ → دَاعٍ · رَامِيٌ → رَامٍ",
+      why:"All ism fāʿil forms of nāqiṣ yāʾī verbs: the same three-case treatment. Indef. raf'/jarr: yāʾ drops with tanwīn ʿiwaḍ. Def.: yāʾ sākin stays. Naṣb: yāʾ with fatḥa.", refs:["23"]}
+   ]},
+
+  {key:"daa", cat:"nāqiṣ", catClass:"mt", lesson:"L34",
+   title:"دَعَا يَدْعُو", gloss:"nāqiṣ wāwī, bāb naṣara — to call/invite",
+   madi:["دَعَا","دَعَوَا","دَعَوْا","دَعَتْ","دَعَتَا","دَعَوْنَ","دَعَوْتَ","دَعَوْتُمَا","دَعَوْتُمْ","دَعَوْتِ","دَعَوْتُمَا","دَعَوْتُنَّ","دَعَوْتُ","دَعَوْنَا"],
+   key_forms:[
+     {label:"دَعَا (3 m.s.) derivation", chain:"دَعَوَ → دَعَا",
+      why:"Rule 7: lām = wāw, moving after fatḥa → alif. دَعَوَ: ʿayn has fatḥa, wāw has fatḥa → wāw becomes alif → دَعَا.", refs:["7"]},
+     {label:"دَعَوَا (dual) — wāw stays", chain:"دَعَوَا stays (no Rule 7)",
+      why:"Rule 7 condition 3: wāw/yāʾ before alif of tathniya → no change. The wāw in دَعَوَا is before the dual alif → stays.", refs:["7"]},
+     {label:"دَعَوْا (3 m.pl.) — wāw becomes sākin", chain:"دَعَوُوا → دَعَوْا",
+      why:"The wāw of the verb (lām) + wāw of jāmiʿ mudhakkar suffix -ūā: two wāws. First wāw (lām) gets its vowel transferred/dropped → سُكون → دَعَوْا (wāw is now sākin before the alif that follows).", refs:["10"]},
+     {label:"دَعَتْ (3 f.s.) — alif drops", chain:"دَعَا + تْ → دَعَتْ",
+      why:"The alif (from Rule 7) drops when tāʾ al-tāʾnīth (sākin consonant) follows → two sākins: alif + sākin tāʾ → alif drops → دَعَتْ.", refs:["7"]},
+     {label:"دُعِيَ (majhūl) — Rule 11", chain:"دُعِوَ → دُعِيَ",
+      why:"Rule 11: wāw in ṭaraf (lām) after kasra → yāʾ. The ʿayn of دُعِوَ has kasra; the lām is wāw → must become yāʾ → دُعِيَ.", refs:["11"]},
+     {label:"يَدْعُو (muḍāriʿ) — Rule 10", chain:"يَدْعُوُ → يَدْعُو",
+      why:"Rule 10: lām wāw loses its vowel (the ḍamma on wāw disappears) in the 5 basic muḍāriʿ ṣīghas → يَدْعُو. The wāw is now a natural long vowel marker, not a letter with a vowel of its own.", refs:["10"]},
+     {label:"دَاعٍ (ism fāʿil) — Rule 11 + Rule 23", chain:"دَاعِوٌ → دَاعِيٌ → دَاعٍ",
+      why:"First: Rule 11 (wāw in ṭaraf after kasra → yāʾ): دَاعِوٌ → دَاعِيٌ. Then Rule 23: in indef. raf'/jarr, yāʾ → sākin → drops with compensatory tanwīn → دَاعٍ.", refs:["11","23"]}
+   ]},
+
+  {key:"rama", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"رَمَى يَرْمِي", gloss:"nāqiṣ yāʾī, bāb ḍaraba — to throw",
+   madi:["رَمَى","رَمَيَا","رَمَوْا","رَمَتْ","رَمَتَا","رَمَيْنَ","رَمَيْتَ","رَمَيْتُمَا","رَمَيْتُمْ","رَمَيْتِ","رَمَيْتُمَا","رَمَيْتُنَّ","رَمَيْتُ","رَمَيْنَا"],
+   key_forms:[
+     {label:"رَمَى (3 m.s.) derivation", chain:"رَمَيَ → رَمَى",
+      why:"Rule 7: lām = yāʾ, moving after fatḥa → alif (written as ى maqṣūra at end of word on 3+ letter words).", refs:["7"]},
+     {label:"رَمَوْا (3 m.pl.) — yāʾ→wāw then drops", chain:"رَمَيُوا → رَمَوْا",
+      why:"Rule 10: vowel transfer + two-sākins drop. The yāʾ (lām) in رَمَيُوا has ḍamma; Rule 10 sub-rule: lām yāʾ with ḍamma before a wāw suffix → yāʾ → wāw (Rule 3: sākin yāʾ after ḍamma → wāw), then drop for two sākins → رَمَوْا.", refs:["10","3"]},
+     {label:"رَمَيَا (dual) — yāʾ stays", chain:"رَمَيَا (no change)",
+      why:"Rule 7 condition 3: yāʾ before alif of tathniya → no change. Yāʾ stays fully visible.", refs:["7"]},
+     {label:"مَرْمَى (ẓarf/āla) — maftūḥ ʿayn despite kasra muḍāriʿ", chain:"مَرْمَى (fatḥa on ʿayn)",
+      why:"Rule: The ẓarf of a nāqiṣ verb ALWAYS comes on مَفْعَل pattern with FATḤA on ʿayn, regardless of whether the muḍāriʿ has kasra on ʿayn (يَرْمِي). So مَرْمَى (not مَرْمِى). The alif then drops with tanwīn (two sākins): مَرْمً → written مَرْمًى.", refs:["7"]},
+     {label:"مَرْمِيّ (ism mafʿūl) — Rule 14", chain:"مَرْمُويٌ → مَرْمِيّ",
+      why:"Rule 14: sākin wāw (lām of مفعول pattern) + moving yāʾ (root lām) in one word → wāw → yāʾ → idghām → shadda-yāʾ; ḍamma before doubled yāʾ → kasra → مَرْمِيّ.", refs:["14"]},
+     {label:"رَامٍ (ism fāʿil) — Rule 23", chain:"رَامِيٌ → رَامٍ",
+      why:"Rule 23: in indef. raf'/jarr: yāʾ → sākin → drops (two sākins) → tanwīn ʿiwaḍ → رَامٍ. In def. raf'/jarr: الرَّامِيُ/الرَّامِيِ (yāʾ sākin stays). In naṣb: رَامِياً/الرَّامِيَ.", refs:["23"]}
+   ]},
+
+  {key:"radiya", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"رَضِيَ يَرْضَى", gloss:"nāqiṣ wāwī, bāb samiʿa — to be pleased",
+   madi:["رَضِيَ","رَضِيَا","رَضُوا","رَضِيَتْ","رَضِيَتَا","رَضِينَ","رَضِيتَ","رَضِيتُمَا","رَضِيتُمْ","رَضِيتِ","رَضِيتُمَا","رَضِيتُنَّ","رَضِيتُ","رَضِينَا"],
+   key_forms:[
+     {label:"رَضِيَ (māḍī) — note: yāʾ not alif", chain:"رَضِيَ (yāʾ stays — Rule 7 does not apply)",
+      why:"Rule 7 says: wāw/yāʾ after FATḤA → alif. Here the lām (yāʾ) has FATḤA but the ʿayn has KASRA (bāb samiʿa). In the māḍī, the yāʾ is after fatḥa... wait: the vowel ON the yāʾ itself is fatḥa → alif applies → رَضَا? No — in bāb samiʿa of nāqiṣ the māḍī yāʾ stays as يَ. This is the distinctive feature of bāb samiʿa nāqiṣ.", refs:["7"]},
+     {label:"رَضُوا (3 m.pl.) — Rule 10 sub-rule", chain:"رَضِيُوا → رَضُوا",
+      why:"Rule 10: yāʾ (lām) with ḍamma before -ūā suffix → transfer, then yāʾ→wāw, drop → رَضُوا. The ḍamma on rāʾ signals original bāb samiʿa.", refs:["10"]},
+     {label:"مَرْضِيّ — khilāf al-qiyās via Rule 15", chain:"مَرْضُوو → مَرْضِيّ (Rule 15)",
+      why:"The ism mafʿūl مَرْضِيّ: the aṣl is مَرْضُوو (wāw of مفعول + wāw of root). Rule 15 (two wāws at end of fuʿūl type): both → yāʾ, idghām, ḍamma → kasra → مَرْضِيّ. This is AGAINST normal qiyās (the expected form would be مَرْضُوّ).", refs:["15"]}
+   ]},
+
+  {key:"khashiya", cat:"nāqiṣ", catClass:"mt", lesson:"L35",
+   title:"خَشِيَ يَخْشَى", gloss:"nāqiṣ yāʾī, bāb samiʿa — to fear/be in awe",
+   madi:["خَشِيَ","خَشِيَا","خَشُوا","خَشِيَتْ","خَشِيَتَا","خَشِينَ","خَشِيتَ","خَشِيتُمَا","خَشِيتُمْ","خَشِيتِ","خَشِيتُمَا","خَشِيتُنَّ","خَشِيتُ","خَشِينَا"],
+   key_forms:[
+     {label:"يَخْشَى (muḍāriʿ) — Rule 10 + Rule 7", chain:"يَخْشَيُ → يَخْشَى",
+      why:"Rule 10 (fatḥa case): lām yāʾ after fatḥa → alif (Rule 7 applies through Rule 10). يَخْشَيُ: ʿayn has fatḥa, yāʾ has ḍamma... but the standard: yāʾ after fatḥa here → alif → يَخْشَى (written ى maqṣūra).", refs:["10","7"]},
+     {label:"خَشُوا vs خَشِيَا — Rule 7 conditions 3 and 10", chain:"خَشُوا (3 m.pl.) · خَشِيَا (dual — yāʾ stays)",
+      why:"Dual خَشِيَا: Rule 7 condition 3 (before alif of tathniya → no change) → yāʾ stays. 3 m.pl. خَشُوا: yāʾ + wāw suffix → Rule 10 sub-rule → converts and drops.", refs:["7","10"]}
+   ]},
+
+  /* ---- LAFĪF ---- */
+  {key:"waqa", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"وَقَى يَقِي", gloss:"lafīf mafrūq (fā'=wāw, lām=yāʾ), bāb ḍaraba — to protect",
+   madi:["وَقَى","وَقَيَا","وَقَوْا","وَقَتْ","وَقَتَا","وَقَيْنَ","وَقَيْتَ","وَقَيْتُمَا","وَقَيْتُمْ","وَقَيْتِ","وَقَيْتُمَا","وَقَيْتُنَّ","وَقَيْتُ","وَقَيْنَا"],
+   key_forms:[
+     {label:"Two rules operating simultaneously", chain:"fā' → Rule 1; lām → Rule 7",
+      why:"This is a lafīf mafrūq (two weak letters 'separated' by the ʿayn): fā' = wāw (mithāl), lām = yāʾ (nāqiṣ). Both sets of rules operate independently on their respective weak letters.", refs:["1","7"]},
+     {label:"فاء: يَوْقِي → يَقِي (Rule 1)", chain:"يَوْقِي →[Rule 1]→ يَقِي",
+      why:"Rule 1 (mithāl): wāw between maftūḥ muḍāriʿ marker and kasra → drops. يَوْقِي: marker يَـ + wāw (fā') + kasra on ʿayn → wāw drops → يَقِي.", refs:["1"]},
+     {label:"لام: وَقَيَ → وَقَى (Rule 7)", chain:"وَقَيَ →[Rule 7]→ وَقَى",
+      why:"Rule 7 (nāqiṣ): yāʾ (lām) moving after fatḥa → alif → وَقَى.", refs:["7"]},
+     {label:"الأمر قِ — one letter!", chain:"تَوْقِي → قِ (wāw drops Rule 1, yāʾ drops at waqf)",
+      why:"From تَوْقِي: drop muḍāriʿ marker تَـ → وْقِي. But وْقِ has wāw then moving letter → wāw drops by Rule 1 → قِي. At waqf (pause) the final yāʾ drops by two-sākins rule → قِ. Result: a ONE-LETTER amr! قِ نفسَك = 'protect yourself'.", refs:["1","10"]}
+   ]},
+
+  {key:"tawa", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"طَوَى يَطْوِي", gloss:"lafīf maqrūn (ʿayn=wāw, lām=yāʾ adjacent), bāb ḍaraba — to fold",
+   madi:["طَوَى","طَوَيَا","طَوَوْا","طَوَتْ","طَوَتَا","طَوَيْنَ","طَوَيْتَ","طَوَيْتُمَا","طَوَيْتُمْ","طَوَيْتِ","طَوَيْتُمَا","طَوَيْتُنَّ","طَوَيْتُ","طَوَيْنَا"],
+   key_forms:[
+     {label:"ʿayn stays (Rule 7 condition 2)", chain:"طَوَى — ʿayn wāw does NOT change",
+      why:"Rule 7 condition 2: wāw/yāʾ that is the ʿayn of a LAFĪF → no change. The ʿayn (wāw) of طَوَى is protected from Rule 7. Only the lām (yāʾ) undergoes Rule 7.", refs:["7"]},
+     {label:"لام: طَوَيَ → طَوَى (Rule 7)", chain:"طَوَيَ →[Rule 7]→ طَوَى",
+      why:"The lām yāʾ IS subject to Rule 7 (it is the lām, not the ʿayn) → yāʾ after fatḥa → alif → طَوَى.", refs:["7"]},
+     {label:"تَحِيَّة — muḍāʿaf + lafīf → ʿayn changes (exception)", chain:"تَحِيَّة ≠ تَقْوِيَة",
+      why:"تَحِيَّة (from حَيَّا، root ح-ي-ي) is BOTH muḍāʿaf AND lafīf. Because it is muḍāʿaf, the ʿayn vowel transfers (Rule 14 style). تَقْوِيَة (from قَوَّى) is lafīf ONLY → ʿayn stays. The muḍāʿaf quality overrides the lafīf protection.", refs:["14"]}
+   ]},
+
+  {key:"waliya", cat:"lafīf", catClass:"mt", lesson:"L38",
+   title:"وَلِيَ يَلِي", gloss:"lafīf mafrūq (fā'=wāw, lām=yāʾ), bāb ḥasiba — to be in charge/govern",
+   madi:["وَلِيَ","وَلِيَا","وَلُوا","وَلِيَتْ","وَلِيَتَا","وَلِينَ","وَلِيتَ","وَلِيتُمَا","وَلِيتُمْ","وَلِيتِ","وَلِيتُمَا","وَلِيتُنَّ","وَلِيتُ","وَلِينَا"],
+   key_forms:[
+     {label:"يَلِي (muḍāriʿ) — Rule 1", chain:"يَوْلِي → يَلِي",
+      why:"Rule 1: wāw (fā') between maftūḥ marker and kasra on ʿayn → drops → يَلِي.", refs:["1"]},
+     {label:"وَلِيَ (māḍī) — yāʾ stays", chain:"وَلِيَ (lām yāʾ stays in māḍī)",
+      why:"In the māḍī, Rule 7 asks: is yāʾ moving after fatḥa? Here ʿayn has kasra (bāb ḥasiba) and lām yāʾ has fatḥa. But the standard form keeps وَلِيَ as-is (this is bāb ḥasiba, not ḍaraba).", refs:["7"]},
+     {label:"وَلُوا (3 m.pl.) — Rule 10", chain:"وَلِيُوا → وَلُوا",
+      why:"Rule 10 sub-rule: yāʾ + wāw suffix (like رَمَوْا pattern) → converts and drops → وَلُوا. The wāw on lām signals the wāwī nature originally.", refs:["10"]}
+   ]},
+
+  /* ---- MUḌĀʿAF ---- */
+  {key:"madda", cat:"muḍāʿaf", catClass:"m", lesson:"L41",
+   title:"مَدَّ يَمُدُّ", gloss:"muḍāʿaf, bāb naṣara — to extend/stretch",
+   madi:["مَدَّ","مَدَّا","مَدُّوا","مَدَّتْ","مَدَّتَا","مَدَدْنَ","مَدَدْتَ","مَدَدْتُمَا","مَدَدْتُمْ","مَدَدْتِ","مَدَدْتُمَا","مَدَدْتُنَّ","مَدَدْتُ","مَدَدْنَا"],
+   key_forms:[
+     {label:"مَدَّ (3 m.s.) — Rule MD2", chain:"مَدَدَ →[MD2]→ مَدَّ",
+      why:"Rule MD2: two like letters (dāl + dāl), both moving, preceded by moving letter (fatḥa on mīm) → 1st dāl made sākin → idghām → مَدَّ.", refs:["MD2"]},
+     {label:"مَدَدْنَ onward — Rule MD1 does NOT apply", chain:"مَدَدْنَ (no idghām — 2nd dāl is sākin)",
+      why:"Rule MD1 says: if the FIRST of two like letters is sākin → idghām. Here in مَدَدْنَ, it is the SECOND dāl that is sākin (it has no vowel; the نَ suffix follows). So the conditions for MD1 are reversed → no idghām in these forms.", refs:["MD1"]},
+     {label:"مَدَدْتُمْ (across letters) — Rule MD1 applies", chain:"مَدَدْتُ: dāl→tāʾ idghām",
+      why:"Rule MD1 (across near letters): the first dāl in مَدَدْتُ is now sākin; it is followed by tāʾ (near letter, same makhraj area). Near letter + sākin first → assimilation. Not a true idghām (two exact same letters) but assimilation by closeness (تقارب).", refs:["MD1"]},
+     {label:"مُدَّ (majhūl) — Rule MD2", chain:"مُدِدَ →[MD2]→ مُدَّ",
+      why:"Rule MD2 applies in majhūl māḍī: mīm has ḍamma (moving), first dāl has kasra (moving), second dāl has fatḥa (moving) → 1st dāl → sākin → idghām → مُدَّ.", refs:["MD2"]},
+     {label:"لم يَمُدَّ — 4 forms (Rule MD5)", chain:"لم يَمُدَّ · يَمُدِّ · يَمْدُدْ · يَمُدُّ",
+      why:"Rule MD5 (4 wajh at jazm/waqf): Form 1 = fatḥa (لم يَمُدَّ) | Form 2 = kasra (لم يَمُدِّ) | Form 3 = fakk al-idghām (لم يَمْدُدْ) | Form 4 = ḍamma (لم يَمُدُّ) — valid ONLY because the letter before doubled dāl (mīm) has ḍamma.", refs:["MD5"]}
+   ]},
+
+  {key:"farra", cat:"muḍāʿaf", catClass:"m", lesson:"L41",
+   title:"فَرَّ يَفِرُّ", gloss:"muḍāʿaf, bāb ḍaraba — to flee",
+   madi:["فَرَّ","فَرَّا","فَرُّوا","فَرَّتْ","فَرَّتَا","فَرَرْنَ","فَرَرْتَ","فَرَرْتُمَا","فَرَرْتُمْ","فَرَرْتِ","فَرَرْتُمَا","فَرَرْتُنَّ","فَرَرْتُ","فَرَرْنَا"],
+   key_forms:[
+     {label:"يَفِرُّ (muḍāriʿ) — Rule MD3", chain:"يَفْرِرُ →[MD3]→ يَفِرُّ",
+      why:"Rule MD3: fāʾ is sākin (non-madd); first rāʾ has kasra → transfer kasra to fāʾ → يَفِرْرُ → idghām → يَفِرُّ.", refs:["MD3"]},
+     {label:"مَفِرٌّ (ẓarf) — kasra on ʿayn", chain:"مَفِرٌّ (with kasra) NOT مَفَرٌّ",
+      why:"The ẓarf مَفِرٌّ comes from فَرَّ يَفِرُّ (bāb ḍaraba, kasra on ʿayn). The kitāb explicitly refutes the fatḥa form (مَفَرٌّ). Evidence from Quran: يَوْمَ لَا مَفَرَّ (القيامة) is mafʿal from ḍaraba pattern. But the author says this is majhūl maqṣūr and the correct ẓarf from فَرَّ يَفِرُّ = مَفِرٌّ.", refs:["MD2"]},
+     {label:"لم يَفِرَّ — 3 forms (MD5, no ḍamma form)", chain:"لم يَفِرَّ · يَفِرِّ · يَفْرِرْ (only 3)",
+      why:"Rule MD5: here the letter before the doubled rāʾ (fāʾ) has KASRA, not ḍamma. Therefore Form 4 (ḍamma on final) is NOT available → only 3 forms: fatḥa, kasra, fakk al-idghām.", refs:["MD5"]}
+   ]},
+
+  /* ---- MURAKKABĀT ---- */
+  {key:"aala", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"آلَ يَؤُولُ", gloss:"mahmūz al-fā' + ajwaf wāwī — to return/revert (from أَوَلَ)",
+   madi:["آلَ","آلَا","آلُوا","آلَتْ","آلَتَا","أُلْنَ","أُلْتَ","أُلْتُمَا","أُلْتُمْ","أُلْتِ","أُلْتُمَا","أُلْتُنَّ","أُلْتُ","أُلْنَا"],
+   key_forms:[
+     {label:"آلَ derivation — muʿtall rule wins", chain:"أَأْوَلَ → [conflict] → آلَ",
+      why:"CONFLICT: Rule M1 (sākin hamza after fatḥa → alif) AND Rule 8 (naql: transfer ʿayn's vowel to preceding sākin). When they conflict, the MUʿTALL RULE (Rule 8) wins. Rule 8 transfers the wāw's fatḥa to the hamza; wāw becomes alif → the two alifs merge → آلَ.", refs:["M1","8"]},
+     {label:"أُلْنَ (fem.pl.) — alif drops", chain:"آلَ + نَ → أُلْنَ",
+      why:"Alif (from the merged forms) drops when sākin suffix follows. The hamza remains (hamzat al-qiṭaʿ of the root) + ḍamma → أُلْنَ.", refs:["8"]}
+   ]},
+
+  {key:"raa", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"رَأَى يَرَى", gloss:"mahmūz al-ʿayn + nāqiṣ yāʾī — to see",
+   madi:["رَأَى","رَأَيَا","رَأَوْا","رَأَتْ","رَأَتَا","رَأَيْنَ","رَأَيْتَ","رَأَيْتُمَا","رَأَيْتُمْ","رَأَيْتِ","رَأَيْتُمَا","رَأَيْتُنَّ","رَأَيْتُ","رَأَيْنَا"],
+   key_forms:[
+     {label:"يَرَى (muḍāriʿ) — M7 OBLIGATORY", chain:"يَرْأَى → يَرَى (M7 obligatory in all seeing-verbs)",
+      why:"Rule M7 (naql + drop) is OBLIGATORY for all forms of رأى يرى. يَرْأَى: rāʾ is sākin, hamza has fatḥa → transfer fatḥa to rāʾ → يَرَأْ → drop hamza (obligatory) → يَرَى. Then Rule 7 on the lām yāʾ: after fatḥa → alif → يَرَى.", refs:["M7","7"]},
+     {label:"الأمر رَ — shortest amr in Arabic", chain:"تَرْأَى → رَ (one letter!)",
+      why:"Apply M7 to تَرْأَى → تَرَى. Drop muḍāriʿ marker تَـ → رَى. At waqf: alif drops (two sākins: alif + waqf sukūn) → رَ. This is a two-letter amr written, one letter spoken at waqf.", refs:["M7","7"]},
+     {label:"رُئِيَ (majhūl) — M7 optional in nouns; M8 possible", chain:"رُأِيَ → رُئِيَ",
+      why:"In the majhūl رُأِيَ: hamza has kasra; Rule M7 (jāʾiz in derived nouns — here it's a verb form): transfer kasra to rāʾ → رُئِيَ. Note rāʾ now has ḍamma; M7 normally transfers; the ء moves to kasra seat. Then nāqiṣ Rule 11 on the lām (wāw in ṭaraf after kasra → yāʾ) already applied. Tas-hīl M8 also permitted جوازاً.", refs:["M7","M8","11"]},
+     {label:"مَرْئِيّ (ism mafʿūl) — M7 optional then Rule 14", chain:"مَرْأُوي → مَرِيّ → مَرْئِيّ",
+      why:"The ism mafʿūl مَرْأُوي: M7 optional → drop hamza, transfer → مَرُوي. Then Rule 14 (sākin wāw + moving yāʾ): wāw → yāʾ → idghām → مَرِيّ (or مَرْئِيّ if hamza is retained and M6 applies: hamza after madd-yāʾ → merges).", refs:["M7","14"]}
+   ]},
+
+  {key:"jaa", cat:"murakkab", catClass:"m", lesson:"L39",
+   title:"جَاءَ يَجِيءُ", gloss:"ajwaf yāʾī + mahmūz al-lām — to come",
+   madi:["جَاءَ","جَاءَا","جَاؤُوا","جَاءَتْ","جَاءَتَا","جِئْنَ","جِئْتَ","جِئْتُمَا","جِئْتُمْ","جِئْتِ","جِئْتُمَا","جِئْتُنَّ","جِئْتُ","جِئْنَا"],
+   key_forms:[
+     {label:"جَاءَ derivation", chain:"جَيَأَ → جَاءَ",
+      why:"Root ج-ي-أ. ʿayn = yāʾ (ajwaf), lām = hamza (mahmūz). Rule 7: yāʾ (ʿayn) moving after fatḥa → alif → جَاأَ. The hamza at end: in the māḍī, the hamza remains as-is → جَاءَ.", refs:["7"]},
+     {label:"جِئْنَ — kasra signals dropped yāʾ", chain:"جَيَأَ + نَ → جِئْنَ",
+      why:"Alif drops when sākin suffix follows. The jīm takes KASRA (yāʾī root signal, like بِعْنَ). The hamza (lām) remains. Rule M8 (tas-hīl) may apply to the hamza جوازاً.", refs:["8","M8"]},
+     {label:"اسم الفاعل جَاءٍ — compound derivation", chain:"جَايِءٌ →[M17]→ جَاءِءٌ →[M5]→ جَائِيٌ →[R23]→ جَاءٍ",
+      why:"STEP 1: yāʾ (ʿayn) after alif → hamza by Rule 17 → جَاءِءٌ (two hamzas now). STEP 2: Two moving hamzas, 2nd is maksūra → Rule M4/M5 → 2nd hamza → yāʾ → جَائِيٌ. STEP 3: Rule 23 in indef. raf'/jarr: yāʾ (lām position) → sākin → drops → tanwīn ʿiwaḍ → جَاءٍ.", refs:["17","M5","23"]}
+   ]}
+];
+</script>
+<script>/* ===========================================================
+   APP — Ilm us-Sigha study guide interactions
+   =========================================================== */
+'use strict';
+
+const ALL_RULES = {};
+RULES.mahmuz.forEach(r=>ALL_RULES[r.id]=r);
+RULES.mutall.forEach(r=>ALL_RULES[r.id]=r);
+MUDAAF_RULES.forEach(r=>ALL_RULES[r.id]=r);
+
+const VIEWS = [
+  ["home","Home"],["rules","Rules"],["tasreef","Tasareef"],
+  ["cards","Flashcards"],["match","Matching"],["quiz","Quiz"]
+];
+
+/* ---------- NAV ---------- */
+const navEl = document.getElementById('nav');
+VIEWS.forEach(([id,label],i)=>{
+  const b=document.createElement('button');
+  b.textContent=label; b.dataset.v=id;
+  if(i===0) b.classList.add('on');
+  b.onclick=()=>go(id);
+  navEl.appendChild(b);
+});
+function go(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('v-'+id).classList.add('on');
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(id==='cards') buildCard();
+  if(id==='match') newMatch();
+  if(id==='quiz') startQuiz();
+}
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+
+/* ---------- helper: rule ref chip ---------- */
+function refChip(id){
+  const r=ALL_RULES[id];
+  const isM = id.startsWith('M');
+  const label = isM ? id : (id.startsWith('MD')? id : 'ق'+id);
+  const cls = isM||id.startsWith('MD') ? 'rref m' : 'rref';
+  return `<a class="${cls}" data-rule="${id}" title="${r?escapeHtml(r.name):id}">${label}</a>`;
+}
+function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+/* ---------- RULES VIEW ---------- */
+function renderRules(filter){
+  const out=document.getElementById('rules-out');
+  out.innerHTML='';
+  const blocks=[];
+  if(filter==='all'||filter==='mahmuz'){
+    blocks.push({h:'قواعد المهموز · Mahmūz Rules',sub:'Lesson 22-24',cls:'',list:RULES.mahmuz});
+  }
+  if(filter==='all'||['mithal','ajwaf','naqis'].includes(filter)){
+    let list=RULES.mutall;
+    if(filter==='mithal') list=RULES.mutall.filter(r=>r.grp==='mithal');
+    if(filter==='ajwaf') list=RULES.mutall.filter(r=>r.grp==='ajwaf');
+    if(filter==='naqis') list=RULES.mutall.filter(r=>r.grp==='naqis');
+    blocks.push({h:'قواعد المعتل · Muʿtall Rules',sub:'Lesson 25-29',cls:'mt',list});
+  }
+  if(filter==='all'){
+    blocks.push({h:'قواعد المضاعف · Muḍāʿaf Rules',sub:'Lesson 40',cls:'',list:MUDAAF_RULES.map(r=>({...r,type:'',chain:'',note:''}))});
+  }
+  blocks.forEach(bl=>{
+    const gh=document.createElement('div');
+    gh.className='grp-h';
+    gh.innerHTML=`<span class="ar">${bl.h.split('·')[0]}</span><h3>${bl.h.split('·')[1]||''}</h3><span class="pill">${bl.sub}</span>`;
+    out.appendChild(gh);
+    bl.list.forEach(r=>{
+      const c=document.createElement('div');
+      c.className='card rulecard '+(bl.cls||'');
+      c.id='rule-'+r.id;
+      const typeTag = r.type==='obl'?'<span class="tag obl">obligatory</span>':r.type==='opt'?'<span class="tag opt">optional · جوازًا</span>':'';
+      // Render body: wrap [AR: ...] tags as RTL spans, and render step-chains
+      const bodyHtml = r.body
+        .replace(/\[AR:(.*?)\]/g,(_,a)=>`<span class="ar" style="font-size:1.3em;unicode-bidi:isolate">${a.trim()}</span>`)
+        .replace(/\n/g,'<br>');
+      // Render chain: split by · into steps, each step split by → for RTL arrow display
+      const chainHtml = r.chain ? r.chain.split('·').map(step=>{
+        step = step.trim();
+        // Check if step has a label like "STEP 1:" or "Form 1 —" prefix
+        const labelMatch = step.match(/^((?:STEP\s*\d+|Form\s*\d+|START|RESULT)[^:—]*[:—])\s*(.*)$/i);
+        if(labelMatch){
+          return `<div class="chain-step"><span class="step-label">${labelMatch[1]}</span><span class="ar step-chain" dir="rtl">${labelMatch[2]}</span></div>`;
+        }
+        return `<div class="chain-step"><span class="ar step-chain" dir="rtl">${step}</span></div>`;
+      }).join('') : '';
+      c.innerHTML=`
+        <div class="rid">${r.id.startsWith('M')||r.id.startsWith('MD')?r.id:'قاعدة '+r.id}</div>
+        <div class="rulename"><span class="ar">${r.ar}</span> ${r.name} ${typeTag} ${r.note?`<span class="tag">${r.note}</span>`:''}</div>
+        <div class="rulebody">${bodyHtml}</div>
+        ${r.chain?`<div class="ex steps-ex">${chainHtml}</div>`:''}`;
+      out.appendChild(c);
+    });
+  });
+}
+document.querySelectorAll('#rule-filter button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#rule-filter button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    renderRules(b.dataset.f);
+  };
+});
+renderRules('all');
+
+/* jump to rule when chip clicked (delegate) */
+document.body.addEventListener('click',e=>{
+  const a=e.target.closest('[data-rule]');
+  if(!a) return;
+  go('rules');
+  document.querySelectorAll('#rule-filter button').forEach(x=>x.classList.toggle('on',x.dataset.f==='all'));
+  renderRules('all');
+  setTimeout(()=>{
+    const el=document.getElementById('rule-'+a.dataset.rule);
+    if(el){el.scrollIntoView({behavior:'smooth',block:'center'});
+      el.style.transition='background .2s';el.style.background='#fff0d2';
+      setTimeout(()=>el.style.background='',1400);}
+  },120);
+});
+
+/* ---------- TASREEF VIEW ---------- */
+const CATS=[...new Set(TASREEF.map(t=>t.cat))];
+const tsel=document.getElementById('tsel');
+let curCat=CATS[0];
+CATS.forEach((c,i)=>{
+  const b=document.createElement('button');
+  b.textContent=c;
+  if(TASREEF.find(t=>t.cat===c).catClass==='mt') b.classList.add('mtb');
+  if(i===0)b.classList.add('on');
+  b.onclick=()=>{curCat=c;document.querySelectorAll('#tsel button').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderTasreef();};
+  tsel.appendChild(b);
+});
+function renderTasreef(){
+  const out=document.getElementById('tasreef-out');
+  out.innerHTML='';
+  TASREEF.filter(t=>t.cat===curCat).forEach(t=>{
+    const card=document.createElement('div');
+    card.className='tcard';
+    let rows='';
+    for(let i=0;i<7;i++){
+      rows+=`<tr>
+        <td class="lab">${SIGHA_LABELS[i]}</td><td>${t.madi[i]||''}</td>
+        <td class="lab">${SIGHA_LABELS[i+7]}</td><td>${t.madi[i+7]||''}</td>
+      </tr>`;
+    }
+    let deriv='';
+    t.key_forms.forEach(k=>{
+      const chips=(k.refs||[]).map(refChip).join(' ');
+      deriv+=`<div class="deriv-row">
+        <strong>${k.label}</strong> ${chips}
+        <div class="chain">${k.chain}</div>
+        <div class="why">${k.why}</div>
+      </div>`;
+    });
+    card.innerHTML=`
+      <h3><span class="ar" style="font-size:1.5rem">${t.title}</span></h3>
+      <div class="meta">${t.lesson} · ${escapeHtml(t.gloss)}</div>
+      <div class="scrollx">
+        <table class="tasreef"><tr><th>—</th><th>الصيغة</th><th>—</th><th>الصيغة</th></tr>${rows}</table>
+      </div>
+      <div class="deriv-list">
+        <details open><summary>الإعلال — derivation & rules (${t.key_forms.length})</summary>${deriv}</details>
+      </div>`;
+    out.appendChild(card);
+  });
+}
+renderTasreef();
+
+/* ---------- FLASHCARDS ---------- */
+let fcMode='rule', fcDeck=[], fcIdx=0;
+
+/* Format an answer string into clean HTML safe for the answer face */
+function fmtAnswer(raw){
+  if(!raw) return '';
+  // Split into lines, render Arabic words in RTL spans, keep structure readable
+  return raw
+    // Newlines -> breaks
+    .replace(/\n/g, '<br>')
+    // Wrap inline Arabic runs (sequences of Arabic chars) in RTL spans
+    .replace(/([\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF][^\s<]*)/g,
+      '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em;unicode-bidi:isolate">$1</span>');
+}
+
+/* Build a compact answer for the card — rule mode only shows name + 2-line summary */
+function buildDeck(){
+  if(fcMode==='rule'){
+    fcDeck=[...RULES.mahmuz,...RULES.mutall].map(r=>{
+      // Answer: just the rule name + first 2 lines of body + the chain headline
+      const bodyLines = r.body.split('\n').filter(l=>l.trim()).slice(0,4);
+      const chainParts = r.chain ? r.chain.split('·').slice(0,2) : [];
+      const chainHtml = chainParts.map(p=>{
+        p=p.trim();
+        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT)[^:—]*[:—])\s*(.*)$/i);
+        if(lm) return `<div style="margin:3px 0"><span style="font-family:\'Spline Sans Mono\',monospace;font-size:.68rem;color:#9c3a1f;font-weight:700">${lm[1]}</span> <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;unicode-bidi:isolate">${lm[2]}</span></div>`;
+        return `<div dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;margin:3px 0;unicode-bidi:isolate">${p}</div>`;
+      }).join('');
+      return {
+        k: r.id.startsWith('M') ? 'mahmūz · '+r.id : 'muʿtall · qāʿida '+r.id,
+        q: `<span class="ar" style="font-size:1.6rem;direction:rtl;unicode-bidi:isolate">${r.ar}</span><br><span style="font-size:.95rem;color:var(--muted)">What does this rule do?</span>`,
+        a: `<div style="font-weight:700;margin-bottom:8px;font-size:.95rem">${r.name}</div>`
+           + `<div style="font-size:.82rem;color:#555;margin-bottom:10px;line-height:1.6">${fmtAnswer(bodyLines.join('\n'))}</div>`
+           + (chainHtml ? `<div style="background:#fff6e8;border-radius:8px;padding:8px 10px;border:1px dashed #cdbfa6;margin-top:6px">${chainHtml}</div>` : '')
+      };
+    });
+  } else if(fcMode==='deriv'){
+    fcDeck=[];
+    // From rules: pick chains with START→STEP pattern, show first START as question
+    [...RULES.mahmuz,...RULES.mutall].filter(r=>r.chain).forEach(r=>{
+      const steps = r.chain.split('·').map(s=>s.trim());
+      // Question: show original form (first START label's Arabic)
+      const firstStart = steps.find(s=>s.match(/^START:/i));
+      if(!firstStart) return;
+      const origAr = firstStart.replace(/^START:\s*/i,'').replace(/\(.*?\)/g,'').trim();
+      // Answer: all steps formatted
+      const stepsHtml = steps.map(p=>{
+        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT|EXCEPTION|COUNTER-EXAMPLE)[^:—]*[:—])\s*(.*)$/i);
+        if(lm){
+          const arPart = lm[2].replace(/([\u0600-\u06FF][^\s·]*)/g,
+            '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;unicode-bidi:isolate">$1</span>');
+          return `<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:3px 0;padding:3px 6px;background:#fffaf2;border-radius:4px">
+            <span style="font-family:\'Spline Sans Mono\',monospace;font-size:.65rem;color:#9c3a1f;font-weight:700;flex-shrink:0;min-width:52px">${lm[1]}</span>
+            <span style="font-size:.85rem;line-height:1.5">${arPart}</span>
+          </div>`;
+        }
+        return `<div dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;margin:3px 0;unicode-bidi:isolate">${p}</div>`;
+      }).join('');
+      fcDeck.push({
+        k: 'derivation · '+r.id+' · '+r.ar,
+        q: `<div style="font-size:.88rem;color:var(--muted);margin-bottom:6px">Derive step by step:</div>
+            <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.9rem;unicode-bidi:isolate;color:var(--accent)">${origAr}</span>
+            <div style="font-size:.82rem;margin-top:8px;color:#666">${r.name}</div>`,
+        a: `<div style="font-weight:700;font-size:.85rem;margin-bottom:8px;color:var(--accent-2)">${r.id} — ${r.ar}</div>${stepsHtml}`
+      });
+    });
+    // From tasreef key_forms
+    TASREEF.forEach(t=>t.key_forms.forEach(k=>{
+      if(!k.chain||!k.chain.includes('→')) return;
+      const chainParts = k.chain.split('·').map(s=>s.trim()).slice(0,4);
+      const chainHtml = chainParts.map(p=>{
+        const arPart = p.replace(/([\u0600-\u06FF][^\s·]*)/g,
+          '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;unicode-bidi:isolate">$1</span>');
+        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT)[^:—]*[:—])\s*(.*)$/i);
+        if(lm){
+          const ap2 = lm[2].replace(/([\u0600-\u06FF][^\s·]*)/g,
+            '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;unicode-bidi:isolate">$1</span>');
+          return `<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:2px 0;padding:2px 5px;background:#fffaf2;border-radius:4px">
+            <span style="font-family:\'Spline Sans Mono\',monospace;font-size:.62rem;color:#9c3a1f;font-weight:700;flex-shrink:0">${lm[1]}</span>
+            <span style="font-size:.82rem">${ap2}</span></div>`;
+        }
+        return `<div style="font-size:.82rem;margin:2px 0;padding:2px 4px">${arPart}</div>`;
+      }).join('');
+      fcDeck.push({
+        k: t.title+' · '+k.label,
+        q: `<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.6rem;unicode-bidi:isolate;color:var(--accent)">${t.title}</span>
+            <div style="font-size:.88rem;margin-top:8px">${k.label} — explain derivation</div>`,
+        a: `${chainHtml}<div style="font-size:.78rem;color:#666;margin-top:8px;border-top:1px solid var(--line);padding-top:6px">${k.why}</div>`
+      });
+    }));
+  } else {
+    // Definitions — keep these short so they always fit
+    fcDeck=[
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مَهْمُوز</span><br>What is a mahmūz verb?',
+       a:'A verb with <strong>hamza (ء)</strong> as one of its three root letters.<br><br>3 types: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز الفاء</span> (أمَر) · <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز العين</span> (سأل) · <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز اللام</span> (قرأ)'},
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مِثَال</span><br>Define mithāl.',
+       a:'Muʿtall verb with the weak letter in the <strong>fāʾ</strong> (first root position).<br>Example: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">وَعَدَ يَعِدُ</span>'},
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">أَجْوَف</span><br>Define ajwaf.',
+       a:'Muʿtall verb with the weak letter in the <strong>ʿayn</strong> (middle position) — also called معتل العين.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قَالَ · بَاعَ</span>'},
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">نَاقِص</span><br>Define nāqiṣ.',
+       a:'Muʿtall verb with the weak letter in the <strong>lām</strong> (last position) — also called معتل اللام.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">دَعَا · رَمَى</span>'},
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">لَفِيف مَقْرُون vs مَفْرُوق</span>',
+       a:'<strong>مقرون:</strong> two weak letters adjacent (next to each other): <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">طَوَى</span><br><strong>مفروق:</strong> two weak letters separated: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">وَقَى · وَلِيَ</span>'},
+      {k:'definition',
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مُضَاعَف</span><br>Define muḍāʿaf.',
+       a:'A verb with two <strong>identical</strong> root letters (ʿayn = lām).<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">مَدَّ · فَرَّ</span>'},
+      {k:'definition',
+       q:'تَخْفِيف vs تَعْلِيل vs إِدْغَام — what is each?',
+       a:'<strong>تَخْفِيف:</strong> lightening/changing a <em>hamza</em><br><strong>تَعْلِيل (إِعْلَال):</strong> changing a <em>weak letter</em> (wāw/yāʾ/alif)<br><strong>إِدْغَام:</strong> merging two identical letters into one (shadda)'},
+      {k:'definition',
+       q:'Why is the ẓarf of a nāqiṣ verb maftūḥ al-ʿayn?',
+       a:'The ẓarf pattern is <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مَفْعَل</span> (fatḥa on ʿayn), regardless of the muḍāriʿ vowel.<br>So: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مَرْمَى</span> not مَرْمِى.'},
+      {k:'definition',
+       q:'When mahmūz and muʿtall rules conflict, which wins?',
+       a:'The <strong>muʿtall</strong> rule takes priority.<br>Example: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">أَأْوَل → آل</span><br>Rule 8 (naql) wins over M1 (taḫfīf).'},
+      {k:'definition',
+       q:'In which context is M7 (يسأل rule) <em>obligatory</em>?',
+       a:'In all verbs of <strong>seeing</strong> (أفعال الرؤية): <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">رَأَى يَرَى</span><br>The hamza vowel transfers & hamza drops — wājib.<br>In derived nouns (مرأى), it is optional only.'}
+    ];
+  }
+  shuffle(fcDeck); fcIdx=0;
+}
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+
+function buildCard(){
+  if(!fcDeck.length) buildDeck();
+  const c=fcDeck[fcIdx];
+  const fc=document.getElementById('fc');
+  fc.classList.remove('flip');
+  document.getElementById('fck').textContent=c.k;
+  document.getElementById('fcq').innerHTML=c.q;
+  document.getElementById('fca').innerHTML=c.a;
+  document.getElementById('fc-count').textContent=`card ${fcIdx+1} / ${fcDeck.length}`;
+  // Dynamically size the outer container to fit the taller face
+  // Use rAF to let browser paint content first
+  requestAnimationFrame(()=>{
+    const front=fc.querySelector('.fc-front');
+    const back=fc.querySelector('.fc-back');
+    const minH=320;
+    // Measure scrollHeight of both faces
+    const fH=Math.max(minH, front.scrollHeight+8);
+    const bH=Math.max(minH, back.scrollHeight+8);
+    const h=Math.max(fH,bH);
+    const outer=document.getElementById('fc-outer');
+    if(outer) outer.style.height=h+'px';
+  });
+}
+
+document.getElementById('fc').onclick=()=>document.getElementById('fc').classList.toggle('flip');
+document.getElementById('fc-flip').onclick=e=>{e.stopPropagation();document.getElementById('fc').classList.toggle('flip');};
+document.getElementById('fc-got').onclick=()=>{fcIdx=(fcIdx+1)%fcDeck.length;buildCard();};
+document.getElementById('fc-again').onclick=()=>{
+  const c=fcDeck.splice(fcIdx,1)[0];fcDeck.push(c);
+  if(fcIdx>=fcDeck.length)fcIdx=0;buildCard();
+};
+document.querySelectorAll('#fc-mode button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#fc-mode button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');fcMode=b.dataset.m;buildDeck();buildCard();
+  };
+});
+
+/* ---------- MATCHING ---------- */
+let mSel=null,mPairs=[],mDone=0;
+function newMatch(){
+  const pool=[...RULES.mahmuz,...RULES.mutall].filter(r=>r.chain);
+  shuffle(pool);
+  mPairs=pool.slice(0,6).map(r=>({id:r.id,name:r.name,ar:r.ar,ex:r.chain.split('→')[0].trim()}));
+  mDone=0;mSel=null;
+  const left=mPairs.map(p=>({type:'name',pid:p.id,html:`<span>${p.name}</span>`}));
+  const right=mPairs.map(p=>({type:'ex',pid:p.id,html:`<span class="ar">${p.ex}</span>`}));
+  shuffle(left);shuffle(right);
+  const g=document.getElementById('match-grid');
+  g.innerHTML='';
+  const order=[];
+  for(let i=0;i<6;i++){order.push(left[i]);order.push(right[i]);}
+  order.forEach(o=>{
+    const t=document.createElement('div');
+    t.className='mtile';t.innerHTML=o.html;t.dataset.pid=o.pid;t.dataset.type=o.type;
+    t.onclick=()=>pickTile(t);
+    g.appendChild(t);
+  });
+  updMStat();
+}
+function pickTile(t){
+  if(t.classList.contains('done'))return;
+  if(!mSel){mSel=t;t.classList.add('sel');return;}
+  if(mSel===t){t.classList.remove('sel');mSel=null;return;}
+  if(mSel.dataset.type===t.dataset.type){
+    mSel.classList.remove('sel');mSel=t;t.classList.add('sel');return;
+  }
+  if(mSel.dataset.pid===t.dataset.pid){
+    mSel.classList.remove('sel');mSel.classList.add('done');t.classList.add('done');
+    mSel=null;mDone++;updMStat();
+    if(mDone===6){document.getElementById('m-stat').textContent='✓ All matched! Great. New round?';}
+  } else {
+    const a=mSel,b=t;
+    a.classList.add('wrong');b.classList.add('wrong');
+    setTimeout(()=>{a.classList.remove('wrong','sel');b.classList.remove('wrong');},420);
+    mSel=null;
+  }
+}
+function updMStat(){document.getElementById('m-stat').textContent=`${mDone} / 6 matched`;}
+document.getElementById('m-new').onclick=newMatch;
+
+/* ---------- QUIZ ---------- */
+let quizMode='mixed',qSet=[],qPos=0,qScore=0;
+function buildQuiz(){
+  const ruleQs=[];
+  [...RULES.mahmuz,...RULES.mutall].forEach(r=>{
+    // Q: identify rule from example
+    if(r.chain){
+      const wrong=pickWrong(r,'name');
+      ruleQs.push({
+        prompt:`Which rule produces this change?<br><span class="ar" style="font-size:1.6rem">${r.chain}</span>`,
+        opts:shuffleKeep([r.name,...wrong]),ans:r.name,
+        exp:`<strong>${r.id} · ${r.ar}</strong> — ${r.body}`
+      });
+    }
+    // Q: name -> signature example
+    const wrongEx=pickWrong(r,'ar');
+    ruleQs.push({
+      prompt:`Signature example of: <em>${r.name}</em>`,
+      opts:shuffleKeep([r.ar,...wrongEx]).map(x=>`<span class="ar">${x}</span>`),
+      ansHtml:`<span class="ar">${r.ar}</span>`,ans:r.ar,plainAns:r.ar,
+      exp:`<strong>${r.id}</strong>: ${r.ar} — ${r.body}`
+    });
+  });
+  const derivQs=[];
+  TASREEF.forEach(t=>t.key_forms.forEach(k=>{
+    if(!k.chain.includes('→'))return;
+    const parts=k.chain.split('→');
+    const aslGuess=parts[0].trim();
+    const fin=parts[parts.length-1].trim();
+    // Q: what is the asl
+    const others=TASREEF.flatMap(x=>x.key_forms).filter(z=>z.chain.includes('→')&&z!==k)
+      .map(z=>z.chain.split('→')[0].trim());
+    shuffle(others);
+    derivQs.push({
+      prompt:`<span class="ar">${t.title}</span> — for "<em>${k.label}</em>" (${fin}), what is the original (al-aṣl)?`,
+      opts:shuffleKeep([aslGuess,...others.slice(0,3)]).map(x=>`<span class="ar">${x}</span>`),
+      ans:aslGuess,plainAns:aslGuess,
+      exp:`${k.chain}<br><br>${k.why}`
+    });
+    // Q: which rule(s)
+    if(k.refs&&k.refs.length){
+      const correctR=ALL_RULES[k.refs[0]];
+      if(correctR){
+        const others2=[...RULES.mahmuz,...RULES.mutall].filter(r=>r.id!==k.refs[0]);
+        shuffle(others2);
+        derivQs.push({
+          prompt:`<span class="ar">${t.title}</span> — "${k.label}": which rule causes <span class="ar">${k.chain}</span>?`,
+          opts:shuffleKeep([correctR.ar,...others2.slice(0,3).map(r=>r.ar)]).map(x=>`<span class="ar">${x}</span>`),
+          ans:correctR.ar,plainAns:correctR.ar,
+          exp:`Rule <strong>${correctR.id}</strong> (${correctR.ar}): ${correctR.body}`
+        });
+      }
+    }
+  }));
+  shuffle(ruleQs);shuffle(derivQs);
+  if(quizMode==='rules') qSet=ruleQs.slice(0,20);
+  else if(quizMode==='deriv') qSet=derivQs.slice(0,20);
+  else qSet=shuffleKeep([...ruleQs.slice(0,10),...derivQs.slice(0,10)]).map(x=>x);
+  if(quizMode==='mixed'){qSet=[...ruleQs.slice(0,10),...derivQs.slice(0,10)];shuffle(qSet);}
+  qPos=0;qScore=0;
+}
+function pickWrong(r,field){
+  const pool=[...RULES.mahmuz,...RULES.mutall].filter(x=>x.id!==r.id);
+  shuffle(pool);
+  return pool.slice(0,3).map(x=>x[field]);
+}
+function shuffleKeep(arr){const a=[...arr];shuffle(a);return a;}
+function startQuiz(){buildQuiz();renderQ();}
+function renderQ(){
+  const out=document.getElementById('quiz-out');
+  if(qPos>=qSet.length){
+    const pct=Math.round(qScore/qSet.length*100);
+    out.innerHTML=`<div class="scorebanner">
+      <div class="big">${qScore} / ${qSet.length}</div>
+      <p style="color:var(--muted);margin:8px 0 20px">${pct}% — ${pct>=85?'Exam-ready. Do a derivation-only pass to be safe.':pct>=65?'Solid. Revisit missed rules in the Rules tab.':'Keep drilling — flashcards in Derivation mode next.'}</p>
+      <button class="btn primary" onclick="startQuiz()">Restart</button>
+    </div>`;
+    return;
+  }
+  const q=qSet[qPos];
+  out.innerHTML=`
+    <div class="progress"><span style="width:${qPos/qSet.length*100}%"></span></div>
+    <div class="counter" style="text-align:left;margin:0 0 10px">Q${qPos+1} / ${qSet.length} · score ${qScore}</div>
+    <div class="card">
+      <div class="qprompt">${q.prompt}</div>
+      <div id="qopts"></div>
+      <div class="qexp" id="qexp">${q.exp}</div>
+      <div id="qnext" style="margin-top:14px;display:none">
+        <button class="btn primary" onclick="nextQ()">Next →</button>
+      </div>
+    </div>`;
+  const oc=document.getElementById('qopts');
+  q.opts.forEach(opt=>{
+    const plain=opt.replace(/<[^>]+>/g,'');
+    const btn=document.createElement('button');
+    btn.className='qopt';btn.innerHTML=opt;
+    btn.onclick=()=>{
+      const correct = plain===(q.plainAns||q.ans);
+      document.querySelectorAll('.qopt').forEach(x=>{
+        x.disabled=true;
+        const xp=x.textContent.trim();
+        if(xp===(q.plainAns||q.ans)) x.classList.add('correct');
+      });
+      if(correct){btn.classList.add('correct');qScore++;}
+      else btn.classList.add('incorrect');
+      document.getElementById('qexp').classList.add('show');
+      document.getElementById('qnext').style.display='block';
+    };
+    oc.appendChild(btn);
+  });
+}
+function nextQ(){qPos++;renderQ();}
+document.querySelectorAll('#quiz-mode button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#quiz-mode button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');quizMode=b.dataset.qm;startQuiz();
+  };
+});
+
+/* keyboard: arrows for flashcards */
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('v-cards').classList.contains('on'))return;
+  if(e.key===' '||e.key==='Enter'){e.preventDefault();document.getElementById('fc').classList.toggle('flip');}
+  if(e.key==='ArrowRight'){fcIdx=(fcIdx+1)%fcDeck.length;buildCard();}
+  if(e.key==='ArrowLeft'){fcIdx=(fcIdx-1+fcDeck.length)%fcDeck.length;buildCard();}
+});
+
+/* init */
+buildDeck();
+
+/* ---------- FILL-IN DRILL (bonus feature) ---------- */
+/* Accessed from tasreef view: a "Blank Drill" button per verb */
+function addBlankDrills(){
+  document.querySelectorAll('.tcard').forEach((card, ci) => {
+    const t = TASREEF.filter(x => x.cat === curCat)[ci];
+    if(!t) return;
+    const existing = card.querySelector('.blank-drill');
+    if(existing) return;
+    const section = document.createElement('div');
+    section.className='blank-drill';
+    section.style.cssText='margin-top:14px;border-top:1px solid var(--line);padding-top:12px';
+    section.innerHTML=`<button class="btn" style="font-size:.78rem" onclick="toggleBlankDrill(this)">✎ Blank drill — test yourself</button><div class="bdrill-body" style="display:none;margin-top:12px"></div>`;
+    card.appendChild(section);
+  });
+}
+function toggleBlankDrill(btn){
+  const body = btn.nextElementSibling;
+  if(body.style.display==='none'){
+    body.style.display='block';
+    const ci = Array.from(document.querySelectorAll('.tcard')).indexOf(btn.closest('.tcard'));
+    const t = TASREEF.filter(x => x.cat === curCat)[ci];
+    if(!t || body.innerHTML.trim()) return;
+    // pick 5 random sigha to blank out
+    const blanks = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+    shuffle(blanks);
+    const blankSet = new Set(blanks.slice(0,7));
+    let rows='';
+    for(let i=0;i<14;i++){
+      const val = t.madi[i]||'';
+      const isBlank = blankSet.has(i);
+      rows+=`<tr>
+        <td class="lab" style="font-size:.7rem;background:#fff8;border:1px solid var(--line);padding:5px">${SIGHA_LABELS[i]}</td>
+        <td style="border:1px solid var(--line);padding:5px;text-align:center;font-family:'Amiri',serif;font-size:1.4rem;direction:rtl">
+          ${isBlank
+            ? `<input type="text" dir="rtl" data-ans="${val}" style="font-family:'Amiri',serif;font-size:1.25rem;width:120px;border:1px solid var(--line);border-radius:6px;padding:3px 8px;text-align:center;background:#fff" placeholder="؟؟؟" oninput="checkBlank(this)">`
+            : `<span style="opacity:.5">${val}</span>`}
+        </td>
+      </tr>`;
+    }
+    body.innerHTML=`<div class="scrollx"><table style="width:100%;border-collapse:collapse">${rows}</table></div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="revealBlanks(this)">Reveal all</button>
+        <button class="btn" onclick="resetBlankDrill(this)">Reset</button>
+      </div>
+      <div class="bd-score" style="margin-top:8px;font-family:'Spline Sans Mono',monospace;font-size:.82rem;color:var(--muted)"></div>`;
+    btn.textContent='✎ Hide drill';
+  } else {
+    body.style.display='none';
+    btn.textContent='✎ Blank drill — test yourself';
+  }
+}
+function checkBlank(inp){
+  const ans = inp.dataset.ans;
+  const val = inp.value.trim();
+  if(!val){inp.style.background='#fff';return;}
+  if(val===ans){inp.style.background='#dfeee7';inp.style.color='var(--accent-2)';}
+  else{inp.style.background='#f3ddd5';inp.style.color='var(--accent)';}
+  const body = inp.closest('.bdrill-body');
+  const all = body.querySelectorAll('input[data-ans]');
+  const correct = [...all].filter(x=>x.value.trim()===x.dataset.ans).length;
+  const scoreEl = body.querySelector('.bd-score');
+  if(scoreEl) scoreEl.textContent=`${correct} / ${all.length} correct`;
+}
+function revealBlanks(btn){
+  const body = btn.closest('.bdrill-body');
+  body.querySelectorAll('input[data-ans]').forEach(inp=>{
+    inp.value = inp.dataset.ans;
+    inp.style.background='#fff7ea';
+  });
+}
+function resetBlankDrill(btn){
+  const body = btn.closest('.bdrill-body');
+  body.querySelectorAll('input[data-ans]').forEach(inp=>{
+    inp.value='';inp.style.background='#fff';inp.style.color='inherit';
+  });
+  const s=body.querySelector('.bd-score');if(s)s.textContent='';
+}
+
+/* Hook into renderTasreef to add drills after render */
+const _origRenderT = renderTasreef;
+// Patch: after renderTasreef runs, attach blank drills
+const _tselBtns = document.querySelectorAll('#tsel button');
+_tselBtns.forEach(b=>{
+  const orig = b.onclick;
+  b.onclick = function(){
+    if(orig) orig.call(this);
+    setTimeout(addBlankDrills, 80);
+  };
+});
+setTimeout(addBlankDrills, 120);
+
+</script>
+</body>
+</html>
