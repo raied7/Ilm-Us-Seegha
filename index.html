@@ -300,6 +300,26 @@
     </div>
     <div id="quiz-out" class="qbox"></div>
   </section>
+
+  <!-- SARF SAGHEER -->
+  <section class="view" id="v-sarf">
+    <h2 class="section">Ṣarf Ṣaghīr — Derived Forms</h2>
+    <p class="lede">Complete derived-form paradigm for each verb category after iʿlāl. Select a category; <strong>★</strong> marks irregular or key-rule forms.</p>
+    <div class="tsel" id="sarf-sel"></div>
+    <div id="sarf-out"></div>
+  </section>
+
+  <!-- MUALLAQAT -->
+  <section class="view" id="v-muallaqat">
+    <h2 class="section">al-Muʿallaqāt — Extra Credit ★</h2>
+    <p class="lede">The seven pre-Islamic odes hung at the Kaʿba. Know each poet, tribe, theme, and key couplets — then test yourself.</p>
+    <div class="tsel" id="mq-mode">
+      <button class="on" data-mqm="poets">Poets &amp; Verses</button>
+      <button data-mqm="quiz">Quiz (12 Qs)</button>
+    </div>
+    <div id="mq-poets"></div>
+    <div id="mq-quiz" class="qbox" style="display:none"></div>
+  </section>
 </main>
 
 <footer>
@@ -1402,8 +1422,8 @@ RULES.mutall.forEach(r=>ALL_RULES[r.id]=r);
 MUDAAF_RULES.forEach(r=>ALL_RULES[r.id]=r);
 
 const VIEWS = [
-  ["home","Home"],["rules","Rules"],["tasreef","Tasareef"],
-  ["cards","Flashcards"],["match","Matching"],["quiz","Quiz"]
+  ["home","Home"],["rules","Rules"],["tasreef","Tasareef"],["sarf","Ṣarf Ṣaghīr"],
+  ["cards","Flashcards"],["match","Matching"],["quiz","Quiz"],["muallaqat","Muʿallaqāt ★"]
 ];
 
 /* ---------- NAV ---------- */
@@ -1423,6 +1443,11 @@ function go(id){
   if(id==='cards') buildCard();
   if(id==='match') newMatch();
   if(id==='quiz') startQuiz();
+  if(id==='muallaqat'){
+    document.querySelectorAll('#mq-mode button').forEach((b,i)=>b.classList.toggle('on',i===0));
+    document.getElementById('mq-poets').style.display='';
+    document.getElementById('mq-quiz').style.display='none';
+  }
 }
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
 
@@ -1858,6 +1883,269 @@ function resetBlankDrill(btn){
     inp.value='';inp.style.background='#fff';inp.style.color='inherit';
   });
   const s=body.querySelector('.bd-score');if(s)s.textContent='';
+}
+
+/* ======================================================
+   SARF SAGHEER — derived-form (tasrīf) cheat sheet
+   ====================================================== */
+const SS_LABELS=[
+  ["ماضي معروف","māḍī maʿrūf"],["ماضي مجهول","māḍī majhūl"],
+  ["مضارع معروف","muḍāriʿ maʿrūf"],["مضارع مجهول","muḍāriʿ majhūl"],
+  ["مصدر","maṣdar"],["اسم فاعل","ism fāʿil"],["اسم مفعول","ism mafʿūl"],
+  ["أمر","amr"],["نهي","nahy"],["اسم ظرف","ism ẓarf"],["اسم آلة","ism āla"]
+];
+const SARF=[
+  {cat:"sahih", label:"Ṣaḥīḥ (baseline)", ar:"صحيح مجرد", verb:"ضَرَبَ يَضرِبُ",
+   gloss:"no weak letters — bāb ḍaraba — no iʿlāl applies",
+   key:"The reference form. All iʿlāl categories deviate from this baseline. Memorise these endings first.",
+   f:["ضَرَبَ","ضُرِبَ","يَضرِبُ","يُضرَبُ","ضَرْبًا","ضَارِبٌ","مَضرُوبٌ","اِضرِبْ","لا تَضرِبْ","مَضرِبٌ","مِضرَبٌ"]},
+  {cat:"mahmuz-fa", label:"Maḥmūz al-Fāʾ", ar:"المهموز الفاء", verb:"أَخَذَ يَأْخُذُ",
+   gloss:"hamza as fāʾ of root — bāb naṣara",
+   key:"★ Amr: خُذْ — both hamzas drop by convention (كثرة الاستعمال) — same for كُلْ (أَكَلَ) and مُرْ (أَمَرَ). Ism fāʿil: آخِذٌ (M2: sākin hamza after moving hamza → alif). Majhūl muḍāriʿ يُؤْخَذُ: M3 optionally → يُوخَذُ.",
+   f:["أَخَذَ","أُخِذَ","يَأْخُذُ","يُؤْخَذُ","أَخْذًا","آخِذٌ","مَأْخُوذٌ","خُذْ ★","لا تَأْخُذْ","مَأْخَذٌ","—"]},
+  {cat:"mahmuz-ayn", label:"Maḥmūz al-ʿAyn", ar:"المهموز العين", verb:"سَأَلَ يَسْأَلُ",
+   gloss:"hamza as ʿayn of root — bāb naṣara",
+   key:"Majhūl māḍī: سُئِلَ (M3: maftūḥ hamza after kasra → yāʾ-seat). Majhūl muḍāriʿ: يُسْأَلُ or يُسَالُ (M7 naql). Ism mafʿūl: مَسْؤُولٌ.",
+   f:["سَأَلَ","سُئِلَ","يَسْأَلُ","يُسْأَلُ","سُؤَالًا","سَائِلٌ","مَسْؤُولٌ","اِسْأَلْ","لا تَسْأَلْ","مَسْأَلَةٌ","—"]},
+  {cat:"mahmuz-lam", label:"Maḥmūz al-Lām", ar:"المهموز اللام", verb:"قَرَأَ يَقْرَأُ",
+   gloss:"hamza as lām of root — bāb naṣara",
+   key:"Amr at waqf: اِقْرَا (M1: sākin hamza after fatḥa → alif). Majhūl māḍī: قُرِئَ (M3: maftūḥ hamza after kasra → yāʾ-seat). Plural: قَرَؤُوا (M4: two moving hamzas, 2nd not maksūra → wāw).",
+   f:["قَرَأَ","قُرِئَ","يَقْرَأُ","يُقْرَأُ","قِرَاءَةً","قَارِئٌ","مَقْرُوءٌ","اِقْرَأْ ★","لا تَقْرَأْ","مَقْرَأٌ","—"]},
+  {cat:"mithal", label:"Mithāl Wāwī", ar:"المثال الواوي", verb:"وَعَدَ يَعِدُ",
+   gloss:"wāw as fāʾ — bāb ḍaraba",
+   key:"Muḍāriʿ & amr: wāw drops between fatḥa+kasra (R.1). ★ Passive يُوعَدُ: wāw STAYS (R.1 conditions unmet). Maṣdar: عِدَةً (R.2: wāw drops, kasra+ة). Ism āla: مِيعَادٌ (R.3: sākin wāw after kasra → yāʾ).",
+   f:["وَعَدَ","وُعِدَ","يَعِدُ","يُوعَدُ ★","عِدَةً","وَاعِدٌ","مَوْعُودٌ","عِدْ","لا تَعِدْ","مَوْعِدٌ","مِيعَادٌ"]},
+  {cat:"ajwaf-wawi", label:"Ajwaf Wāwī", ar:"الأجوف الواوي", verb:"قَالَ يَقُولُ",
+   gloss:"wāw as ʿayn — bāb naṣara",
+   key:"Māḍī: قَوَلَ → قَالَ (R.7). ★ Majhūl: قُوِلَ → قِيلَ / قُوْلَ / إشمام — 3 forms (R.9). Muḍāriʿ: يَقْوُلُ → يَقُولُ (R.8 naql). Ism fāʿil: قَاوِل → قَائِل (R.17). Ism mafʿūl: مَقُول (R.8).",
+   f:["قَالَ","قِيلَ ★","يَقُولُ","يُقَالُ","قَوْلًا","قَائِلٌ","مَقُولٌ","قُلْ","لا تَقُلْ","مَقَالٌ","مِقْوَلٌ"]},
+  {cat:"ajwaf-yai", label:"Ajwaf Yāʾī", ar:"الأجوف اليائي", verb:"بَاعَ يَبِيعُ",
+   gloss:"yāʾ as ʿayn — bāb ḍaraba",
+   key:"Māḍī: بَيَعَ → بَاعَ (R.7). ★ Majhūl: بُيِعَ → بِيعَ / بُوعَ / إشمام (R.9). Muḍāriʿ: يَبْيِعُ → يَبِيعُ (R.8). Key diagnostic: bāʾ takes KASRA (not ḍamma) when ʿayn drops — signals yāʾ root vs wāwī root.",
+   f:["بَاعَ","بِيعَ ★","يَبِيعُ","يُبَاعُ","بَيْعًا","بَائِعٌ","مَبِيعٌ","بِعْ","لا تَبِعْ","مَبَاعٌ","—"]},
+  {cat:"naqis-wawi", label:"Nāqiṣ Wāwī", ar:"الناقص الواوي", verb:"دَعَا يَدْعُو",
+   gloss:"wāw as lām — bāb naṣara",
+   key:"Māḍī: دَعَوَ → دَعَا (R.7: wāw-lam + fatḥa → alif). Majhūl māḍī: دُعِيَ (R.11: wāw in lam after kasra → yāʾ). Muḍāriʿ: يَدْعُو (R.10: lam loses vowel in 5 basic forms). Ism fāʿil: دَاعِي → دَاعٍ (yāʾ drops with tanwīn — R.23).",
+   f:["دَعَا","دُعِيَ","يَدْعُو","يُدْعَى","دَعْوَةً","دَاعٍ","مَدْعُوٌّ","اُدْعُ","لا تَدْعُ","مَدْعَاةٌ","—"]},
+  {cat:"naqis-yai", label:"Nāqiṣ Yāʾī", ar:"الناقص اليائي", verb:"رَمَى يَرْمِي",
+   gloss:"yāʾ as lām — bāb ḍaraba",
+   key:"Māḍī: رَمَيَ → رَمَى (R.7). Muḍāriʿ: يَرْمِي (R.10). ★ Ism mafʿūl: مَرْمُوي → مَرْمِيٌّ (R.14: sākin wāw of مفعول + moving yāʾ → yāʾ, idghām, ḍamma→kasra). Ism fāʿil: رَامِيٌ → رَامٍ (yāʾ drops with tanwīn — R.23).",
+   f:["رَمَى","رُمِيَ","يَرْمِي","يُرْمَى","رَمْيًا","رَامٍ","مَرْمِيٌّ ★","اِرْمِ","لا تَرْمِ","مَرْمًى","مِرْمَاةٌ"]},
+  {cat:"lafif-maqrun", label:"Lafīf Maqrūn", ar:"اللفيف المقرون", verb:"رَوَى يَرْوِي",
+   gloss:"ʿayn wāw + lām yāʾ — adjacent weak letters",
+   key:"Both ʿayn (wāw) and lām (yāʾ) are weak simultaneously. Lām-yāʾ follows nāqiṣ yāʾī patterns throughout. ★ Ism mafʿūl: مَرْوِيٌّ (R.14: sākin wāw of مفعول pattern + moving yāʾ-lam → yāʾ, idghām, ḍamma→kasra). Ism fāʿil: رَاوٍ.",
+   f:["رَوَى","رُوِيَ","يَرْوِي","يُرْوَى","رِوَايَةً","رَاوٍ","مَرْوِيٌّ ★","اِرْوِ","لا تَرْوِ","مَرْوًى","—"]},
+  {cat:"lafif-mafruk", label:"Lafīf Mafrūq", ar:"اللفيف المفروق", verb:"وَقَى يَقِي",
+   gloss:"fāʾ wāw + lām yāʾ — separated by ṣaḥīḥ ʿayn",
+   key:"Two rules act on different positions. Fāʾ wāw drops in muḍāriʿ/amr (R.1, like mithāl). Lām yāʾ follows nāqiṣ yāʾī. ★ Amr: قِ — one letter only! Passive muḍāriʿ: يُوقَى — fāʾ wāw STAYS (R.1 unmet), lam → alif.",
+   f:["وَقَى","وُقِيَ","يَقِي","يُوقَى ★","وِقَايَةً","وَاقٍ","مَوْقِيٌّ","قِ ★","لا تَقِ","مَوْقًى","—"]},
+  {cat:"mudaaf", label:"Muḍāʿaf", ar:"المضاعف", verb:"مَدَّ يَمُدُّ",
+   gloss:"ʿayn = lām (same doubled letter) — bāb naṣara",
+   key:"Māḍī: مَدَدَ → مَدَّ (MD2: letter before 1st dāl is moving → make 1st sākin → idghām). Ism mafʿūl: مَمْدُودٌ — doubled letters separated by ū of مفعول pattern, so NO idghām. ★ Jazm/amr 4 forms (MD5): مُدَّ / مُدِّ / اُمْدُدْ / مُدُّ (last only if ḍamma precedes).",
+   f:["مَدَّ","مُدَّ","يَمُدُّ","يُمَدُّ","مَدًّا","مَادٌّ","مَمْدُودٌ","مُدَّ ★","لا تَمُدَّ","مَمَدٌّ","مِمَدَّةٌ"]}
+];
+
+const sarfSelEl=document.getElementById('sarf-sel');
+SARF.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.textContent=s.label;
+  if(i===0) b.classList.add('on');
+  b.onclick=()=>{
+    document.querySelectorAll('#sarf-sel button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on'); renderSarfCard(s);
+  };
+  sarfSelEl.appendChild(b);
+});
+function renderSarfCard(s){
+  const rows=s.f.map((f,i)=>{
+    const isKey=f.includes('★');
+    return `<tr>
+      <td style="text-align:right;direction:rtl;font-family:'Amiri',serif;font-size:1.05rem;padding:9px 10px;border:1px solid var(--line);background:var(--paper-2)">${SS_LABELS[i][0]}</td>
+      <td style="font-size:.68rem;color:var(--muted);font-family:'Spline Sans Mono',monospace;padding:9px 8px;border:1px solid var(--line);background:var(--paper-2);white-space:nowrap">${SS_LABELS[i][1]}</td>
+      <td style="text-align:center;font-family:'Amiri',serif;font-size:1.85rem;direction:rtl;padding:9px 14px;border:1px solid var(--line);${isKey?'color:var(--accent);font-weight:700':''}">${f}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('sarf-out').innerHTML=`
+    <div class="tcard">
+      <h3><span class="ar" style="font-size:1.55rem;color:var(--accent)">${s.ar}</span> &nbsp;—&nbsp; ${s.label}</h3>
+      <div class="meta">${s.verb} &nbsp;·&nbsp; ${s.gloss}</div>
+      <div class="scrollx" style="margin-top:12px"><table style="border-collapse:collapse;min-width:420px">${rows}</table></div>
+      <div style="margin-top:14px;background:#fff7ea;border:1px dashed var(--line);border-radius:9px;padding:11px 14px;font-size:.91rem">
+        <strong>Key changes:</strong> ${s.key}
+      </div>
+    </div>`;
+}
+renderSarfCard(SARF[0]);
+
+/* ======================================================
+   MUALLAQAT — poets, couplets, quiz
+   ====================================================== */
+const MUALLAQAT=[
+  {id:"imrulqays",poet:"Imruʾ al-Qays",ar:"امرؤ القيس",tribe:"Kindah / Qays",
+   epithet:"al-Malik al-Dillīl — the wandering king; father killed, spent life seeking revenge",
+   theme:"Archetypal nasīb (love-prelude), desert wanderings, hunting — most imitated opening in Arabic poetry",
+   lines:[
+    ["قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ","بِسِقْطِ اللِّوَى بَيْنَ الدَّخُولِ فَحَوْمَلِ"],
+    ["وَلَيْلٍ كَمَوْجِ البَحْرِ أَرْخَى سُدُولَهُ","عَلَيَّ بِأَنْوَاعِ الهُمُومِ لِيَبْتَلِي"],
+    ["كَأَنَّ قُلُوبَ الطَّيْرِ رَطْبًا وَيَابِسًا","لَدَى وَكْرِهَا العُنَّابُ وَالحَشَفُ البَالِي"]]},
+  {id:"tarafa",poet:"Ṭarafa ibn al-ʿAbd",ar:"طرفة بن العبد",tribe:"Bakr (Rabīʿa)",
+   epithet:"Died ~26 years old — executed by the Lakhmid king for a satirical poem",
+   theme:"Carpe diem, wine, generosity; contains the most detailed camel description in Arabic poetry",
+   lines:[
+    ["لِخَوْلَةَ أَطْلَالٌ بِبُرْقَةِ ثَهْمَدِ","تَلُوحُ كَبَاقِي الوَشْمِ فِي ظَاهِرِ اليَدِ"],
+    ["سَتُبْدِي لَكَ الأَيَّامُ مَا كُنْتَ جَاهِلًا","وَيَأْتِيكَ بِالأَخْبَارِ مَنْ لَمْ تُزَوِّدِ"],
+    ["وَلَسْتُ بِحَلَّالِ التِّلَاعِ مَخَافَةً","وَلَكِنْ مَتَى يُسْتَرْفَدِ القَوْمُ أُرْفِدِ"]]},
+  {id:"zuhayr",poet:"Zuhayr ibn Abī Sulmā",ar:"زهير بن أبي سلمى",tribe:"Muzayna / Ghaṭafān alliance",
+   epithet:"Poet of ḥikma (wisdom) — composed each poem over a full year, polished like gold",
+   theme:"Praise of peacemakers (Ḥārith ibn ʿAwf & Ḥarim ibn Sinān) after the Dāḥis war; anti-war wisdom",
+   lines:[
+    ["أَمِنْ أُمِّ أَوْفَى دِمْنَةٌ لَمْ تَكَلَّمِ","بِحَوْمَانَةِ الدَّرَّاجِ فَالمُتَثَلَّمِ"],
+    ["سَئِمْتُ تَكَالِيفَ الحَيَاةِ وَمَنْ يَعِشْ","ثَمَانِينَ حَوْلًا لا أَبَا لَكَ يَسْأَمِ"],
+    ["وَمَنْ لَا يَذُدْ عَنْ حَوْضِهِ بِسِلَاحِهِ","يُهَدَّمْ وَمَنْ لَا يَظْلِمِ النَّاسَ يُظْلَمِ"]]},
+  {id:"labid",poet:"Labīd ibn Rabīʿa",ar:"لبيد بن ربيعة",tribe:"ʿĀmir ibn Ṣaʿṣaʿa (Hawāzin)",
+   epithet:"Only Muʿallaqa poet to accept Islam — stopped composing after conversion; lived ~140 years",
+   theme:"Ruined encampments (aṭlāl), desert life, mortality — ends with the most famous verse in pre-Islamic poetry",
+   lines:[
+    ["عَفَتِ الدِّيَارُ مَحَلُّهَا فَمُقَامُهَا","بِمِنًى تَأَبَّدَ غَوْلُهَا فَرِجَامُهَا"],
+    ["أَلَا كُلُّ شَيْءٍ مَا خَلَا اللهَ بَاطِلٌ","وَكُلُّ نَعِيمٍ لَا مَحَالَةَ زَائِلٌ"],
+    ["وَمَا المَرْءُ إِلَّا كَالشِّهَابِ وَضَوْئِهِ","يَحُورُ رَمَادًا بَعْدَ إِذْ هُوَ سَاطِعُ"]]},
+  {id:"amribn",poet:"ʿAmr ibn Kulthūm",ar:"عمرو بن كلثوم",tribe:"Taghlib (Rabīʿa)",
+   epithet:"Killed the Lakhmid king ʿAmr ibn Hind with his own sword after an insult to his mother",
+   theme:"Fakhr (tribal boasting) — longest of the Muʿallaqāt, fiercely proud, defiant of Lakhmid authority",
+   lines:[
+    ["أَلَا هُبِّي بِصَحْنِكِ فَاصْبَحِينَا","وَلَا تُبْقِي خُمُورَ الأَنْدَرِينَا"],
+    ["بِأَيِّ مَشِيئَةٍ عَمْرَو بنَ هِنْدٍ","نَكُونُ لِقَيْلِكُمْ فِيهَا قَطِينَا"],
+    ["أَلَا لَا يَجْهَلَنَّ أَحَدٌ عَلَيْنَا","فَنَجْهَلَ فَوْقَ جَهْلِ الجَاهِلِينَا"]]},
+  {id:"antara",poet:"ʿAntara ibn Shaddād",ar:"عنترة بن شداد",tribe:"ʿAbs (Qays ʿAylān)",
+   epithet:"Warrior-poet of mixed ancestry who won freedom and honour through heroism in battle",
+   theme:"Love for ʿAbla (his cousin), pride in courage over lineage, vivid battle scenes",
+   lines:[
+    ["هَلْ غَادَرَ الشُّعَرَاءُ مِنْ مُتَرَدَّمِ","أَمْ هَلْ عَرَفْتَ الدَّارَ بَعْدَ تَوَهُّمِ"],
+    ["يَا دَارَ عَبْلَةَ بِالجِوَاءِ تَكَلَّمِي","وَعِمِّي صَبَاحًا دَارَ عَبْلَةَ وَاسْلَمِي"],
+    ["وَلَقَدْ أَبِيتُ عَلَى الطَّوَى وَأَظَلُّهُ","حَتَّى أَنَالَ بِهِ كَرِيمَ المَأْكَلِ"]]},
+  {id:"harith",poet:"al-Ḥārith ibn Ḥilliza",ar:"الحارث بن حلزة",tribe:"Bakr (Rabīʿa)",
+   epithet:"Recited from behind a curtain before the Lakhmid king — had leprosy (baraṣ)",
+   theme:"Defense of the Bakr tribe against Taghlib's accusations before king ʿAmr ibn Hind",
+   lines:[
+    ["آذَنَتْنَا بِبَيْنِهَا أَسْمَاءُ","رُبَّ ثَاوٍ يُمَلُّ مِنْهُ الثَّوَاءُ"],
+    ["وَكَأَنَّ المَنُونَ تَرْدِي بِنَا","أَرْعَنَ جَوْنًا يَنْجَابُ عَنْهُ العَمَاءُ"],
+    ["إِنَّ إِخْوَانَنَا الأَرَاقِمَ يَغْلُو","نَ عَلَيْنَا فِي قِيلِهِمْ إِحْفَاءُ"]]}
+];
+
+const MQ_Q=[
+  {q:"Who wrote «قِفَا نَبْكِ مِنْ ذِكْرَى حَبِيبٍ وَمَنْزِلِ»?",
+   o:["Imruʾ al-Qays","Zuhayr ibn Abī Sulmā","ʿAntara ibn Shaddād","Labīd ibn Rabīʿa"],a:0,
+   e:"Imruʾ al-Qays opened with «قِفَا نَبْكِ» — the most imitated nasīb in classical poetry."},
+  {q:"Which Muʿallaqa poet converted to Islam and stopped composing poetry?",
+   o:["Labīd ibn Rabīʿa","Zuhayr ibn Abī Sulmā","Ṭarafa ibn al-ʿAbd","ʿAmr ibn Kulthūm"],a:0,
+   e:"Labīd accepted Islam and wrote virtually no poetry thereafter. He lived approximately 140 years."},
+  {q:"«أَلَا كُلُّ شَيْءٍ مَا خَلَا اللهَ بَاطِلٌ» — the Prophet ﷺ called this the truest word a poet ever said. Who wrote it?",
+   o:["Labīd ibn Rabīʿa","Zuhayr ibn Abī Sulmā","Imruʾ al-Qays","al-Ḥārith ibn Ḥilliza"],a:0,
+   e:"Labīd. The Prophet ﷺ said: «أَصدَقُ كلمةٍ قالها الشاعرُ كلمةُ لبيدٍ»."},
+  {q:"«هَلْ غَادَرَ الشُّعَرَاءُ مِنْ مُتَرَدَّمِ» was composed by:",
+   o:["ʿAntara ibn Shaddād","Ṭarafa ibn al-ʿAbd","al-Ḥārith ibn Ḥilliza","ʿAmr ibn Kulthūm"],a:0,
+   e:"ʿAntara opens by asking whether any theme remains untouched by earlier poets."},
+  {q:"ʿAmr ibn Kulthūm's Muʿallaqa addresses which king?",
+   o:["ʿAmr ibn Hind (Lakhmid)","al-Nuʿmān ibn al-Mundhir","Ḥārith al-Ghassānī","Iyās ibn Qabīṣa"],a:0,
+   e:"ʿAmr ibn Kulthūm addresses ʿAmr ibn Hind — and legend says he killed him with his own sword after an insult."},
+  {q:"Zuhayr's Muʿallaqa praises which two peacemakers?",
+   o:["Ḥārith ibn ʿAwf & Ḥarim ibn Sinān","ʿAmr ibn Hind & al-Nuʿmān","Imruʾ al-Qays & Ṭarafa","Labīd & ʿAntara"],a:0,
+   e:"Zuhayr composed it in gratitude to Ḥārith ibn ʿAwf and Ḥarim ibn Sinān for ending the Dāḥis wa-l-Ghabrāʾ war."},
+  {q:"Which tribe did ʿAntara ibn Shaddād belong to?",
+   o:["ʿAbs","Bakr","Taghlib","Kindah"],a:0,
+   e:"ʿAntara was from the ʿAbs tribe. His mother was an Abyssinian slave named Zabība; he fought to earn his freedom."},
+  {q:"«لِخَوْلَةَ أَطْلَالٌ بِبُرْقَةِ ثَهْمَدِ» — first line of whose Muʿallaqa?",
+   o:["Ṭarafa ibn al-ʿAbd","Labīd ibn Rabīʿa","Zuhayr ibn Abī Sulmā","al-Ḥārith ibn Ḥilliza"],a:0,
+   e:"Ṭarafa mourns the traces of Khawla's camp. He was around 26 when executed by the Lakhmid king."},
+  {q:"al-Ḥārith ibn Ḥilliza recited his Muʿallaqa from behind a curtain because:",
+   o:["He had leprosy (baraṣ)","He was blind","He was a woman","He was a prisoner of war"],a:0,
+   e:"al-Ḥārith had leprosy and recited from behind a curtain before king ʿAmr ibn Hind."},
+  {q:"What does «Muʿallaqa» (المعلقة) literally mean?",
+   o:["The suspended / hung one","The praised one","The memorised one","The golden ode"],a:0,
+   e:"Muʿallaqa means «the hung/suspended poem» — tradition says they were written in gold and hung on the Kaʿba."},
+  {q:"Imruʾ al-Qays is nicknamed:",
+   o:["al-Malik al-Dillīl (the wandering king)","Abū al-Faṣāḥa","al-Ḥakīm al-Jāhilī","Shāʿir al-Futūwa"],a:0,
+   e:"al-Malik al-Dillīl — the wandering king — because he roamed in exile after his father's murder."},
+  {q:"ʿAntara's beloved, addressed throughout his Muʿallaqa, is named:",
+   o:["ʿAbla","Khawla","Umm Awfā","Asmāʾ"],a:0,
+   e:"ʿAntara repeatedly invokes ʿAbla (عبلة) — his cousin whom he loved and fought to earn the right to marry."},
+  {q:"«أَمِنْ أُمِّ أَوْفَى دِمْنَةٌ لَمْ تَكَلَّمِ» — whose Muʿallaqa?",
+   o:["Zuhayr ibn Abī Sulmā","Imruʾ al-Qays","Labīd","al-Ḥārith"],a:0,
+   e:"Zuhayr opens lamenting the abandoned campsite of Umm Awfā, before shifting to his wisdom themes."},
+  {q:"al-Ḥārith ibn Ḥilliza defends which tribe against Taghlib's accusations?",
+   o:["Bakr","Tamīm","Sulaym","Iyād"],a:0,
+   e:"al-Ḥārith defends Bakr before the Lakhmid court against accusations levelled by the Taghlib tribe."},
+  {q:"Zuhayr is described as which type of poet?",
+   o:["Poet of ḥikma (wisdom)","Poet of fakhr (boasting)","Poet of hijāʾ (satire)","Poet of rithāʾ (elegy)"],a:0,
+   e:"Zuhayr is the poet of wisdom (ḥikma). He reportedly spent a year polishing each poem — his odes are called al-Ḥawliyyāt."}
+];
+
+function renderMuallaqat(){
+  document.getElementById('mq-poets').innerHTML=MUALLAQAT.map((p,idx)=>`
+    <div class="card rulecard" style="margin-bottom:14px">
+      <div class="rid" style="background:var(--gold)">${idx+1}</div>
+      <div class="rulename">
+        <span class="ar" style="font-size:1.65rem;color:var(--accent)">${p.ar}</span>
+        ${p.poet} <span class="tag">${p.tribe}</span>
+      </div>
+      <div style="margin-top:4px;font-size:.82rem;color:var(--muted);font-family:'Spline Sans Mono',monospace;font-style:italic">${p.epithet}</div>
+      <div style="margin-top:5px;font-size:.9rem;color:var(--muted)">${p.theme}</div>
+      <div style="margin-top:10px">
+        ${p.lines.map(l=>`
+          <div style="background:#fbf2e2;border:1px solid var(--line);border-right:4px solid var(--gold);border-radius:8px;padding:10px 14px;margin:6px 0;font-family:'Amiri',serif;font-size:1.35rem;direction:rtl;line-height:2.1">
+            ${l[0]}<span style="color:var(--gold);font-size:1rem;padding:0 8px">···</span>${l[1]}
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+renderMuallaqat();
+
+document.querySelectorAll('#mq-mode button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#mq-mode button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  const m=b.dataset.mqm;
+  document.getElementById('mq-poets').style.display=m==='poets'?'':'none';
+  document.getElementById('mq-quiz').style.display=m==='quiz'?'':'none';
+  if(m==='quiz') startMQ();
+});
+
+let mqPos=0,mqScore=0,mqList=[];
+function startMQ(){
+  mqList=[...MQ_Q]; shuffle(mqList); mqList=mqList.slice(0,12); mqPos=0; mqScore=0; renderMQ();
+}
+function renderMQ(){
+  const box=document.getElementById('mq-quiz');
+  if(mqPos>=mqList.length){
+    const pct=Math.round(mqScore/mqList.length*100);
+    box.innerHTML=`<div class="scorebanner">
+      <div class="big">${mqScore}/${mqList.length}</div>
+      <p style="margin:10px 0 18px;color:var(--muted)">${pct}% — ${pct>=80?'strong':'keep reviewing the poets'}</p>
+      <button class="btn primary" onclick="startMQ()">Restart</button></div>`;
+    return;
+  }
+  const q=mqList[mqPos];
+  const opts=q.o.map((o,i)=>({o,i})); shuffle(opts);
+  box.innerHTML=`
+    <div class="progress"><span style="width:${mqPos/mqList.length*100}%"></span></div>
+    <div class="counter" style="margin:0 0 12px;text-align:left">Q${mqPos+1} / ${mqList.length} · score ${mqScore}</div>
+    <div class="qprompt">${q.q}</div>
+    <div id="mq-opts">${opts.map(x=>`<button class="qopt" data-i="${x.i}">${x.o}</button>`).join('')}</div>
+    <div class="qexp" id="mq-exp"></div>
+    <button class="btn" id="mq-next" style="margin-top:14px;display:none">Next →</button>`;
+  document.querySelectorAll('#mq-opts .qopt').forEach(btn=>btn.onclick=()=>{
+    const pick=+btn.dataset.i;
+    document.querySelectorAll('#mq-opts .qopt').forEach(b=>{
+      b.disabled=true;
+      if(+b.dataset.i===q.a) b.classList.add('correct');
+      if(+b.dataset.i===pick&&pick!==q.a) b.classList.add('incorrect');
+    });
+    if(pick===q.a) mqScore++;
+    const ex=document.getElementById('mq-exp');
+    ex.innerHTML=`<strong>${pick===q.a?'✓ Correct':'✗'}</strong> — ${q.e}`;
+    ex.classList.add('show');
+    document.getElementById('mq-next').style.display='inline-block';
+  });
+  document.getElementById('mq-next').onclick=()=>{mqPos++;renderMQ();};
 }
 
 /* Hook into renderTasreef to add drills after render */
