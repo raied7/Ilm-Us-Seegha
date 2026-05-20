@@ -1616,126 +1616,139 @@ renderTasreef();
 /* ---------- FLASHCARDS ---------- */
 let fcMode='rule', fcDeck=[], fcIdx=0;
 
-/* Format an answer string into clean HTML safe for the answer face */
-function fmtAnswer(raw){
-  if(!raw) return '';
-  // Split into lines, render Arabic words in RTL spans, keep structure readable
-  return raw
-    // Newlines -> breaks
-    .replace(/\n/g, '<br>')
-    // Wrap inline Arabic runs (sequences of Arabic chars) in RTL spans
-    .replace(/([\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF][^\s<]*)/g,
-      '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em;unicode-bidi:isolate">$1</span>');
+/* Parse a chain string into an array of {label, arabic} step objects.
+   Supports two formats:
+   1. "START: X · STEP 1 — Y: Z · STEP 2 — ..." (· separated, labeled)
+   2. "اُؤْخُذْ → خُذْ" (→ arrow, unlabeled — from tasreef key_forms)        */
+function parseChainSteps(chain){
+  if(!chain) return [];
+  // Format 1: has · separators
+  if(chain.includes('·')){
+    return chain.split('·').map(s=>s.trim()).filter(Boolean).map(p=>{
+      const lm = p.match(/^((?:STEP\s*\d+|START|RESULT|EXCEPTION|COUNTER-EXAMPLE|FORM\s*\d+|FEM-PL|NO CHANGE)[^:—]*[:—])\s*(.*)$/i);
+      if(lm) return {label: lm[1], content: lm[2]};
+      return {label: null, content: p};
+    });
+  }
+  // Format 2: inline → arrows — split into steps
+  const parts = chain.split('→').map(s=>s.trim()).filter(Boolean);
+  if(parts.length === 1) return [{label:null, content: parts[0]}];
+  // First part = START (aṣl), rest = intermediate/result
+  return parts.map((p,i)=>{
+    if(i===0) return {label:'START:', content:p};
+    if(i===parts.length-1) return {label:`STEP ${i}:`, content:p};
+    return {label:`STEP ${i}:`, content:p};
+  });
+}
+
+function renderStepsHtml(chain, fontSize='1.1em'){
+  const steps = parseChainSteps(chain);
+  return steps.map(({label,content})=>{
+    // Wrap Arabic runs in RTL spans
+    const arContent = content.replace(/([\u0600-\u06FF\u0610-\u061A\u064B-\u065F][^\s<(→·]*)/g,
+      `<span dir="rtl" style="font-family:'Amiri',serif;font-size:${fontSize};unicode-bidi:isolate;display:inline-block">$1</span>`);
+    if(label){
+      return `<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:3px 0;padding:4px 8px;background:#fffaf2;border-radius:5px;border-left:2px solid #e8c882">
+        <span style="font-family:'Spline Sans Mono',monospace;font-size:.65rem;color:#9c3a1f;font-weight:700;flex-shrink:0;min-width:54px;padding-top:2px">${label}</span>
+        <span style="font-size:.88rem;line-height:1.7;flex:1">${arContent}</span>
+      </div>`;
+    }
+    return `<div style="padding:4px 8px;margin:3px 0;font-size:.88rem;line-height:1.7;background:#fffaf2;border-radius:5px;border-left:2px solid #e8c882">${arContent}</div>`;
+  }).join('');
 }
 
 /* Build a compact answer for the card — rule mode only shows name + 2-line summary */
 function buildDeck(){
   if(fcMode==='rule'){
     fcDeck=[...RULES.mahmuz,...RULES.mutall].map(r=>{
-      // Answer: just the rule name + first 2 lines of body + the chain headline
       const bodyLines = r.body.split('\n').filter(l=>l.trim()).slice(0,4);
-      const chainParts = r.chain ? r.chain.split('·').slice(0,2) : [];
-      const chainHtml = chainParts.map(p=>{
-        p=p.trim();
-        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT)[^:—]*[:—])\s*(.*)$/i);
-        if(lm) return `<div style="margin:3px 0"><span style="font-family:\'Spline Sans Mono\',monospace;font-size:.68rem;color:#9c3a1f;font-weight:700">${lm[1]}</span> <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;unicode-bidi:isolate">${lm[2]}</span></div>`;
-        return `<div dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;margin:3px 0;unicode-bidi:isolate">${p}</div>`;
-      }).join('');
+      const bodyHtml = bodyLines.join('\n').replace(/\n/g,'<br>')
+        .replace(/([\u0600-\u06FF\u0610-\u061A\u064B-\u065F][^\s<(→·]*)/g,
+          `<span dir="rtl" style="font-family:'Amiri',serif;font-size:1.05em;unicode-bidi:isolate;display:inline-block">$1</span>`);
+      // Show first START + first STEP only as chain preview
+      const chainPreview = r.chain ? renderStepsHtml(
+        parseChainSteps(r.chain).slice(0,3).map(s=>(s.label?s.label+' ':'')+s.content).join(' · ')
+      ) : '';
       return {
         k: r.id.startsWith('M') ? 'mahmūz · '+r.id : 'muʿtall · qāʿida '+r.id,
-        q: `<span class="ar" style="font-size:1.6rem;direction:rtl;unicode-bidi:isolate">${r.ar}</span><br><span style="font-size:.95rem;color:var(--muted)">What does this rule do?</span>`,
-        a: `<div style="font-weight:700;margin-bottom:8px;font-size:.95rem">${r.name}</div>`
-           + `<div style="font-size:.82rem;color:#555;margin-bottom:10px;line-height:1.6">${fmtAnswer(bodyLines.join('\n'))}</div>`
-           + (chainHtml ? `<div style="background:#fff6e8;border-radius:8px;padding:8px 10px;border:1px dashed #cdbfa6;margin-top:6px">${chainHtml}</div>` : '')
+        q: `<span dir="rtl" style="font-family:'Amiri',serif;font-size:1.6rem;unicode-bidi:isolate;color:var(--accent);display:block;margin-bottom:8px">${r.ar}</span>
+            <span style="font-size:.95rem;color:var(--muted)">What does this rule do?</span>`,
+        a: `<div style="font-weight:700;margin-bottom:8px;font-size:.95rem">${r.name}</div>
+            <div style="font-size:.82rem;color:#555;margin-bottom:10px;line-height:1.6">${bodyHtml}</div>
+            ${chainPreview ? `<div style="background:#fff6e8;border-radius:8px;padding:8px;border:1px dashed #cdbfa6">${chainPreview}</div>` : ''}`
       };
     });
+
   } else if(fcMode==='deriv'){
     fcDeck=[];
-    // From rules: pick chains with START→STEP pattern, show first START as question
+    // From rules — use parseChainSteps so both · and → formats work
     [...RULES.mahmuz,...RULES.mutall].filter(r=>r.chain).forEach(r=>{
-      const steps = r.chain.split('·').map(s=>s.trim());
-      // Question: show original form (first START label's Arabic)
-      const firstStart = steps.find(s=>s.match(/^START:/i));
-      if(!firstStart) return;
-      const origAr = firstStart.replace(/^START:\s*/i,'').replace(/\(.*?\)/g,'').trim();
-      // Answer: all steps formatted
-      const stepsHtml = steps.map(p=>{
-        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT|EXCEPTION|COUNTER-EXAMPLE)[^:—]*[:—])\s*(.*)$/i);
-        if(lm){
-          const arPart = lm[2].replace(/([\u0600-\u06FF][^\s·]*)/g,
-            '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em;unicode-bidi:isolate">$1</span>');
-          return `<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:3px 0;padding:3px 6px;background:#fffaf2;border-radius:4px">
-            <span style="font-family:\'Spline Sans Mono\',monospace;font-size:.65rem;color:#9c3a1f;font-weight:700;flex-shrink:0;min-width:52px">${lm[1]}</span>
-            <span style="font-size:.85rem;line-height:1.5">${arPart}</span>
-          </div>`;
-        }
-        return `<div dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;margin:3px 0;unicode-bidi:isolate">${p}</div>`;
-      }).join('');
+      const steps = parseChainSteps(r.chain);
+      if(!steps.length) return;
+      const origAr = steps[0].content.replace(/\(.*?\)/g,'').trim();
       fcDeck.push({
         k: 'derivation · '+r.id+' · '+r.ar,
-        q: `<div style="font-size:.88rem;color:var(--muted);margin-bottom:6px">Derive step by step:</div>
-            <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.9rem;unicode-bidi:isolate;color:var(--accent)">${origAr}</span>
-            <div style="font-size:.82rem;margin-top:8px;color:#666">${r.name}</div>`,
-        a: `<div style="font-weight:700;font-size:.85rem;margin-bottom:8px;color:var(--accent-2)">${r.id} — ${r.ar}</div>${stepsHtml}`
+        q: `<div style="font-size:.82rem;color:var(--muted);margin-bottom:8px">Derive step by step — which rule?</div>
+            <span dir="rtl" style="font-family:'Amiri',serif;font-size:1.85rem;unicode-bidi:isolate;color:var(--accent);display:block;margin-bottom:6px">${origAr}</span>
+            <div style="font-size:.8rem;color:#888">${r.name}</div>`,
+        a: `<div style="font-weight:700;font-size:.85rem;color:var(--accent-2);margin-bottom:8px">${r.id} — <span dir="rtl" style="font-family:'Amiri',serif">${r.ar}</span></div>
+            ${renderStepsHtml(r.chain)}`
       });
     });
-    // From tasreef key_forms
+    // From tasreef key_forms — use parseChainSteps so → chains show all steps
     TASREEF.forEach(t=>t.key_forms.forEach(k=>{
       if(!k.chain||!k.chain.includes('→')) return;
-      const chainParts = k.chain.split('·').map(s=>s.trim()).slice(0,4);
-      const chainHtml = chainParts.map(p=>{
-        const arPart = p.replace(/([\u0600-\u06FF][^\s·]*)/g,
-          '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;unicode-bidi:isolate">$1</span>');
-        const lm = p.match(/^((?:STEP\s*\d+|START|RESULT)[^:—]*[:—])\s*(.*)$/i);
-        if(lm){
-          const ap2 = lm[2].replace(/([\u0600-\u06FF][^\s·]*)/g,
-            '<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.05em;unicode-bidi:isolate">$1</span>');
-          return `<div style="display:flex;gap:6px;align-items:baseline;flex-wrap:wrap;margin:2px 0;padding:2px 5px;background:#fffaf2;border-radius:4px">
-            <span style="font-family:\'Spline Sans Mono\',monospace;font-size:.62rem;color:#9c3a1f;font-weight:700;flex-shrink:0">${lm[1]}</span>
-            <span style="font-size:.82rem">${ap2}</span></div>`;
-        }
-        return `<div style="font-size:.82rem;margin:2px 0;padding:2px 4px">${arPart}</div>`;
-      }).join('');
+      const steps = parseChainSteps(k.chain);
+      if(steps.length < 2) return;
+      const origAr = steps[0].content.replace(/\(.*?\)/g,'').trim();
       fcDeck.push({
         k: t.title+' · '+k.label,
-        q: `<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.6rem;unicode-bidi:isolate;color:var(--accent)">${t.title}</span>
-            <div style="font-size:.88rem;margin-top:8px">${k.label} — explain derivation</div>`,
-        a: `${chainHtml}<div style="font-size:.78rem;color:#666;margin-top:8px;border-top:1px solid var(--line);padding-top:6px">${k.why}</div>`
+        q: `<span dir="rtl" style="font-family:'Amiri',serif;font-size:1.55rem;unicode-bidi:isolate;color:var(--accent);display:block;margin-bottom:6px">${t.title}</span>
+            <div style="font-size:.88rem;margin-bottom:6px">${k.label}</div>
+            <div style="font-size:.82rem;color:var(--muted)">What is the derivation?</div>`,
+        a: `${renderStepsHtml(k.chain)}
+            <div style="font-size:.76rem;color:#777;margin-top:8px;border-top:1px solid var(--line);padding-top:6px">${k.why}</div>`
       });
     }));
+
   } else {
-    // Definitions — keep these short so they always fit
     fcDeck=[
       {k:'definition',
        q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مَهْمُوز</span><br>What is a mahmūz verb?',
-       a:'A verb with <strong>hamza (ء)</strong> as one of its three root letters.<br><br>3 types: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز الفاء</span> (أمَر) · <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز العين</span> (سأل) · <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مهموز اللام</span> (قرأ)'},
+       a:'A verb with <strong>hamza (ء)</strong> as one of its three root letters.<br><br>3 types:<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مهموز الفاء</span> — أمَر<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مهموز العين</span> — سأل<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مهموز اللام</span> — قرأ'},
       {k:'definition',
        q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مِثَال</span><br>Define mithāl.',
-       a:'Muʿtall verb with the weak letter in the <strong>fāʾ</strong> (first root position).<br>Example: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">وَعَدَ يَعِدُ</span>'},
+       a:'Muʿtall with weak letter in <strong>fāʾ</strong> (first position).<br>Example: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">وَعَدَ يَعِدُ</span>'},
       {k:'definition',
        q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">أَجْوَف</span><br>Define ajwaf.',
-       a:'Muʿtall verb with the weak letter in the <strong>ʿayn</strong> (middle position) — also called معتل العين.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قَالَ · بَاعَ</span>'},
+       a:'Muʿtall with weak letter in <strong>ʿayn</strong> (middle) — also معتل العين.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قَالَ · بَاعَ</span>'},
       {k:'definition',
        q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">نَاقِص</span><br>Define nāqiṣ.',
-       a:'Muʿtall verb with the weak letter in the <strong>lām</strong> (last position) — also called معتل اللام.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">دَعَا · رَمَى</span>'},
+       a:'Muʿtall with weak letter in <strong>lām</strong> (last) — معتل اللام.<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">دَعَا · رَمَى</span>'},
       {k:'definition',
-       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">لَفِيف مَقْرُون vs مَفْرُوق</span>',
-       a:'<strong>مقرون:</strong> two weak letters adjacent (next to each other): <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">طَوَى</span><br><strong>مفروق:</strong> two weak letters separated: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">وَقَى · وَلِيَ</span>'},
+       q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">لَفِيف</span><br>مقرون vs مفروق?',
+       a:'<strong>مقرون</strong> — two weak letters adjacent: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">طَوَى</span><br><strong>مفروق</strong> — separated: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">وَقَى · وَلِيَ</span>'},
       {k:'definition',
        q:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.7rem;unicode-bidi:isolate">مُضَاعَف</span><br>Define muḍāʿaf.',
-       a:'A verb with two <strong>identical</strong> root letters (ʿayn = lām).<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">مَدَّ · فَرَّ</span>'},
+       a:'Two identical root letters (ʿayn = lām).<br>Examples: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">مَدَّ · فَرَّ</span>'},
       {k:'definition',
-       q:'تَخْفِيف vs تَعْلِيل vs إِدْغَام — what is each?',
-       a:'<strong>تَخْفِيف:</strong> lightening/changing a <em>hamza</em><br><strong>تَعْلِيل (إِعْلَال):</strong> changing a <em>weak letter</em> (wāw/yāʾ/alif)<br><strong>إِدْغَام:</strong> merging two identical letters into one (shadda)'},
+       q:'تَخْفِيف vs إِعْلَال vs إِدْغَام',
+       a:'<strong>تَخْفِيف</strong> — changing a hamza<br><strong>إِعْلَال</strong> — changing a weak letter (و/ي/ا)<br><strong>إِدْغَام</strong> — merging two identical letters into one (shadda)'},
       {k:'definition',
-       q:'Why is the ẓarf of a nāqiṣ verb maftūḥ al-ʿayn?',
-       a:'The ẓarf pattern is <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مَفْعَل</span> (fatḥa on ʿayn), regardless of the muḍāriʿ vowel.<br>So: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">مَرْمَى</span> not مَرْمِى.'},
+       q:'Why is the ẓarf of nāqiṣ maftūḥ al-ʿayn?',
+       a:'Pattern is <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مَفْعَل</span> (fatḥa ʿayn) regardless of muḍāriʿ vowel.<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مَرْمَى</span> not مَرْمِى.'},
       {k:'definition',
-       q:'When mahmūz and muʿtall rules conflict, which wins?',
-       a:'The <strong>muʿtall</strong> rule takes priority.<br>Example: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">أَأْوَل → آل</span><br>Rule 8 (naql) wins over M1 (taḫfīf).'},
+       q:'Mahmūz vs muʿtall conflict — which wins?',
+       a:'<strong>Muʿtall wins.</strong><br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">أَأْوَل → آل</span><br>Rule 8 (naql) beats M1 (taḫfīf).'},
       {k:'definition',
-       q:'In which context is M7 (يسأل rule) <em>obligatory</em>?',
-       a:'In all verbs of <strong>seeing</strong> (أفعال الرؤية): <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.1em">رَأَى يَرَى</span><br>The hamza vowel transfers & hamza drops — wājib.<br>In derived nouns (مرأى), it is optional only.'}
+       q:'When is M7 obligatory vs optional?',
+       a:'<strong>Obligatory</strong> in verbs of seeing: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">رَأَى يَرَى</span><br><strong>Optional</strong> in derived nouns: <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.15em">مَرْأَى / مَرَى</span>'},
+      {k:'definition',
+       q:'What are the 3 forms of the majhūl of <span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قَالَ</span>?',
+       a:'<span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قِيلَ</span> — full iʿlāl (standard)<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قُوْلَ</span> — ḍamma kept, wāw sākin<br><strong>إشمام</strong> — pronounce قِيلَ with lips shaping ḍamma'},
+      {k:'definition',
+       q:'What is tanwīn al-ʿiwaḍ? Where does it appear?',
+       a:'Compensatory tanwīn replacing a dropped letter.<br><span dir="rtl" style="font-family:\'Amiri\',serif;font-size:1.2em">قَاضٍ · دَاعٍ · جَوَارٍ</span><br>Replaces the dropped yāʾ in indefinite raf\'/jarr.'}
     ];
   }
   shuffle(fcDeck); fcIdx=0;
